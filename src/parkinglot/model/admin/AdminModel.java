@@ -3,6 +3,14 @@
  */
 package parkinglot.model.admin;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import parkinglot.model.DatabaseConnection;
+
 /**
  * @author bhavana
  *
@@ -11,6 +19,8 @@ public class AdminModel {
 
 	private String last_name, first_name, email, password;
 	private int id;
+	
+	private Connection conn;
 
 	public AdminModel() {
 		super();
@@ -72,6 +82,33 @@ public class AdminModel {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void getCredentials() {
+		// TODO Auto-generated method stub
+		
+		try {
+            conn = DatabaseConnection.getConnection();
+            PreparedStatement select = conn.prepareStatement("SELECT * FROM admin_users WHERE email = ?");
+            select.setString(1, email);
+            ResultSet rs = select.executeQuery();
+            if(rs.next()){
+                password = rs.getString("password");
+            }
+            else{
+                password = "";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+		
 	}
 
 }
