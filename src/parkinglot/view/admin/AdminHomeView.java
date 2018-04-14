@@ -53,7 +53,6 @@ public class AdminHomeView extends JFrame{
 		
 		JPanel card2 = new JPanel();
 		welcomeLabel = new JLabel();
-//		welcomeLabel.setText("<html><font color='white'>Welcome</font></html>");
 		welcomeLabel.setFont(new Font("Jokerman", Font.BOLD , 25));
 		card2.add(welcomeLabel);
 		card2.setBackground(Color.BLACK);
@@ -62,9 +61,7 @@ public class AdminHomeView extends JFrame{
 		cards.add(card1);
 		cards.add(card2);
 		
-		
 		getContentPane().add(cards, BorderLayout.CENTER);
-		
 		
 	}
 
