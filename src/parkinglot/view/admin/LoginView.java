@@ -1,116 +1,140 @@
-/**
- * 
- */
 package parkinglot.view.admin;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
-
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import parkinglot.controller.admin.LoginController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 
-/**
- * @author bhavana
- *
- */
-
-public class LoginView extends JFrame{
+public class LoginView extends JFrame {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTextField txtUsername;
-	private JPasswordField txtPassword;
-	private JLabel lblErrorMessage;
+	public JTextField txtUsername;
+	public JPasswordField txtPassword;
+	public JLabel lblErrorMessage;
+	private JTextField textField;
+	private JPasswordField passwordField;
 	
-	
-
-	public JTextField getTxtUsername() {
-		return txtUsername;
+	public JTextField getTextField() {
+		return textField;
 	}
 
-	public void setTxtUsername(JTextField txtUsername) {
-		this.txtUsername = txtUsername;
+	public void setTextField(JTextField textField) {
+		this.textField = textField;
+	}
+
+	public JPasswordField getPasswordField() {
+		return passwordField;
+	}
+
+	public void setPasswordField(JPasswordField passwordField) {
+		this.passwordField = passwordField;
 	}
 
 	/**
-	 * 
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					LoginView window = new LoginView();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
 	 */
 	public LoginView() {
-		// TODO Auto-generated constructor stub
+		initialize();
 		
-		new JFrame();
-		setBounds(500,500,1100,800);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		
 		
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
 		
-		getContentPane().add(new FooterPanel(), BorderLayout.SOUTH);
-		
-//		JPanel westPanel = new JPanel();
-//		getContentPane().add(westPanel, BorderLayout.WEST);
-//		
-//		JPanel eastPanel = new JPanel();
-//		getContentPane().add(eastPanel, BorderLayout.EAST);
+		getContentPane().add(new FooterPanel(), BorderLayout.SOUTH);		
 		
 		
+
+		JPanel centerPanel = new JPanel();
+		centerPanel.setBackground(Color.WHITE);
+		centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		getContentPane().add(centerPanel, BorderLayout.CENTER);
+		centerPanel.setLayout(null);
 		
-		JLabel lblUsername = new JLabel("Email");
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(308, 147, 436, 277);
+		centerPanel.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Email");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblNewLabel.setBounds(54, 44, 136, 27);
+		panel.add(lblNewLabel);
+		
 		JLabel lblPassword = new JLabel("Password");
-		txtUsername = new JTextField();
-		txtUsername.setColumns(10);
+		lblPassword.setForeground(Color.WHITE);
+		lblPassword.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblPassword.setBounds(54, 97, 136, 27);
+		panel.add(lblPassword);
 		
-		txtPassword = new JPasswordField();
-		txtPassword.setColumns(10);
+		textField = new JTextField();
+		textField.setBounds(220, 44, 171, 27);
+		panel.add(textField);
+		textField.setColumns(10);
 		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(220, 97, 171, 27);
+		panel.add(passwordField);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.setBounds(173, 179, 106, 39);
+		
+
 		LoginController controller = new LoginController(this);
-		JButton btnLogin = new JButton("Login");
-		btnLogin.addActionListener(new ActionListener(){
+		btnSubmit.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                controller.checkCredentials(txtUsername.getText(), new String(txtPassword.getPassword()));
+                controller.checkCredentials(textField.getText(), new String(passwordField.getPassword()));
             }
         });
 		
-		lblErrorMessage = new JLabel("");
-        lblErrorMessage.setHorizontalAlignment(SwingConstants.RIGHT);
-        lblErrorMessage.setForeground(Color.RED);
-        lblErrorMessage.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		JPanel centerPanel = new JPanel();
-		centerPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		centerPanel.add(lblUsername);
-		centerPanel.add(txtUsername);
-		centerPanel.add(lblPassword);
-		centerPanel.add(txtPassword);
-		centerPanel.add(btnLogin);
-		centerPanel.add(lblErrorMessage);
-		getContentPane().add(centerPanel, BorderLayout.CENTER);
-		
-		
+		panel.add(btnSubmit);
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		setBounds(500,500,1100,800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public void setErrorMessage(String errorMessage) {
         lblErrorMessage.setText(errorMessage);
     }
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-		LoginView view = new LoginView();
-        view.setVisible(true);
-        
-	}
-
 }

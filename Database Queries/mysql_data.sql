@@ -16,3 +16,14 @@ CREATE TABLE `admin_users` (
 
 INSERT INTO `admin_users` (`last_name`, `first_name`, `email`, `password`)
 VALUES ('Alpha', 'Joe', 'joe.alpha@foo.com', 'admin');
+
+CREATE TABLE `parking_rates` (
+  `id`   INT(11)   NOT NULL AUTO_INCREMENT,
+  `date` TIMESTAMP NOT NULL,
+  `rate` INT(11)   NOT NULL,
+  `is_active` BOOLEAN NOT NULL,
+  PRIMARY KEY (`id`)
+)
+  AUTO_INCREMENT = 1;
+
+INSERT INTO `parking_rates` VALUES (1, TIMESTAMP '2005-05-13 07:15:31.123456789',5 , 1);

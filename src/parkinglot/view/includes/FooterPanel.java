@@ -34,6 +34,7 @@ public class FooterPanel extends JPanel {
 		add(michealName);
 		add(shivaranjaniName);
 		add(mehakName);
+	
 	}
 
 	/**

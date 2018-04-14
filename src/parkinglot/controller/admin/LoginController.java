@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
 
-import parkinglot.model.admin.AdminModel;
+import parkinglot.model.admin.*;
 import parkinglot.view.admin.LoginView;
 import parkinglot.view.admin.AdminHomeView;
 
@@ -20,6 +20,7 @@ public class LoginController {
 	
 	private LoginView view;
 	private AdminModel model;
+	private ParkingRatesModel parkingRatesModel;
 	
 	
 
@@ -28,7 +29,7 @@ public class LoginController {
 		// TODO Auto-generated constructor stub
 		this.view = view;
 		model = new AdminModel();
-		
+		parkingRatesModel = new ParkingRatesModel();
 		
 	}
 
@@ -36,11 +37,15 @@ public class LoginController {
         model.setEmail(email);
         model.getCredentials();
         if(password.equals(model.getPassword())){
-//            view.setErrorMessage("Login Success!");
             AdminHomeView adminHomeView = new AdminHomeView();
             adminHomeView.setVisible(true);
             adminHomeView.setLocationRelativeTo(null);
-            adminHomeView.getWelcomeLabel().setText("<html><font color='white'>Welcome </font>"+view.getTxtUsername().getText()+"</html>");
+            System.out.println(adminHomeView);
+            adminHomeView.welcomeLabel.setText("<html><font color='white'>Welcome "+view.getTextField().getText()+"</font></html>");
+            parkingRatesModel.getActiveRate();
+            if(parkingRatesModel.isIs_active())
+            	System.out.println(String.valueOf(parkingRatesModel.getRate()));
+            	adminHomeView.todaysRate.setText(String.valueOf(parkingRatesModel.getRate()));
             view.dispose();
         }
         else{
