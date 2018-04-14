@@ -45,7 +45,7 @@ public class LoginController {
             parkingRatesModel.getActiveRate();
             if(parkingRatesModel.isIs_active())
             	System.out.println(String.valueOf(parkingRatesModel.getRate()));
-            	adminHomeView.todaysRate.setText(String.valueOf(parkingRatesModel.getRate()));
+            	adminHomeView.todaysRate.setText("$ " + String.valueOf(parkingRatesModel.getRate()));
             view.dispose();
         }
         else{
