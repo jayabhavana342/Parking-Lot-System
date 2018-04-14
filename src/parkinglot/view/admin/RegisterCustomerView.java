@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
+import parkinglot.view.includes.MenuBar;
+
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -56,30 +58,33 @@ public class RegisterCustomerView extends JFrame{
 	 */
 	public RegisterCustomerView() {
 		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		new JFrame();
-		setBounds(500,500,1100,800);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		getContentPane().setBackground(Color.lightGray);
-		getContentPane().setLayout(null);
-		
-		
-		HeaderPanel headerPanel = new HeaderPanel();
-		headerPanel.setBounds(0, 0, 1082, 74);
-		getContentPane().add(headerPanel);
-		
-		FooterPanel footerPanel = new FooterPanel();
-		footerPanel.setBounds(0, 719, 1082, 34);
-		getContentPane().add(footerPanel);
-		
+		getContentPane().setLayout(new BorderLayout());
+		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
+		getContentPane().add(new FooterPanel(), BorderLayout.SOUTH);
+
+		JPanel cards = new JPanel();
+		cards.setForeground(Color.WHITE);
+		cards.setBackground(Color.WHITE);
+
+		getContentPane().add(cards, BorderLayout.CENTER);
+		cards.setLayout(null);
+		MenuBar menuBar = new MenuBar();
+		menuBar.setBounds(0, 0, 1084, 26);
+		cards.add(menuBar);
+
+//		JPanel centerHome = new JPanel();
+//		centerHome.setBounds(0, 26, 1, 591);
+//		centerHome.setBackground(Color.LIGHT_GRAY);
+//		cards.add(centerHome);
+//		centerHome.setLayout(null);
+
 		JPanel registerPanel = new JPanel();
-		registerPanel.setBounds(0, 75, 394, 643);
-		getContentPane().add(registerPanel);
+		registerPanel.setForeground(Color.BLACK);
+		registerPanel.setBackground(Color.WHITE);
+		cards.add(registerPanel);
+		registerPanel.setBounds(0, 28, 394, 589);
 		registerPanel.setLayout(null);
 		
 		JLabel lblNewCustomerRegistration = new JLabel("New Customer Registration");
@@ -175,16 +180,17 @@ public class RegisterCustomerView extends JFrame{
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSubmit.setBounds(108, 505, 136, 37);
+		btnSubmit.setBounds(107, 505, 136, 37);
 		registerPanel.add(btnSubmit);
 		
 		JPanel SearchPanel = new JPanel();
-		SearchPanel.setBounds(395, 75, 687, 114);
-		getContentPane().add(SearchPanel);
+		SearchPanel.setBackground(Color.WHITE);
+		cards.add(SearchPanel);
+		SearchPanel.setBounds(397, 28, 687, 114);
 		SearchPanel.setLayout(null);
 		
 		SearchBy = new JTextField();
-		SearchBy.setBounds(77, 43, 247, 31);
+		SearchBy.setBounds(77, 43, 321, 31);
 		SearchPanel.add(SearchBy);
 		SearchBy.setColumns(10);
 		
@@ -194,16 +200,16 @@ public class RegisterCustomerView extends JFrame{
 			}
 		});
 		btnSearchByName.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSearchByName.setBounds(408, 49, 173, 18);
+		btnSearchByName.setBounds(408, 43, 153, 31);
 		SearchPanel.add(btnSearchByName);
-		
-		JPanel TablePanel = new JPanel();
-		TablePanel.setBounds(395, 186, 687, 532);
-		getContentPane().add(TablePanel);
-		TablePanel.setLayout(new BorderLayout());
-		
 	
-		
-		
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		setBounds(500, 500, 1100, 800);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 }
