@@ -66,7 +66,7 @@ public class RegisterCustomerView extends JFrame{
 
 		JPanel cards = new JPanel();
 		cards.setForeground(Color.WHITE);
-		cards.setBackground(Color.WHITE);
+		cards.setBackground(Color.BLACK);
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
@@ -82,7 +82,7 @@ public class RegisterCustomerView extends JFrame{
 
 		JPanel registerPanel = new JPanel();
 		registerPanel.setForeground(Color.BLACK);
-		registerPanel.setBackground(Color.WHITE);
+		registerPanel.setBackground(Color.LIGHT_GRAY);
 		cards.add(registerPanel);
 		registerPanel.setBounds(0, 28, 394, 589);
 		registerPanel.setLayout(null);
@@ -184,7 +184,7 @@ public class RegisterCustomerView extends JFrame{
 		registerPanel.add(btnSubmit);
 		
 		JPanel SearchPanel = new JPanel();
-		SearchPanel.setBackground(Color.WHITE);
+		SearchPanel.setBackground(Color.LIGHT_GRAY);
 		cards.add(SearchPanel);
 		SearchPanel.setBounds(397, 28, 687, 114);
 		SearchPanel.setLayout(null);
@@ -202,6 +202,11 @@ public class RegisterCustomerView extends JFrame{
 		btnSearchByName.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnSearchByName.setBounds(408, 43, 153, 31);
 		SearchPanel.add(btnSearchByName);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.LIGHT_GRAY);
+		panel.setBounds(397, 145, 687, 472);
+		cards.add(panel);
 	
 	}
 
