@@ -43,6 +43,7 @@ public class AdminHomeView extends JFrame {
 		MenuBar menuBar = new MenuBar();
 		menuBar.setBounds(0, 0, 1084, 26);
 		cards.add(menuBar);
+		
 		JPanel centerHome = new JPanel();
 		centerHome.setBounds(0, 26, 1, 591);
 		centerHome.setBackground(Color.LIGHT_GRAY);
