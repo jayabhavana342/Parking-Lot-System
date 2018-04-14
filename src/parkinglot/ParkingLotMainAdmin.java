@@ -6,7 +6,6 @@ package parkinglot;
 import java.awt.EventQueue;
 
 import parkinglot.view.admin.*;
-import parkinglot.controller.admin.*;
 
 
 
@@ -25,9 +24,6 @@ public class ParkingLotMainAdmin {
 		EventQueue.invokeLater(() -> {
             try {
                 LoginView frame = new LoginView();
-//                AddFrequentParkingLotUser frame2 = new AddFrequentParkingLotUser(frame);
-//                LoginController controller = new LoginController(frame);
-//                controller.contol();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();

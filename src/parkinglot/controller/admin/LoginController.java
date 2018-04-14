@@ -4,10 +4,13 @@
 package parkinglot.controller.admin;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 
 import parkinglot.model.admin.AdminModel;
 import parkinglot.view.admin.LoginView;
+import parkinglot.view.admin.AdminHomeView;
+
 
 /**
  * @author bhavana
@@ -33,7 +36,12 @@ public class LoginController {
         model.setEmail(email);
         model.getCredentials();
         if(password.equals(model.getPassword())){
-            view.setErrorMessage("Login Success!");
+//            view.setErrorMessage("Login Success!");
+            AdminHomeView adminHomeView = new AdminHomeView();
+            adminHomeView.setVisible(true);
+            adminHomeView.setLocationRelativeTo(null);
+            adminHomeView.getWelcomeLabel().setText("<html><font color='white'>Welcome </font>"+view.getTxtUsername().getText()+"</html>");
+            view.dispose();
         }
         else{
             view.setErrorMessage("Login Failed!");
