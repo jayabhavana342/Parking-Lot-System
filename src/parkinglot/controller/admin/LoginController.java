@@ -3,6 +3,7 @@
  */
 package parkinglot.controller.admin;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 
 import java.awt.event.ActionListener;
@@ -21,6 +22,7 @@ public class LoginController {
 	private LoginView view;
 	private AdminModel model;
 	private ParkingRatesModel parkingRatesModel;
+	private FrequentParkingUsersModel frequentParkingUsersModel;
 	
 	
 
@@ -30,6 +32,7 @@ public class LoginController {
 		this.view = view;
 		model = new AdminModel();
 		parkingRatesModel = new ParkingRatesModel();
+		frequentParkingUsersModel = new FrequentParkingUsersModel();
 		
 	}
 
@@ -41,11 +44,21 @@ public class LoginController {
             adminHomeView.setVisible(true);
             adminHomeView.setLocationRelativeTo(null);
             System.out.println(adminHomeView);
-            adminHomeView.welcomeLabel.setText("<html><font color='white'>Welcome "+view.getTextField().getText()+"</font></html>");
+            adminHomeView.welcomeLabel.setText("<html><font color='white'>Welcome </font></html>");
             parkingRatesModel.getActiveRate();
             if(parkingRatesModel.isIs_active())
+            {
             	System.out.println(String.valueOf(parkingRatesModel.getRate()));
             	adminHomeView.todaysRate.setText("$ " + String.valueOf(parkingRatesModel.getRate()));
+            }
+           
+            System.out.println("I am here!' ");
+            frequentParkingUsersModel.getFrequentParkersCount();
+            if(frequentParkingUsersModel.gettotalFrequentParkers() > 0)
+            {
+            	System.out.println(String.valueOf(frequentParkingUsersModel.gettotalFrequentParkers()));
+            	adminHomeView.frequentParkers.setText(String.valueOf(frequentParkingUsersModel.gettotalFrequentParkers()));
+            }
             view.dispose();
         }
         else{
