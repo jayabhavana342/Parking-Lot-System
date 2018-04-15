@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import parkinglot.controller.admin.LoginController;
+import parkinglot.controller.admin.RegisterCustomerController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
@@ -24,8 +26,13 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollBar;
 
 public class RegisterCustomerView extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField FirstName;
 	private JTextField LastName;
 	private JTextField Email;
@@ -34,9 +41,7 @@ public class RegisterCustomerView extends JFrame{
 	private JTextField Address;
 	private JTextField SearchBy;
 	private JTable table;
-	private JTable table_1;
-	private JTable table_2;
-	private JTable table_3;
+	private JScrollPane scrollPane;
 
 
 	
@@ -178,7 +183,13 @@ public class RegisterCustomerView extends JFrame{
 		Address.setBounds(138, 334, 228, 139);
 		registerPanel.add(Address);
 		
+		RegisterCustomerController controller = new RegisterCustomerController(this);
 		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controller.insert(LastName.getText(), FirstName.getText(), Email.getText(), Address.getText(), new Integer(Phone.getText()), LicenseNumber.getText());
+			}
+		});
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnSubmit.setBounds(107, 505, 136, 37);
 		registerPanel.add(btnSubmit);
@@ -197,6 +208,7 @@ public class RegisterCustomerView extends JFrame{
 		JButton btnSearchByName = new JButton("Search by Name");
 		btnSearchByName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		btnSearchByName.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -207,6 +219,11 @@ public class RegisterCustomerView extends JFrame{
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(397, 145, 687, 472);
 		cards.add(panel);
+		
+		table = new JTable();
+		scrollPane = new JScrollPane();
+		scrollPane.setViewportView(table);
+		panel.add(scrollPane);
 	
 	}
 

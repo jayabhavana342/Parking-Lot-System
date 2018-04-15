@@ -3,6 +3,7 @@
  */
 package parkinglot.controller.admin;
 
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 
@@ -43,8 +44,9 @@ public class LoginController {
             AdminHomeView adminHomeView = new AdminHomeView();
             adminHomeView.setVisible(true);
             adminHomeView.setLocationRelativeTo(null);
-            System.out.println(adminHomeView);
-            adminHomeView.welcomeLabel.setText("<html><font color='white'>Welcome </font></html>");
+
+            adminHomeView.welcomeLabel.setText("<html><font color='white'>Welcome "+view.getTextField().getText()+"</font></html>");
+
             parkingRatesModel.getActiveRate();
             if(parkingRatesModel.isIs_active())
             {
