@@ -2,6 +2,8 @@ package parkinglot.view.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -187,5 +189,18 @@ public class AdminHomeView extends JFrame {
 	private void initialize() {
 		setBounds(500, 500, 1100, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AdminHomeView window = new AdminHomeView();
+					window.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
