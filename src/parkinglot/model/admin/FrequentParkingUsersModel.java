@@ -28,9 +28,7 @@ public class FrequentParkingUsersModel {
 	private String license_id;
 	private int rewards;
 	private int totalFrequentParkers;
-	Connection conn;
-	
-	
+
 	Connection conn;
 
 	public FrequentParkingUsersModel() {
