@@ -74,4 +74,11 @@ public class CardDetailsModel
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+	public void insertCardDetails(String cardNo, String cvv2, String nameOnCard, String vehicleNo, String vehicleType) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

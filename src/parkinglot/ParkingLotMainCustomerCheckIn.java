@@ -5,6 +5,7 @@ package parkinglot;
 
 import java.awt.EventQueue;
 
+import parkinglot.view.customer.CustomerCheckInEnterDetails;
 import parkinglot.view.customer.CustomerCheckInHomePage;
 
 /**
@@ -21,7 +22,7 @@ public class ParkingLotMainCustomerCheckIn {
 		
 		EventQueue.invokeLater(() -> {
             try {
-                CustomerCheckInHomePage frame = new CustomerCheckInHomePage();
+            	CustomerCheckInEnterDetails frame = new CustomerCheckInEnterDetails();
                 frame.setVisible(true);
             } catch (Exception e) {
                 e.printStackTrace();
