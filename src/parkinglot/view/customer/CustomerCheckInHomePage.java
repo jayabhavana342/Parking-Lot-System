@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
+import javax.swing.JLabel;
+import java.awt.Font;
 
 public class CustomerCheckInHomePage extends JFrame {
 
@@ -53,6 +55,17 @@ public class CustomerCheckInHomePage extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
+		
+		JLabel lblWelcome = new JLabel("Welcome..!!");
+		lblWelcome.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblWelcome.setBounds(222, 82, 196, 30);
+		cards.add(lblWelcome);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(220, 166, 651, 283);
+		cards.add(panel);
+		panel.setLayout(null);
 	}
 
 	/**

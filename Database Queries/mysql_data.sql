@@ -33,12 +33,13 @@ INSERT INTO parking_levels(level_name) values ('L2');
 
 CREATE TABLE parking_slots(
 	slot_id INT(11) PRIMARY KEY auto_increment,
-	slot_name VARCHAR(11) NOT NULL
+	slot_name VARCHAR(11) NOT NULL,
+	slot_type ENUM('Car','Bus')
 )
 auto_increment = 1;
 
-INSERT INTO parking_slots(slot_name) values('S1');
-INSERT INTO parking_slots(slot_name) values('S2');
+INSERT INTO parking_slots(slot_name, slot_type) values('S1', 'Car');
+INSERT INTO parking_slots(slot_name, slot_type) values('S2', 'Bus');
 
 CREATE TABLE parking_levels_slots(
 	id INT(11) PRIMARY KEY auto_increment,
@@ -244,10 +245,28 @@ auto_increment = 1;
 
 
 
--- CHECK IN
---To fetch Current Parking rate
+-- CHECK IN HOME PAGE
+-- To fetch Current Parking rate
 SELECT * FROM `parking_rates` WHERE is_active = 1;
 
+SELECT
+    IF(COUNT(*) > 0,
+    'true',
+    'false') AS hasEmptySlots
+FROM
+    parking_levels_slots
+WHERE
+    (
+        (is_ocupied = 0) AND(
+        SELECT
+            IF(slot_type = 'Car', 1, 0)
+        FROM
+            parking_slots
+        WHERE
+            parking_levels_slots.slot_id = parking_slots.slot_id
+    )
+    )
+    
 -- INSERT 
 INSERT
 INTO
