@@ -7,11 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import parkinglot.controller.customer.CustomerCheckInHomePageController;
 import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -81,13 +79,15 @@ public class CustomerCheckInHomePage extends JFrame {
 		if (model.checkSlotsAvailability()) {
 			System.out.println("true");
 
-			CustomerCheckInHomePageController controller = new CustomerCheckInHomePageController(this);
 			JButton btnCheckIn = new JButton("Check In");
-			// btnCheckIn.addActionListener(new ActionListener() {
-			// public void actionPerformed(ActionEvent e) {
-			// controller.proceedToEnterCardDetailsScreen();
-			// }
-			// });
+			btnCheckIn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					CustomerCheckInEnterDetails customerCheckInEnterDetails = new CustomerCheckInEnterDetails();
+					customerCheckInEnterDetails.setVisible(true);
+					customerCheckInEnterDetails.setLocationRelativeTo(null);
+					dispose();
+				}
+			});
 			btnCheckIn.setForeground(Color.ORANGE);
 			btnCheckIn.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
 			btnCheckIn.setBounds(214, 35, 216, 108);

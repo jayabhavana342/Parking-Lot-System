@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
 
 public class CustomerCheckOutHomePage extends JFrame {
 

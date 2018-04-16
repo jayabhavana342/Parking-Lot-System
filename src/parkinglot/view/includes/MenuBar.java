@@ -3,14 +3,12 @@
  */
 package parkinglot.view.includes;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.*;
 
 import parkinglot.view.admin.AdminHomeView;
-import parkinglot.view.admin.LoginView;
 import parkinglot.view.admin.RegisterCustomerView;
 
 import java.awt.event.ActionListener;
