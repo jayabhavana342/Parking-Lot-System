@@ -204,7 +204,7 @@ VALUES(
     'A333A33'
 );
 CREATE TABLE vehicle_details(
-    id INT(11),
+    id INT(11) auto_increment,
     vehicle_No VARCHAR(10) UNIQUE,
     vehicle_Type ENUM('Car','Bus'),
     slot_level_id INT(11),
@@ -213,7 +213,7 @@ CREATE TABLE vehicle_details(
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE card_details(
-	id INT(11) PRIMARY KEY,
+	id INT(11) PRIMARY KEY auto_increment,
     vehicle_ID INT(11),
     card_No VARCHAR(10) NOT NULL,
     cvv INT(3) NOT NULL,
@@ -223,7 +223,7 @@ CREATE TABLE card_details(
 
 
 CREATE TABLE time_details(
-	id INT(11) PRIMARY KEY,
+	id INT(11) PRIMARY KEY auto_increment,
     vehicle_ID INT(11),
     In_Time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Out_Time TIMESTAMP,
@@ -231,6 +231,16 @@ CREATE TABLE time_details(
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id)
 ) AUTO_INCREMENT = 1;
 
+
+create table parking_vehicle_amount(
+	id INT(11) PRIMARY KEY auto_increment,
+	vehicle_ID INT(11) NOT NULL,
+    frequent_parker_id INT(11),
+    bill_amount float NOT NULL,
+    FOREIGN KEY (vehicle_ID) REFERENCES vehicle_details(id),
+    FOREIGN KEY(frequent_parker_id) REFERENCES frequent_parking_users(id)
+)
+auto_increment = 1;
 
 
 
@@ -245,7 +255,4 @@ INTO
 VALUES('12342131235', 'CAR');
 
 INSERT INTO card_details ( vehicle_ID, card_No,cvv,name_on_card ) 
-VALUES((SELECT  id FROM vehicle_details WHERE vehicle_No = '12342131235'), '12','12','abc')
-
-insert into card_details (vehicle_ID,card_No,cvv,name_on_card) 
-values ((se))
+VALUES(LAST_INSERT_ID(), '12','12','abc')
