@@ -3,8 +3,7 @@
  */
 package parkinglot.controller.customer;
 
-import parkinglot.model.customer.ParkingLevelsSlotsModel;
-import parkinglot.view.admin.AdminHomeView;
+import parkinglot.view.customer.CustomerCheckInEnterDetails;
 import parkinglot.view.customer.CustomerCheckInHomePage;
 
 /**
@@ -14,22 +13,21 @@ import parkinglot.view.customer.CustomerCheckInHomePage;
 public class CustomerCheckInHomePageController {
 
 	CustomerCheckInHomePage view = new CustomerCheckInHomePage();
-	ParkingLevelsSlotsModel model;
 
 	/**
 	 * 
 	 */
 	public CustomerCheckInHomePageController(CustomerCheckInHomePage view) {
+		System.out.println("hey i am in constructor");
 		// TODO Auto-generated constructor stub
-
 		this.view = view;
-		model = new ParkingLevelsSlotsModel();
 	}
 
 	public void proceedToEnterCardDetailsScreen() {
-		AdminHomeView adminHomeView = new AdminHomeView();
-		adminHomeView.setVisible(true);
-		adminHomeView.setLocationRelativeTo(null);
+		System.out.println("hey i am in function call");
+		CustomerCheckInEnterDetails customerCheckInEnterDetails = new CustomerCheckInEnterDetails();
+		customerCheckInEnterDetails.setVisible(true);
+		customerCheckInEnterDetails.setLocationRelativeTo(null);
 		view.dispose();
 	}
 

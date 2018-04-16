@@ -13,6 +13,10 @@ import parkinglot.view.includes.MenuBar;
 
 public class UpdateRatesView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Launch the application.
@@ -57,7 +61,6 @@ public class UpdateRatesView extends JFrame {
 		centerHome.setLayout(null);
 
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.

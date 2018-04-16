@@ -16,6 +16,10 @@ import java.awt.event.ActionEvent;
 
 public class CustomerChooseSlotsView extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public JFrame frame;
 	public JTextField cardNumber;
 	public JTextField cvv;
@@ -44,7 +48,7 @@ public class CustomerChooseSlotsView extends JFrame {
 	 */
 	public CustomerChooseSlotsView() {
 		initialize();
-		
+
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
@@ -62,32 +66,32 @@ public class CustomerChooseSlotsView extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
-		
+
 		cardNumber = new JTextField();
 		cardNumber.setBounds(351, 84, 168, 33);
 		cards.add(cardNumber);
 		cardNumber.setColumns(10);
-		
+
 		cvv = new JTextField();
 		cvv.setColumns(10);
 		cvv.setBounds(351, 139, 168, 33);
 		cards.add(cvv);
-		
+
 		nameOnCard = new JTextField();
 		nameOnCard.setColumns(10);
 		nameOnCard.setBounds(351, 193, 168, 33);
 		cards.add(nameOnCard);
-		
+
 		vehicleNo = new JTextField();
 		vehicleNo.setColumns(10);
 		vehicleNo.setBounds(351, 248, 168, 33);
 		cards.add(vehicleNo);
-		
+
 		vehicleType = new JTextField();
 		vehicleType.setColumns(10);
 		vehicleType.setBounds(351, 301, 168, 33);
 		cards.add(vehicleType);
-		
+
 		JButton btnNewButton = new JButton("Enter into Db");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

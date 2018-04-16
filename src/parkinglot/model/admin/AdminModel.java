@@ -6,7 +6,6 @@ package parkinglot.model.admin;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 import parkinglot.model.DatabaseConnection;
@@ -101,13 +100,6 @@ public class AdminModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        finally{
-//            try {
-//                conn.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
 		
 	}
 

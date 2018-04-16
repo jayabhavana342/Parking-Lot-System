@@ -138,6 +138,14 @@ public class ParkingLevelsSlotsModel {
 			e.printStackTrace();
 		}
 
+		finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return busSlotsAvailable;
 	}
 

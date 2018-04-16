@@ -27,8 +27,7 @@ public class MenuBar extends JMenuBar {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JMenu menu_1;
-	
-	
+
 	public MenuBar() {
 		// TODO Auto-generated constructor stub
 
@@ -71,8 +70,6 @@ public class MenuBar extends JMenuBar {
 		add(menu);
 
 	}
-
-
 
 	/**
 	 * @param args
