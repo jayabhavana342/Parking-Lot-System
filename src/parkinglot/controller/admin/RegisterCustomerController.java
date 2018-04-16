@@ -3,6 +3,8 @@
  */
 package parkinglot.controller.admin;
 
+import javax.swing.table.TableModel;
+
 import parkinglot.model.admin.FrequentParkingUsersModel;
 import parkinglot.view.admin.RegisterCustomerView;
 
@@ -27,6 +29,10 @@ public class RegisterCustomerController {
 
 		model.insertUpdateDeleteFrequentParker('i', last_name, first_name, email, address, phone, license_id);
 
+	}
+
+	public void fillParkingUsersTable(TableModel tableModel, String valueToSearch) {
+		model.getFrequentParkersBasedOnSearch(tableModel, valueToSearch);
 	}
 
 	/**

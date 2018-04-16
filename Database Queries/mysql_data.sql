@@ -293,6 +293,21 @@ WHERE
     )
     )
     
+-- SEARCH FOR FREQUENT PARKER
+SELECT
+    *
+FROM
+    `frequent_parking_users`
+WHERE
+    CONCAT(
+        first_name,
+        last_name,
+        email,
+        address,
+        phone,
+        license_id
+    ) LIKE '%aish%'
+    
 -- INSERT 
 INSERT
 INTO

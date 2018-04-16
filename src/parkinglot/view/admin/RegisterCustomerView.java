@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 import parkinglot.controller.admin.RegisterCustomerController;
+import parkinglot.model.admin.FrequentParkingUsersModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
@@ -23,6 +24,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.ScrollPaneConstants;
 
 public class RegisterCustomerView extends JFrame {
 	/**
@@ -38,6 +42,7 @@ public class RegisterCustomerView extends JFrame {
 	private JTextField SearchBy;
 	private JTable table;
 	private JScrollPane scrollPane;
+	FrequentParkingUsersModel frequentParkingUser = new FrequentParkingUsersModel();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -72,12 +77,6 @@ public class RegisterCustomerView extends JFrame {
 		MenuBar menuBar = new MenuBar();
 		menuBar.setBounds(0, 0, 1084, 26);
 		cards.add(menuBar);
-
-		// JPanel centerHome = new JPanel();
-		// centerHome.setBounds(0, 26, 1, 591);
-		// centerHome.setBackground(Color.LIGHT_GRAY);
-		// cards.add(centerHome);
-		// centerHome.setLayout(null);
 
 		JPanel registerPanel = new JPanel();
 		registerPanel.setForeground(Color.BLACK);
@@ -200,7 +199,7 @@ public class RegisterCustomerView extends JFrame {
 		JButton btnSearchByName = new JButton("Search by Name");
 		btnSearchByName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				controller.fillParkingUsersTable(table.getModel(), SearchBy.getText());
 			}
 		});
 		btnSearchByName.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -213,7 +212,13 @@ public class RegisterCustomerView extends JFrame {
 		cards.add(panel);
 
 		table = new JTable();
+		table.setBounds(397, 145, 687, 472);
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "id", "Last Name", "First Name", "Email",
+				"Address", "Phone", "License ID", "Rewards" }));
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		scrollPane = new JScrollPane();
+		scrollPane.setBounds(397, 145, 687, 472);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setViewportView(table);
 		panel.add(scrollPane);
 
