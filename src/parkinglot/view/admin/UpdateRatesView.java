@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
+import javax.swing.JLabel;
 
 public class UpdateRatesView extends JFrame {
 
@@ -42,7 +43,7 @@ public class UpdateRatesView extends JFrame {
 
 		JPanel cards = new JPanel();
 		cards.setForeground(Color.WHITE);
-		cards.setBackground(Color.BLACK);
+		cards.setBackground(Color.LIGHT_GRAY);
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
@@ -55,6 +56,10 @@ public class UpdateRatesView extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(157, 86, 56, 16);
+		cards.add(lblNewLabel);
 
 	}
 	
