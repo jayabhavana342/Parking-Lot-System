@@ -3,6 +3,8 @@
  */
 package parkinglot.controller.customer;
 
+import parkinglot.model.customer.ParkingLevelsSlotsModel;
+import parkinglot.view.admin.AdminHomeView;
 import parkinglot.view.customer.CustomerCheckInHomePage;
 
 /**
@@ -10,19 +12,26 @@ import parkinglot.view.customer.CustomerCheckInHomePage;
  *
  */
 public class CustomerCheckInHomePageController {
-	
+
 	CustomerCheckInHomePage view = new CustomerCheckInHomePage();
-	
-	
+	ParkingLevelsSlotsModel model;
+
 	/**
 	 * 
 	 */
-	public CustomerCheckInHomePageController() {
-		super();
+	public CustomerCheckInHomePageController(CustomerCheckInHomePage view) {
 		// TODO Auto-generated constructor stub
+
+		this.view = view;
+		model = new ParkingLevelsSlotsModel();
 	}
-	
-	
+
+	public void proceedToEnterCardDetailsScreen() {
+		AdminHomeView adminHomeView = new AdminHomeView();
+		adminHomeView.setVisible(true);
+		adminHomeView.setLocationRelativeTo(null);
+		view.dispose();
+	}
 
 	/**
 	 * @param args

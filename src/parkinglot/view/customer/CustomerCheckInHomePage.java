@@ -7,14 +7,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CustomerCheckInHomePage extends JFrame {
 
+	ParkingLevelsSlotsModel model;
 
 	/**
 	 * Launch the application.
@@ -66,6 +72,40 @@ public class CustomerCheckInHomePage extends JFrame {
 		panel.setBounds(220, 166, 651, 283);
 		cards.add(panel);
 		panel.setLayout(null);
+		
+		if(model.checkSlotsAvailability()) {
+			System.out.println("true");
+			
+			JButton btnCheckIn = new JButton("Check In");
+			btnCheckIn.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			btnCheckIn.setForeground(Color.ORANGE);
+			btnCheckIn.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
+			btnCheckIn.setBounds(214, 35, 216, 108);
+			panel.add(btnCheckIn);
+		
+			JLabel carLotsAvailable = new JLabel("Available Car Slots: " + String.valueOf(model.carLotsAvailable()));
+			carLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+			carLotsAvailable.setForeground(Color.WHITE);
+			carLotsAvailable.setBounds(68, 177, 216, 47);
+			panel.add(carLotsAvailable);
+			
+			JLabel busLotsAvailable = new JLabel("Available Bus Slots: " + String.valueOf(model.busLotsAvailable()));
+			busLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+			busLotsAvailable.setForeground(Color.WHITE);
+			busLotsAvailable.setBounds(379, 177, 216, 47);
+			panel.add(busLotsAvailable);
+		}else {
+			JLabel lblNoSlotsAvailable = new JLabel("NO SLOTS AVAILABLE");
+			lblNoSlotsAvailable.setForeground(Color.RED);
+			lblNoSlotsAvailable.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNoSlotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+			lblNoSlotsAvailable.setBounds(129, 77, 388, 111);
+			panel.add(lblNoSlotsAvailable);
+		}
 	}
 
 	/**
@@ -74,6 +114,8 @@ public class CustomerCheckInHomePage extends JFrame {
 	private void initialize() {
 		setBounds(500, 500, 1100, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		model = new ParkingLevelsSlotsModel();
 	}
 
 }

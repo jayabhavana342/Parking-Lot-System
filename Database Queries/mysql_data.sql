@@ -249,6 +249,7 @@ auto_increment = 1;
 -- To fetch Current Parking rate
 SELECT * FROM `parking_rates` WHERE is_active = 1;
 
+-- check if there are any empty slots or not
 SELECT
     IF(COUNT(*) > 0,
     'true',
@@ -256,10 +257,35 @@ SELECT
 FROM
     parking_levels_slots
 WHERE
+    (is_ocupied = 0)
+
+-- to fetch the number of empty car slots
+SELECT
+    COUNT(*) AS carSlotsAvailable
+FROM
+    parking_levels_slots
+WHERE
     (
         (is_ocupied = 0) AND(
         SELECT
             IF(slot_type = 'Car', 1, 0)
+        FROM
+            parking_slots
+        WHERE
+            parking_levels_slots.slot_id = parking_slots.slot_id
+    )
+    )
+    
+-- to fetch the number of empty bus slots
+SELECT
+    COUNT(*) AS busSlotsAvailable
+FROM
+    parking_levels_slots
+WHERE
+    (
+        (is_ocupied = 0) AND(
+        SELECT
+            IF(slot_type = 'Bus', 1, 0)
         FROM
             parking_slots
         WHERE
