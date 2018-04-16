@@ -7,7 +7,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import parkinglot.controller.admin.LoginController;
 import parkinglot.controller.customer.CustomerCheckInEnterDetailsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
@@ -18,14 +17,17 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CustomerCheckInEnterDetails extends JFrame{
+public class CustomerCheckInEnterDetails extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JTextField cardNumber;
 	private JTextField cvv;
 	private JTextField nameOnCard;
 	private JTextField vehicleNumber;
 	private JTextField vehicleType;
 
-	
 	/**
 	 * Launch the application.
 	 */
@@ -47,7 +49,7 @@ public class CustomerCheckInEnterDetails extends JFrame{
 	 */
 	public CustomerCheckInEnterDetails() {
 		initialize();
-		
+
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
@@ -65,74 +67,81 @@ public class CustomerCheckInEnterDetails extends JFrame{
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
-		
+		CustomerCheckInEnterDetailsController controller = new CustomerCheckInEnterDetailsController(this);
+
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(220, 166, 651, 305);
+		cards.add(panel);
+		panel.setLayout(null);
+
 		JLabel lblCardNumber = new JLabel("Card Number");
+		lblCardNumber.setBounds(38, 32, 148, 31);
+		panel.add(lblCardNumber);
 		lblCardNumber.setForeground(Color.WHITE);
 		lblCardNumber.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-		lblCardNumber.setBounds(267, 107, 148, 31);
-		cards.add(lblCardNumber);
-		
+
+		cardNumber = new JTextField();
+		cardNumber.setBounds(357, 36, 259, 28);
+		panel.add(cardNumber);
+		cardNumber.setColumns(10);
+
 		JLabel lblCvv = new JLabel("CVV");
+		lblCvv.setBounds(38, 77, 148, 31);
+		panel.add(lblCvv);
 		lblCvv.setForeground(Color.WHITE);
 		lblCvv.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-		lblCvv.setBounds(267, 161, 148, 31);
-		cards.add(lblCvv);
-		
+
+		cvv = new JTextField();
+		cvv.setBounds(357, 75, 259, 31);
+		panel.add(cvv);
+		cvv.setColumns(10);
+
 		JLabel lblNameOnCard = new JLabel("Name on Card");
+		lblNameOnCard.setBounds(38, 116, 148, 31);
+		panel.add(lblNameOnCard);
 		lblNameOnCard.setForeground(Color.WHITE);
 		lblNameOnCard.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-		lblNameOnCard.setBounds(267, 216, 148, 31);
-		cards.add(lblNameOnCard);
-		
+
+		nameOnCard = new JTextField();
+		nameOnCard.setBounds(357, 120, 259, 28);
+		panel.add(nameOnCard);
+		nameOnCard.setColumns(10);
+
 		JLabel lblVehicleNumber = new JLabel("Vehicle Number");
+		lblVehicleNumber.setBounds(38, 158, 148, 31);
+		panel.add(lblVehicleNumber);
 		lblVehicleNumber.setForeground(Color.WHITE);
 		lblVehicleNumber.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-		lblVehicleNumber.setBounds(267, 277, 148, 31);
-		cards.add(lblVehicleNumber);
-		
+
+		vehicleNumber = new JTextField();
+		vehicleNumber.setBounds(357, 158, 259, 28);
+		panel.add(vehicleNumber);
+		vehicleNumber.setColumns(10);
+
 		JLabel lblVehicleType = new JLabel("Vehicle Type");
+		lblVehicleType.setBounds(38, 200, 148, 31);
+		panel.add(lblVehicleType);
 		lblVehicleType.setForeground(Color.WHITE);
 		lblVehicleType.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-		lblVehicleType.setBounds(267, 334, 148, 31);
-		cards.add(lblVehicleType);
-		
-		cardNumber = new JTextField();
-		cardNumber.setBounds(464, 107, 259, 28);
-		cards.add(cardNumber);
-		cardNumber.setColumns(10);
-		
-		cvv = new JTextField();
-		cvv.setColumns(10);
-		cvv.setBounds(464, 161, 259, 28);
-		cards.add(cvv);
-		
-		nameOnCard = new JTextField();
-		nameOnCard.setColumns(10);
-		nameOnCard.setBounds(464, 216, 259, 28);
-		cards.add(nameOnCard);
-		
-		vehicleNumber = new JTextField();
-		vehicleNumber.setColumns(10);
-		vehicleNumber.setBounds(464, 280, 259, 28);
-		cards.add(vehicleNumber);
-		
+
 		vehicleType = new JTextField();
+		vehicleType.setBounds(357, 197, 259, 28);
+		panel.add(vehicleType);
 		vehicleType.setColumns(10);
-		vehicleType.setBounds(464, 337, 259, 28);
-		cards.add(vehicleType);
-		
+
 		JButton chooseSlot = new JButton("Choose a Slot");
+		chooseSlot.setBounds(213, 246, 183, 37);
+		panel.add(chooseSlot);
 		chooseSlot.setForeground(Color.BLACK);
 		chooseSlot.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		chooseSlot.setBounds(394, 420, 183, 37);
-		CustomerCheckInEnterDetailsController controller = new CustomerCheckInEnterDetailsController(this);
-		chooseSlot.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                controller.parseDetails(cardNumber.getText(),cvv.getText(),nameOnCard.getText(),vehicleNumber.getText(),vehicleType.getText());
-            }
-        });
-		cards.add(chooseSlot);
+		chooseSlot.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
+						vehicleNumber.getText(), vehicleType.getText());
+			}
+		});
 	}
 
 	/**

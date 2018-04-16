@@ -1,7 +1,6 @@
 package parkinglot.model.customer;
 
-public class ParkingLevelsModel 
-{
+public class ParkingLevelsModel {
 	private int level_id;
 	private String level_name;
 
@@ -25,5 +24,4 @@ public class ParkingLevelsModel
 		this.level_name = level_name;
 	}
 
-	
 }

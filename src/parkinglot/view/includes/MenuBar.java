@@ -3,14 +3,12 @@
  */
 package parkinglot.view.includes;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.*;
 
 import parkinglot.view.admin.AdminHomeView;
-import parkinglot.view.admin.LoginView;
 import parkinglot.view.admin.RegisterCustomerView;
 
 import java.awt.event.ActionListener;
@@ -27,8 +25,7 @@ public class MenuBar extends JMenuBar {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JMenu menu_1;
-	
-	
+
 	public MenuBar() {
 		// TODO Auto-generated constructor stub
 
@@ -71,8 +68,6 @@ public class MenuBar extends JMenuBar {
 		add(menu);
 
 	}
-
-
 
 	/**
 	 * @param args

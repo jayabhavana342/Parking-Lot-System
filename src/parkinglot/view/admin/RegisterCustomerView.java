@@ -6,7 +6,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import parkinglot.controller.admin.LoginController;
 import parkinglot.controller.admin.RegisterCustomerController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
@@ -24,11 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
-import javax.swing.border.LineBorder;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollBar;
 
-public class RegisterCustomerView extends JFrame{
+public class RegisterCustomerView extends JFrame {
 	/**
 	 * 
 	 */
@@ -43,8 +39,6 @@ public class RegisterCustomerView extends JFrame{
 	private JTable table;
 	private JScrollPane scrollPane;
 
-
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -63,7 +57,7 @@ public class RegisterCustomerView extends JFrame{
 	 */
 	public RegisterCustomerView() {
 		initialize();
-		
+
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
@@ -79,11 +73,11 @@ public class RegisterCustomerView extends JFrame{
 		menuBar.setBounds(0, 0, 1084, 26);
 		cards.add(menuBar);
 
-//		JPanel centerHome = new JPanel();
-//		centerHome.setBounds(0, 26, 1, 591);
-//		centerHome.setBackground(Color.LIGHT_GRAY);
-//		cards.add(centerHome);
-//		centerHome.setLayout(null);
+		// JPanel centerHome = new JPanel();
+		// centerHome.setBounds(0, 26, 1, 591);
+		// centerHome.setBackground(Color.LIGHT_GRAY);
+		// cards.add(centerHome);
+		// centerHome.setLayout(null);
 
 		JPanel registerPanel = new JPanel();
 		registerPanel.setForeground(Color.BLACK);
@@ -91,70 +85,69 @@ public class RegisterCustomerView extends JFrame{
 		cards.add(registerPanel);
 		registerPanel.setBounds(0, 28, 394, 589);
 		registerPanel.setLayout(null);
-		
+
 		JLabel lblNewCustomerRegistration = new JLabel("New Customer Registration");
 		lblNewCustomerRegistration.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewCustomerRegistration.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewCustomerRegistration.setBounds(0, 27, 394, 25);
 		registerPanel.add(lblNewCustomerRegistration);
-		
+
 		JLabel lblFirstName = new JLabel("First Name:");
 		lblFirstName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblFirstName.setBounds(12, 98, 114, 25);
 		registerPanel.add(lblFirstName);
-		
+
 		JLabel lblLastName = new JLabel("Last Name:");
 		lblLastName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblLastName.setBounds(12, 142, 114, 25);
 		registerPanel.add(lblLastName);
-		
+
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblEmail.setBounds(12, 190, 114, 25);
 		registerPanel.add(lblEmail);
-		
+
 		JLabel lblPhone = new JLabel("Phone:");
 		lblPhone.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPhone.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPhone.setBounds(12, 236, 114, 25);
 		registerPanel.add(lblPhone);
-		
+
 		JLabel lblLicenseNumber = new JLabel("License Number:");
 		lblLicenseNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLicenseNumber.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblLicenseNumber.setBounds(12, 287, 114, 25);
 		registerPanel.add(lblLicenseNumber);
-		
+
 		JLabel lblAddress = new JLabel("Address:");
 		lblAddress.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblAddress.setBounds(12, 336, 114, 137);
 		registerPanel.add(lblAddress);
-		
+
 		FirstName = new JTextField();
 		FirstName.setBounds(138, 96, 228, 31);
 		registerPanel.add(FirstName);
 		FirstName.setColumns(10);
-		
+
 		LastName = new JTextField();
 		LastName.setColumns(10);
 		LastName.setBounds(138, 140, 228, 31);
 		registerPanel.add(LastName);
-		
+
 		Email = new JTextField();
 		Email.setColumns(10);
 		Email.setBounds(138, 188, 228, 31);
 		registerPanel.add(Email);
-		
+
 		Phone = new JTextField();
 		Phone.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				if(!Character.isDigit(arg0.getKeyChar()))
-				{
+				if (!Character.isDigit(arg0.getKeyChar())) {
 					arg0.consume();
 				}
 			}
@@ -162,7 +155,7 @@ public class RegisterCustomerView extends JFrame{
 		Phone.setColumns(10);
 		Phone.setBounds(138, 232, 228, 31);
 		registerPanel.add(Phone);
-		
+
 		LicenseNumber = new JTextField();
 		LicenseNumber.setColumns(10);
 		LicenseNumber.setBounds(138, 285, 228, 31);
@@ -170,61 +163,60 @@ public class RegisterCustomerView extends JFrame{
 		LicenseNumber.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent arg0) {
-				if(!Character.isDigit(arg0.getKeyChar()))
-				{
+				if (!Character.isDigit(arg0.getKeyChar())) {
 					arg0.consume();
 				}
 			}
 		});
 
-		
 		Address = new JTextField();
 		Address.setColumns(10);
 		Address.setBounds(138, 334, 228, 139);
 		registerPanel.add(Address);
-		
+
 		RegisterCustomerController controller = new RegisterCustomerController(this);
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.insert(LastName.getText(), FirstName.getText(), Email.getText(), Address.getText(), new Integer(Phone.getText()), LicenseNumber.getText());
+				controller.insert(LastName.getText(), FirstName.getText(), Email.getText(), Address.getText(),
+						new Integer(Phone.getText()), LicenseNumber.getText());
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnSubmit.setBounds(107, 505, 136, 37);
 		registerPanel.add(btnSubmit);
-		
+
 		JPanel SearchPanel = new JPanel();
 		SearchPanel.setBackground(Color.LIGHT_GRAY);
 		cards.add(SearchPanel);
 		SearchPanel.setBounds(397, 28, 687, 114);
 		SearchPanel.setLayout(null);
-		
+
 		SearchBy = new JTextField();
 		SearchBy.setBounds(77, 43, 321, 31);
 		SearchPanel.add(SearchBy);
 		SearchBy.setColumns(10);
-		
+
 		JButton btnSearchByName = new JButton("Search by Name");
 		btnSearchByName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 			}
 		});
 		btnSearchByName.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnSearchByName.setBounds(408, 43, 153, 31);
 		SearchPanel.add(btnSearchByName);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(397, 145, 687, 472);
 		cards.add(panel);
-		
+
 		table = new JTable();
 		scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
 		panel.add(scrollPane);
-	
+
 	}
 
 	/**

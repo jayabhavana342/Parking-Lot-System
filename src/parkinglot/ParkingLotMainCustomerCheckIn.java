@@ -5,7 +5,6 @@ package parkinglot;
 
 import java.awt.EventQueue;
 
-import parkinglot.view.customer.CustomerCheckInEnterDetails;
 import parkinglot.view.customer.CustomerCheckInHomePage;
 
 /**
@@ -19,15 +18,15 @@ public class ParkingLotMainCustomerCheckIn {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		EventQueue.invokeLater(() -> {
-            try {
-            	CustomerCheckInEnterDetails frame = new CustomerCheckInEnterDetails();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+			try {
+				CustomerCheckInHomePage frame = new CustomerCheckInHomePage();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 
 	}
 

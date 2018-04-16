@@ -45,7 +45,7 @@ public class AdminHomeView extends JFrame {
 		MenuBar menuBar = new MenuBar();
 		menuBar.setBounds(0, 0, 1084, 26);
 		cards.add(menuBar);
-		
+
 		JPanel centerHome = new JPanel();
 		centerHome.setBounds(0, 26, 1, 591);
 		centerHome.setBackground(Color.LIGHT_GRAY);
@@ -89,7 +89,7 @@ public class AdminHomeView extends JFrame {
 		totalAmountEarnedLabel.setForeground(Color.WHITE);
 		totalAmountEarnedLabel.setBounds(182, 388, 226, 40);
 		cards.add(totalAmountEarnedLabel);
-		
+
 		todaysRate = new JLabel();
 		todaysRate.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		todaysRate.setForeground(Color.WHITE);
@@ -122,66 +122,53 @@ public class AdminHomeView extends JFrame {
 
 	}
 
-
 	public JLabel getWelcomeLabel() {
 		return welcomeLabel;
 	}
-
 
 	public void setWelcomeLabel(JLabel welcomeLabel) {
 		this.welcomeLabel = welcomeLabel;
 	}
 
-
 	public JLabel getTotalAmountEarned() {
 		return totalAmountEarned;
 	}
-
 
 	public void setTotalAmountEarned(JLabel totalAmountEarned) {
 		this.totalAmountEarned = totalAmountEarned;
 	}
 
-
 	public JLabel getFrequentParkers() {
 		return frequentParkers;
 	}
-
 
 	public void setFrequentParkers(JLabel frequentParkers) {
 		this.frequentParkers = frequentParkers;
 	}
 
-
 	public JLabel getEmptySlots() {
 		return emptySlots;
 	}
-
 
 	public void setEmptySlots(JLabel emptySlots) {
 		this.emptySlots = emptySlots;
 	}
 
-
 	public JLabel getCarsParked() {
 		return carsParked;
 	}
-
 
 	public void setCarsParked(JLabel carsParked) {
 		this.carsParked = carsParked;
 	}
 
-
 	public JLabel getTodaysRate() {
 		return todaysRate;
 	}
 
-
 	public void setTodaysRate(JLabel todaysRate) {
 		this.todaysRate = todaysRate;
 	}
-
 
 	/**
 	 * Initialize the contents of the frame.
@@ -190,7 +177,7 @@ public class AdminHomeView extends JFrame {
 		setBounds(500, 500, 1100, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

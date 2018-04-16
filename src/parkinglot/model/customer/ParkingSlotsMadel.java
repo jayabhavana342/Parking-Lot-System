@@ -23,7 +23,5 @@ public class ParkingSlotsMadel {
 	public void setSlot_name(String slot_name) {
 		this.slot_name = slot_name;
 	}
-	
-	
 
 }

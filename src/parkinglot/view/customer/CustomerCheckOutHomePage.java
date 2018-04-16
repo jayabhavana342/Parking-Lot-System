@@ -9,10 +9,13 @@ import javax.swing.JPanel;
 
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
 
 public class CustomerCheckOutHomePage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Launch the application.
@@ -35,7 +38,7 @@ public class CustomerCheckOutHomePage extends JFrame {
 	 */
 	public CustomerCheckOutHomePage() {
 		initialize();
-		
+
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
