@@ -5,7 +5,9 @@ import parkinglot.model.admin.AdminModel;
 import parkinglot.model.customer.CardDetailsModel;
 import parkinglot.model.customer.TimeDetailsModel;
 import parkinglot.model.customer.VehicleDetailsModel;
+import parkinglot.view.admin.AdminHomeView;
 import parkinglot.view.customer.CustomerCheckInEnterDetails;
+import parkinglot.view.customer.CustomerChooseSlotsView;
 
 public class CustomerCheckInEnterDetailsController {
 	private CustomerCheckInEnterDetails view;
@@ -29,10 +31,17 @@ public class CustomerCheckInEnterDetailsController {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void insertDetails(String cardNo, String cvv, String nameOnCard, String vehicleNo, String vehicleType) 
+	public void parseDetails(String cardNo, String cvv, String nameOnCard, String vehicleNo, String vehicleType) 
 	{
-		// TODO Auto-generated method stub
+		CustomerChooseSlotsView slotView = new CustomerChooseSlotsView();
+		slotView.setVisible(true);
+		slotView.setLocationRelativeTo(null);
 		
+		slotView.cardNumber.setText(cardNo);
+		slotView.cvv.setText(cvv);
+		slotView.nameOnCard.setText(nameOnCard);
+		slotView.vehicleNo.setText(vehicleNo);
+		slotView.vehicleType.setText(vehicleType);
 	}
 	
 	

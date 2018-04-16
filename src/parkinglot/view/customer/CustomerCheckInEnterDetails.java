@@ -129,7 +129,7 @@ public class CustomerCheckInEnterDetails extends JFrame{
 		chooseSlot.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                controller.insertDetails(cardNumber.getText(),cvv.getText(),nameOnCard.getText(),vehicleNumber.getText(),vehicleType.getText());
+                controller.parseDetails(cardNumber.getText(),cvv.getText(),nameOnCard.getText(),vehicleNumber.getText(),vehicleType.getText());
             }
         });
 		cards.add(chooseSlot);
