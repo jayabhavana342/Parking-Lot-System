@@ -9,17 +9,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import parkinglot.model.DatabaseConnection;
 
 /**
- * @author bhavana
+ * @author AishwaryaRana
  *
  */
 public class ParkingRatesModel {
 	
+	private static final boolean False = false;
 	private int id;
 	private Date date;
-	private int rate;
+	private float rate;
 	private boolean is_active;
 	Connection conn;
 	
@@ -75,7 +78,7 @@ public class ParkingRatesModel {
 
 
 
-	public int getRate() {
+	public float getRate() {
 		return rate;
 	}
 
@@ -97,6 +100,29 @@ public class ParkingRatesModel {
 		this.is_active = is_active;
 	}
 
+	public void UpdateParking_Rates(float rate) {
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+			ps = conn.prepareStatement("UPDATE parking_rates SET is_active=0 ORDER BY id DESC LIMIT 1;");
+			ps.executeUpdate();
+			System.out.println("Update successful!");
+		
+			if(is_active ==  False) {
+				ps = conn.prepareStatement("INSERT INTO parking_rates(rate, is_active ) VALUES (?, 1)");
+				ps.setFloat(1, rate);
+				ps.execute();
+				}
+					JOptionPane.showMessageDialog(null, "New rate is updated");
+				}
+
+	catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
 
 	/**
 	 * @param args
@@ -116,15 +142,15 @@ public class ParkingRatesModel {
             ResultSet rs = select.executeQuery();
             if(rs.next()){
                 rate = rs.getInt("rate");
-                is_active = true;
+                System.out.println(rate);
             }
             else{
                 rate = 0;
-                is_active = false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 		
 	}
+
 }
