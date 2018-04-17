@@ -237,6 +237,7 @@ create table parking_vehicle_amount(
 	id INT(11) PRIMARY KEY auto_increment,
 	vehicle_ID INT(11) NOT NULL,
     frequent_parker_id INT(11),
+    original_amount float NOT NULL,
     bill_amount float NOT NULL,
     FOREIGN KEY (vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(frequent_parker_id) REFERENCES frequent_parking_users(id)
@@ -307,6 +308,29 @@ WHERE
         phone,
         license_id
     ) LIKE '%aish%'
+    
+-- --------
+-- CUSTOMER USE REWARDS OR CHECKOUT
+-- SHOW name,id,fullname if yes
+SELECT
+    id,
+    rewards,
+    CONCAT(last_name, " ", first_name) AS fullname
+FROM
+    `frequent_parking_users`
+WHERE
+    phone = 717717717
+
+-- Update if they want to use the rewards
+UPDATE
+    frequent_parking_users
+SET
+    rewards = 1
+WHERE
+    id = 3  
+    
+-- --------
+
     
 -- INSERT 
 INSERT

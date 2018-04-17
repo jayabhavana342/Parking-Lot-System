@@ -109,6 +109,29 @@ public class FrequentParkingUsersModel {
 		this.totalFrequentParkers = frequent_parkers_count;
 	}
 
+	/**
+	 * @param id
+	 * @param last_name
+	 * @param first_name
+	 * @param email
+	 * @param address
+	 * @param phone
+	 * @param license_id
+	 * @param f
+	 */
+	public FrequentParkingUsersModel(int id, String last_name, String first_name, String email, String address,
+			int phone, String license_id, float f) {
+		super();
+		this.id = id;
+		this.last_name = last_name;
+		this.first_name = first_name;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.license_id = license_id;
+		this.rewards = f;
+	}
+
 	public void insertUpdateDeleteFrequentParker(char operation, String last_name, String first_name, String email,
 			String address, int phone, String license_id) {
 
@@ -136,29 +159,6 @@ public class FrequentParkingUsersModel {
 			e.printStackTrace();
 		}
 
-	}
-
-	/**
-	 * @param id
-	 * @param last_name
-	 * @param first_name
-	 * @param email
-	 * @param address
-	 * @param phone
-	 * @param license_id
-	 * @param f
-	 */
-	public FrequentParkingUsersModel(int id, String last_name, String first_name, String email, String address,
-			int phone, String license_id, float f) {
-		super();
-		this.id = id;
-		this.last_name = last_name;
-		this.first_name = first_name;
-		this.email = email;
-		this.address = address;
-		this.phone = phone;
-		this.license_id = license_id;
-		this.rewards = f;
 	}
 
 	public void getFrequentParkersCount() {
@@ -226,6 +226,10 @@ public class FrequentParkingUsersModel {
 			e.printStackTrace();
 		}
 
+	}
+
+	public void checkIfFrequentParkerBasedOnPhoneNumber(String phoneNumber) {
+		
 	}
 
 	/**
