@@ -27,6 +27,7 @@ public class CustomerCheckInEnterDetailsController {
 	}
 
 	public void parseDetails(String cardNo, String cvv, String nameOnCard, String vehicleNo, String vehicleType) {
+		
 		CustomerChooseSlotsView slotView = new CustomerChooseSlotsView();
 		slotView.setVisible(true);
 		slotView.setLocationRelativeTo(null);

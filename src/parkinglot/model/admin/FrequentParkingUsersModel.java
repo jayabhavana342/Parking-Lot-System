@@ -126,6 +126,7 @@ public class FrequentParkingUsersModel {
 				ps.setString(4, address);
 				ps.setInt(5, phone);
 				ps.setString(6, license_id);
+				System.out.println(ps);
 
 				if (ps.executeUpdate() > 0) {
 					JOptionPane.showMessageDialog(null, "New frequent parker added");

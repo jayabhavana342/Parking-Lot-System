@@ -1,11 +1,24 @@
 package parkinglot.model.customer;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.JOptionPane;
+
+import parkinglot.model.DatabaseConnection;
+
 public class CardDetailsModel {
 	private int id;
 	private String vehicle_ID;
 	private String card_No;
 	private int cvv;
 	private String name_on_card;
+	Connection conn;
+	
+	public CardDetailsModel() {
+		super();
+	}
 
 	public int getId() {
 		return id;
@@ -47,13 +60,34 @@ public class CardDetailsModel {
 		this.name_on_card = name_on_card;
 	}
 
-	public CardDetailsModel() {
-		// TODO Auto-generated constructor stub
-	}
 
-	public void insertCardDetails(String cardNo, String cvv2, String nameOnCard, String vehicleNo, String vehicleType) {
-		// TODO Auto-generated method stub
+	public void insertCardDetailsIntoDB(int vehicleID, String cardNo, int cvv, String nameOnCard) {
+		try {
+			System.out.println("In CardDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+			
+			String sql = "INSERT INTO card_details( vehicle_ID, card_No,cvv,name_on_card ) VALUES (?,?,?,?)";
+			System.out.println(sql);
 
+				ps = conn.prepareStatement(sql);
+				
+				ps.setInt(1, vehicleID);
+				ps.setString(2, cardNo);
+				ps.setInt(3, cvv);
+				ps.setString(4, nameOnCard );
+				
+
+				if (ps.executeUpdate() > 0) {
+					JOptionPane.showMessageDialog(null, "Card Details added!");
+				}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

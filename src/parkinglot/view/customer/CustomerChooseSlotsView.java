@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import parkinglot.controller.customer.CustomerChooseSlotsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import javax.swing.JTextField;
@@ -16,9 +17,6 @@ import java.awt.event.ActionEvent;
 
 public class CustomerChooseSlotsView extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public JFrame frame;
 	public JTextField cardNumber;
@@ -26,6 +24,7 @@ public class CustomerChooseSlotsView extends JFrame {
 	public JTextField nameOnCard;
 	public JTextField vehicleNo;
 	public JTextField vehicleType;
+	private JTextField slotLevelID;
 
 	/**
 	 * Launch the application.
@@ -66,6 +65,7 @@ public class CustomerChooseSlotsView extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
+		CustomerChooseSlotsController controller = new CustomerChooseSlotsController(this);
 
 		cardNumber = new JTextField();
 		cardNumber.setBounds(351, 84, 168, 33);
@@ -91,14 +91,24 @@ public class CustomerChooseSlotsView extends JFrame {
 		vehicleType.setColumns(10);
 		vehicleType.setBounds(351, 301, 168, 33);
 		cards.add(vehicleType);
+		
 
+		slotLevelID = new JTextField();
+		slotLevelID.setColumns(10);
+		slotLevelID.setBounds(351, 347, 168, 33);
+		cards.add(slotLevelID);
+		
 		JButton btnNewButton = new JButton("Enter into Db");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("Calling enterDetailsIntoDB function");
+				controller.enterDetailsIntoDB(cardNumber.getText(), new Integer(cvv.getText()), nameOnCard.getText(),
+						vehicleNo.getText(), vehicleType.getText(),new Integer(slotLevelID.getText()));
 			}
 		});
 		btnNewButton.setBounds(293, 405, 168, 33);
 		cards.add(btnNewButton);
+		
 	}
 
 	/**
