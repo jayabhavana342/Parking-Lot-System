@@ -7,13 +7,29 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import parkinglot.controller.admin.UpdateRateController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ActionEvent;
+
+/**
+ * @author AishwaryaRana
+ *
+ */
 
 public class UpdateRatesView extends JFrame {
-
+	public JTextField currentRate;
+	private JTextField NewRate;
+	UpdateRateController controller;
 
 	/**
 	 * Launch the application.
@@ -31,6 +47,22 @@ public class UpdateRatesView extends JFrame {
 		});
 	}
 
+	public JTextField getTextField() {
+		return currentRate;
+	}
+
+	public void setTextField(JTextField textField) {
+		this.currentRate = textField;
+	}
+
+	public JTextField getTextField_1() {
+		return NewRate;
+	}
+
+	public void setTextField_1(JTextField textField_1) {
+		this.NewRate = NewRate;
+	}
+
 	/**
 	 * Create the application.
 	 */
@@ -44,6 +76,7 @@ public class UpdateRatesView extends JFrame {
 		JPanel cards = new JPanel();
 		cards.setForeground(Color.WHITE);
 		cards.setBackground(Color.LIGHT_GRAY);
+		UpdateRateController controller = new UpdateRateController(this);
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
@@ -57,10 +90,54 @@ public class UpdateRatesView extends JFrame {
 		cards.add(centerHome);
 		centerHome.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(157, 86, 56, 16);
-		cards.add(lblNewLabel);
-
+		JLabel lblCurrentRate = new JLabel("Current Rate");
+		lblCurrentRate.setBounds(274, 151, 81, 26);
+		cards.add(lblCurrentRate);
+		
+		currentRate = new JTextField();
+		
+		currentRate.setBounds(393, 153, 116, 22);
+		cards.add(currentRate);
+		currentRate.setColumns(10);
+		JTextField textField = controller.getActiveRate(); 
+		
+		JLabel lblNewRate = new JLabel("New Rate");
+		lblNewRate.setBounds(287, 211, 56, 16);
+		cards.add(lblNewRate);
+		
+		NewRate = new JTextField();
+		NewRate.setColumns(10);
+		NewRate.setBounds(393, 208, 116, 22);
+		cards.add(NewRate);
+		
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.update(new Float(NewRate.getText()));
+				if(currentRate.getText() == NewRate.getText())
+				{
+					JOptionPane.showMessageDialog(null, "Enter a new rate!");
+				}
+				if(NewRate.getText() == " ")
+				{
+					JOptionPane.showMessageDialog(null, "Please enter a new rate to update");
+				}
+				else
+				{
+					controller.update(new Float(NewRate.getText()));
+				}
+				
+			}
+		});
+		btnSubmit.setBounds(341, 278, 97, 25);
+		cards.add(btnSubmit);
+		
+		JLabel label = new JLabel("");
+		label.setBounds(571, 156, 56, 16);
+		cards.add(label);
+		
+		
 	}
 	
 
@@ -71,5 +148,4 @@ public class UpdateRatesView extends JFrame {
 		setBounds(500, 500, 1100, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }
