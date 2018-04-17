@@ -9,13 +9,20 @@ import javax.swing.JPanel;
 
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
-public class CustomerCheckOutHomePage extends JFrame {
+public class CustomerCheckOutSucccessfulView extends JFrame {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 
 	/**
 	 * Launch the application.
@@ -24,7 +31,7 @@ public class CustomerCheckOutHomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerCheckOutHomePage window = new CustomerCheckOutHomePage();
+					CustomerCheckOutSucccessfulView window = new CustomerCheckOutSucccessfulView();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,9 +43,9 @@ public class CustomerCheckOutHomePage extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public CustomerCheckOutHomePage() {
+	public CustomerCheckOutSucccessfulView() {
 		initialize();
-
+		
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
@@ -56,6 +63,15 @@ public class CustomerCheckOutHomePage extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(220, 98, 651, 408);
+		cards.add(panel);
+		panel.setLayout(null);
+		
+		
+		
 	}
 
 	/**
@@ -65,5 +81,4 @@ public class CustomerCheckOutHomePage extends JFrame {
 		setBounds(500, 500, 1100, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }

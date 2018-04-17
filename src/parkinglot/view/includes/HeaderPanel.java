@@ -26,8 +26,8 @@ public class HeaderPanel extends JPanel {
 	public HeaderPanel() {
 		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setText("<html><font color='white'>Parking Lot System</font></html>");
-		lblNewLabel.setFont(new Font("Jokerman", Font.BOLD , 40));
-		
+		lblNewLabel.setFont(new Font("Jokerman", Font.BOLD, 40));
+
 		JLabel picLabel = new JLabel();
 		ImageIcon imageIcon = new ImageIcon("C:\\Users\\bhava\\git\\Parking-Lot-System\\src\\images\\logo.jpg");
 		Image image = imageIcon.getImage();
@@ -35,15 +35,15 @@ public class HeaderPanel extends JPanel {
 		picLabel.setIcon(new ImageIcon(newimage));
 
 		JLabel picLabel2 = new JLabel();
-		
+
 		Image image2 = imageIcon.getImage();
 		Image newimage2 = image2.getScaledInstance(175, 100, Image.SCALE_SMOOTH);
 		picLabel2.setIcon(new ImageIcon(newimage2));
-		
+
 		setLayout(new FlowLayout());
 		setBorder(BorderFactory.createLineBorder(Color.black));
 		setBackground(Color.BLACK);
-		
+
 		add(picLabel);
 		add(lblNewLabel);
 		add(picLabel2);

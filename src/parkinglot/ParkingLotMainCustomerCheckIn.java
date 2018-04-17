@@ -18,15 +18,15 @@ public class ParkingLotMainCustomerCheckIn {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		EventQueue.invokeLater(() -> {
-            try {
-                CustomerCheckInHomePage frame = new CustomerCheckInHomePage();
-                frame.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+			try {
+				CustomerCheckInHomePage frame = new CustomerCheckInHomePage();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
 
 	}
 

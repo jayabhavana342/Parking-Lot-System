@@ -32,6 +32,11 @@ public class UpdateRatesView extends JFrame {
 	UpdateRateController controller;
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
@@ -139,7 +144,6 @@ public class UpdateRatesView extends JFrame {
 		
 		
 	}
-	
 
 	/**
 	 * Initialize the contents of the frame.

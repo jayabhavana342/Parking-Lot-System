@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  */
 public class FooterPanel extends JPanel {
-	
+
 	/**
 	 * 
 	 */
@@ -26,15 +26,16 @@ public class FooterPanel extends JPanel {
 		JLabel michealName = new JLabel("Micheal");
 		JLabel shivaranjaniName = new JLabel("Shivaranjani");
 		JLabel mehakName = new JLabel("Mehak");
-		
-		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(), BorderFactory.createLoweredBevelBorder()));
+
+		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createRaisedBevelBorder(),
+				BorderFactory.createLoweredBevelBorder()));
 		setLayout(new FlowLayout());
 		add(bhavanaName);
 		add(aishwaryaName);
 		add(michealName);
 		add(shivaranjaniName);
 		add(mehakName);
-	
+
 	}
 
 	/**

@@ -1,3 +1,4 @@
+
 CREATE DATABASE IF NOT EXISTS parkinglot;
 USE
     parkinglot;
@@ -207,9 +208,7 @@ CREATE TABLE vehicle_details(
     id INT(11) auto_increment,
     vehicle_No VARCHAR(10) UNIQUE,
     vehicle_Type ENUM('Car','Bus'),
-    slot_level_id INT(11),
-    PRIMARY KEY(id),
-    FOREIGN KEY(slot_level_id) REFERENCES parking_levels_slots(id)
+    PRIMARY KEY(id)
 ) AUTO_INCREMENT = 1;
 
 CREATE TABLE card_details(
@@ -228,7 +227,9 @@ CREATE TABLE time_details(
     In_Time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Out_Time TIMESTAMP,
     noOfDays INT(5) DEFAULT 1,
-    FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id)
+    slot_level_id INT(11),
+    FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
+    FOREIGN KEY(slot_level_id) REFERENCES parking_levels_slots(id)
 ) AUTO_INCREMENT = 1;
 
 
@@ -244,15 +245,19 @@ auto_increment = 1;
 
 
 
--- CHECK IN
---To fetch Current Parking rate
+-- CHECK IN To fetch Current Parking rate
 SELECT * FROM `parking_rates` WHERE is_active = 1;
 
 -- INSERT 
-INSERT
-INTO
-    `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
-VALUES('12342131235', 'CAR');
+/*INSERT INTO `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
+VALUES('12345', 'CAR');
 
 INSERT INTO card_details ( vehicle_ID, card_No,cvv,name_on_card ) 
-VALUES(LAST_INSERT_ID(), '12','12','abc')
+VALUES(LAST_INSERT_ID(), '12','12','abc');
+
+
+INSERT INTO time_details( vehicle_ID, slot_level_id) VALUES (2,2);
+
+UPDATE parking_levels_slots set is_ocupied = 1 where id = 1;
+*/
+

@@ -11,8 +11,13 @@ import javax.swing.JPanel;
  * @author bhavana
  *
  */
-public class CirclePanel extends JPanel{
-	
+public class CirclePanel extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
