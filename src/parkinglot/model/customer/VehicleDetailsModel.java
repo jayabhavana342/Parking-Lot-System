@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import parkinglot.model.DatabaseConnection;
-import parkinglot.view.customer.CustomerCheckOutDisplayDetails;
 
 public class VehicleDetailsModel {
 	private int id;
