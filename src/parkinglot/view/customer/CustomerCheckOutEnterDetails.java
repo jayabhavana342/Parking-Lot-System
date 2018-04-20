@@ -5,7 +5,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import parkinglot.controller.customer.CustomerCheckInEnterDetailsController;
 import parkinglot.controller.customer.CustomerCheckOutEnterDetailsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
