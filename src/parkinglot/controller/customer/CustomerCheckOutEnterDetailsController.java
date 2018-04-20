@@ -1,19 +1,16 @@
 package parkinglot.controller.customer;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
 
-import parkinglot.model.DatabaseConnection;
 import parkinglot.model.customer.CardDetailsModel;
 import parkinglot.model.customer.TimeDetailsModel;
 import parkinglot.model.customer.VehicleDetailsModel;
-import parkinglot.view.customer.CustomerCheckOutDisplayDetails;
+import parkinglot.view.customer.CustomerCheckOutOrUseRewardsView;
 import parkinglot.view.customer.CustomerCheckOutEnterDetails;
 
 public class CustomerCheckOutEnterDetailsController {
@@ -47,7 +44,7 @@ public class CustomerCheckOutEnterDetailsController {
 		} else {
 			vehicleDetailsModel.retrieveVehicleDetails(id);
 			System.out.println(vehicleDetailsModel.getVehicle_No());
-			CustomerCheckOutDisplayDetails customerCheckOutDisplayDetails = new CustomerCheckOutDisplayDetails();
+			CustomerCheckOutOrUseRewardsView customerCheckOutDisplayDetails = new CustomerCheckOutOrUseRewardsView();
 			customerCheckOutDisplayDetails.vehicleNo.setText(vehicleDetailsModel.getVehicle_No());
 			customerCheckOutDisplayDetails.vehicleType.setText(vehicleDetailsModel.getVehicle_Type());
 			timeDetailsModel.updateOutTime(id);
