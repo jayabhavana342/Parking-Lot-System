@@ -34,12 +34,13 @@ INSERT INTO parking_levels(level_name) values ('L2');
 
 CREATE TABLE parking_slots(
 	slot_id INT(11) PRIMARY KEY auto_increment,
-	slot_name VARCHAR(11) NOT NULL
+	slot_name VARCHAR(11) NOT NULL,
+	slot_type ENUM('Car','Bus')
 )
 auto_increment = 1;
 
-INSERT INTO parking_slots(slot_name) values('S1');
-INSERT INTO parking_slots(slot_name) values('S2');
+INSERT INTO parking_slots(slot_name, slot_type) values('S1', 'Car');
+INSERT INTO parking_slots(slot_name, slot_type) values('S2', 'Bus');
 
 CREATE TABLE parking_levels_slots(
 	id INT(11) PRIMARY KEY auto_increment,
@@ -228,6 +229,7 @@ CREATE TABLE time_details(
     Out_Time TIMESTAMP,
     noOfDays INT(5) DEFAULT 1,
     slot_level_id INT(11),
+    check_in_rate float NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(slot_level_id) REFERENCES parking_levels_slots(id)
 ) AUTO_INCREMENT = 1;
@@ -249,7 +251,7 @@ auto_increment = 1;
 SELECT * FROM `parking_rates` WHERE is_active = 1;
 
 -- INSERT 
-/*INSERT INTO `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
+INSERT INTO `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
 VALUES('12345', 'CAR');
 
 INSERT INTO card_details ( vehicle_ID, card_No,cvv,name_on_card ) 
@@ -259,7 +261,7 @@ VALUES(LAST_INSERT_ID(), '12','12','abc');
 INSERT INTO time_details( vehicle_ID, slot_level_id) VALUES (2,2);
 
 UPDATE parking_levels_slots set is_ocupied = 1 where id = 1;
-*/
+
 
 
 -- CheckOut Queries:
