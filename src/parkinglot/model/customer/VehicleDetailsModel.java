@@ -8,17 +8,25 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import parkinglot.model.DatabaseConnection;
+import parkinglot.view.customer.CustomerCheckOutDisplayDetails;
 
 public class VehicleDetailsModel {
 	private int id;
 	private String vehicle_No;
 	private String Vehicle_Type;
 	private int slot_level_id;
-	
+
 	Connection conn;
 
 	public VehicleDetailsModel() {
 		super();
+	}
+
+	public VehicleDetailsModel(int id, String vehicle_No, String vehicle_Type) {
+		super();
+		this.id = id;
+		this.vehicle_No = vehicle_No;
+		this.Vehicle_Type = vehicle_Type;
 	}
 
 	public int getId() {
@@ -56,52 +64,73 @@ public class VehicleDetailsModel {
 	public int insertVehicleDetailsIntoDB(String vehicleNo, String vehicleType) {
 		int lastInsertVehicleID = 0;
 		try {
-				System.out.println("In VehicleDetailsModel:");
-				System.out.println(vehicleNo);
-				System.out.println(vehicleType);
-				conn = DatabaseConnection.getConnection();
-				PreparedStatement ps;
-			
-				String sql = "select id from vehicle_details where vehicle_No = ?";
-				ps = conn.prepareStatement(sql);
-				ps.setString(1, vehicleNo);
-				ResultSet rs = ps.executeQuery();
-				if(rs.next())
-				{
-					lastInsertVehicleID = rs.getInt(1);
-					JOptionPane.showMessageDialog(null, "Vehicle Details already existing!");		
-				}
-				else
-				{
-					sql = "INSERT INTO `vehicle_details`(`vehicle_No`, `Vehicle_Type`) VALUES (?,?)";
-					System.out.println(sql);
+			System.out.println("In VehicleDetailsModel:");
+			System.out.println(vehicleNo);
+			System.out.println(vehicleType);
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
 
-						ps = conn.prepareStatement(sql);
-						
-						ps.setString(1, vehicleNo);
-						ps.setString(2, vehicleType);
-						
-						if (ps.executeUpdate() > 0)
-						{
-							JOptionPane.showMessageDialog(null, "Vehicle Details added!");
-						}
-						
-					sql = "select last_insert_id() from vehicle_details";
-					System.out.println(sql);
-					
-					ps = conn.prepareStatement(sql);
-					rs = ps.executeQuery();
-					if(rs.next())
-					{
-						lastInsertVehicleID = rs.getInt(1);
-					}
+			String sql = "select id from vehicle_details where vehicle_No = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, vehicleNo);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				lastInsertVehicleID = rs.getInt(1);
+				JOptionPane.showMessageDialog(null, "Vehicle Details already existing!");
+			} else {
+				sql = "INSERT INTO `vehicle_details`(`vehicle_No`, `Vehicle_Type`) VALUES (?,?)";
+				System.out.println(sql);
+
+				ps = conn.prepareStatement(sql);
+
+				ps.setString(1, vehicleNo);
+				ps.setString(2, vehicleType);
+
+				if (ps.executeUpdate() > 0) {
+					JOptionPane.showMessageDialog(null, "Vehicle Details added!");
 				}
-			
+
+				sql = "select last_insert_id() from vehicle_details";
+				System.out.println(sql);
+
+				ps = conn.prepareStatement(sql);
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					lastInsertVehicleID = rs.getInt(1);
+				}
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return lastInsertVehicleID;
+
+	}
+
+	public void retrieveVehicleDetails(int id) {
 		
+		try {
+			System.out.println("In VehicleDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			String sql = "select vehicle_No, vehicle_Type from vehicle_details where id = ?";
+			System.out.println(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				String vehicleNo = rs.getString(1);
+				String vehicleType = rs.getString(2);
+				this.vehicle_No = vehicleNo;
+				this.Vehicle_Type = vehicleType;
+//				VehicleDetailsModel vehicleDetailsModel = new VehicleDetailsModel(id, vehicleNo, vehicleType);
+//return vehicleDetailsModel;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

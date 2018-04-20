@@ -2,6 +2,7 @@ package parkinglot.model.customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -88,6 +89,37 @@ public class CardDetailsModel {
 		}
 		
 		
+	}
+
+	public int retrieveVehicleDetails(String cardNo, int cvv, String nameOnCard) {
+		int vehicleID = 0;
+		try {
+			
+			System.out.println("In CardDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+			
+			String sql = "select a.vehicle_ID from card_details a join time_details b on a.vehicle_ID = b.vehicle_ID where b.Out_Time = '0000-00-00 00:00:00'"
+					+ "  and  a.card_No = ? and a.cvv = ? and a.name_on_card = ?";
+			System.out.println(sql);
+
+				ps = conn.prepareStatement(sql);
+				
+				ps.setString(1, cardNo);
+				ps.setInt(2, cvv);
+				ps.setString(3, nameOnCard);
+				
+				ResultSet rs = ps.executeQuery();
+				if(rs.next())
+				{
+					vehicleID = rs.getInt(1);	
+				}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vehicleID;
 	}
 
 }

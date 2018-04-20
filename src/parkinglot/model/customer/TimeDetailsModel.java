@@ -2,6 +2,7 @@ package parkinglot.model.customer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
@@ -12,6 +13,7 @@ import parkinglot.model.DatabaseConnection;
 public class TimeDetailsModel {
 	private int id;
 	private String vehicle_ID;
+	private Timestamp In_Time;
 	private Timestamp Out_Time;
 	private int noOfDays;
 	
@@ -35,6 +37,16 @@ public class TimeDetailsModel {
 
 	public void setVehicle_ID(String vehicle_ID) {
 		this.vehicle_ID = vehicle_ID;
+	}
+	
+	
+
+	public Timestamp getIn_Time() {
+		return In_Time;
+	}
+
+	public void setIn_Time(Timestamp in_Time) {
+		In_Time = in_Time;
 	}
 
 	public Timestamp getOut_Time() {
@@ -89,4 +101,89 @@ public class TimeDetailsModel {
 		
 	}
 
-}
+	public void retrieveTimeDetails(int id) {
+		try {
+			System.out.println("In TimeDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			String sql = "select In_Time,Out_Time,noOfDays from time_details where vehicle_ID = ?";
+			System.out.println(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				Timestamp  inTime = rs.getTimestamp(1);
+				Timestamp outTime = rs.getTimestamp(2);
+				int noOfDays = rs.getInt(3);
+				
+				this.In_Time = inTime;
+				this.Out_Time = outTime;
+				this.noOfDays = noOfDays;
+	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void updateOutTime(int id) {
+		try {
+			System.out.println("In TimeDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			String sql = "update time_details set Out_Time = current_timestamp() where vehicle_ID = ?";
+			System.out.println(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			System.out.println("Out Time Updated!");
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	public void updateNoOfDays(int id) {
+		// TODO Auto-generated method stub
+		try {
+			System.out.println("In TimeDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			String sql = "select datediff(Out_Time,In_Time) from time_details where vehicle_ID = ?";
+			System.out.println(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				int noOfDays = rs.getInt(1);
+				if(noOfDays == 0)
+				{
+					return;
+				}
+				else
+				{
+					 sql = "update time_details set noOfDays = ? where vehicle_ID = ?";
+					 System.out.println(sql);
+						ps = conn.prepareStatement(sql);
+						ps.setInt(1, noOfDays);
+						ps.setInt(2, id);
+						ps.executeQuery();
+						System.out.println("No. of days updated!");
+					 
+				}
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+	}
+	}
+
+
+

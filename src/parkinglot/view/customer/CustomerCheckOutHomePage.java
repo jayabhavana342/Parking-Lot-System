@@ -3,7 +3,11 @@ package parkinglot.view.customer;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -56,6 +60,30 @@ public class CustomerCheckOutHomePage extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(220, 166, 651, 283);
+		cards.add(panel);
+		panel.setLayout(null);
+		
+		JButton btnCheckOut = new JButton("Check Out");
+		btnCheckOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CustomerCheckOutEnterDetails customerCheckOutEnterDetails = new CustomerCheckOutEnterDetails();
+				customerCheckOutEnterDetails.setVisible(true);
+				customerCheckOutEnterDetails.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		
+		btnCheckOut.setForeground(Color.ORANGE);
+		btnCheckOut.setFont(new Font("Comic Sans MS", Font.BOLD, 22));
+		btnCheckOut.setBounds(217, 84, 216, 108);
+		panel.add(btnCheckOut);
+		
+		
+
 	}
 
 	/**
