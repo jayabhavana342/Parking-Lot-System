@@ -261,3 +261,8 @@ INSERT INTO time_details( vehicle_ID, slot_level_id) VALUES (2,2);
 UPDATE parking_levels_slots set is_ocupied = 1 where id = 1;
 */
 
+
+-- CheckOut Queries:
+-- select vehicle_id from card_details where card_No = '12' and cvv = 12 and name_on_card = 'abc';
+
+
