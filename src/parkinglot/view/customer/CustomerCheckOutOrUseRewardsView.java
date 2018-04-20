@@ -24,6 +24,13 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField enterRewardsToBeUsed;
+	public JTextField vehicleNo;
+	public JTextField vehicleType;
+	public JTextField InTime;
+	public JTextField OutTime;
+	public JTextField noOfDays;
+	public JTextField rate;
+	public JTextField amount;
 
 	/**
 	 * Launch the application.
@@ -67,43 +74,118 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(220, 98, 651, 408);
+		panel.setBounds(160, 49, 785, 496);
 		cards.add(panel);
 		panel.setLayout(null);
+		
+		JLabel lblVehicleNumber = new JLabel("Vehicle Number");
+		lblVehicleNumber.setForeground(Color.WHITE);
+		lblVehicleNumber.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblVehicleNumber.setBounds(34, 84, 148, 31);
+		panel.add(lblVehicleNumber);
 
 		JLabel helloCustomer = new JLabel("");
 		helloCustomer.setForeground(Color.WHITE);
 		helloCustomer.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		helloCustomer.setBounds(35, 11, 235, 45);
 		panel.add(helloCustomer);
-
-		JLabel vehicleNumLabel = new JLabel("New label");
-		vehicleNumLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		vehicleNumLabel.setForeground(Color.WHITE);
-		vehicleNumLabel.setBounds(93, 76, 177, 31);
-		panel.add(vehicleNumLabel);
-
-		JLabel vehicleTypeLabel = new JLabel("New label");
-		vehicleTypeLabel.setForeground(Color.WHITE);
-		vehicleTypeLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		vehicleTypeLabel.setBounds(93, 118, 177, 31);
-		panel.add(vehicleTypeLabel);
-
-		JLabel levelNumLabel = new JLabel("New label");
-		levelNumLabel.setForeground(Color.WHITE);
-		levelNumLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		levelNumLabel.setBounds(93, 160, 177, 31);
-		panel.add(levelNumLabel);
-
-		JLabel slotNumLabel = new JLabel("New label");
-		slotNumLabel.setForeground(Color.WHITE);
-		slotNumLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		slotNumLabel.setBounds(93, 202, 177, 31);
-		panel.add(slotNumLabel);
+		
+		JLabel lblVehicleType = new JLabel("Vehicle Type");
+		lblVehicleType.setForeground(Color.WHITE);
+		lblVehicleType.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblVehicleType.setBounds(34, 122, 148, 31);
+		panel.add(lblVehicleType);
+		
+		JLabel lblInTime = new JLabel("In Time");
+		lblInTime.setForeground(Color.WHITE);
+		lblInTime.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblInTime.setBounds(34, 159, 148, 31);
+		panel.add(lblInTime);
+		
+		JLabel lblOutTime = new JLabel("Out Time\r\n");
+		lblOutTime.setForeground(Color.WHITE);
+		lblOutTime.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblOutTime.setBounds(34, 203, 148, 31);
+		panel.add(lblOutTime);
+		
+		JLabel lblParkingRateday = new JLabel("Parking Rate/day");
+		lblParkingRateday.setForeground(Color.WHITE);
+		lblParkingRateday.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblParkingRateday.setBounds(34, 284, 148, 31);
+		panel.add(lblParkingRateday);
+		
+		JLabel lblTotalAmountTo = new JLabel("Total Amount to be paid");
+		lblTotalAmountTo.setForeground(Color.WHITE);
+		lblTotalAmountTo.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblTotalAmountTo.setBounds(34, 326, 229, 31);
+		panel.add(lblTotalAmountTo);
+		
+		JLabel lblNoOfDays = new JLabel("No. of days");
+		lblNoOfDays.setForeground(Color.WHITE);
+		lblNoOfDays.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+		lblNoOfDays.setBounds(34, 245, 148, 31);
+		panel.add(lblNoOfDays);
+		
+		vehicleNo = new JTextField();
+		vehicleNo.setEditable(false);
+		vehicleNo.setBackground(Color.LIGHT_GRAY);
+		vehicleNo.setColumns(10);
+		vehicleNo.setBounds(219, 88, 157, 28);
+		panel.add(vehicleNo);
+		vehicleNo.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		vehicleType = new JTextField();
+		vehicleType.setEditable(false);
+		vehicleType.setBackground(Color.LIGHT_GRAY);
+		vehicleType.setColumns(10);
+		vehicleType.setBounds(219, 126, 157, 28);
+		panel.add(vehicleType);
+		vehicleType.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		InTime = new JTextField();
+		InTime.setEditable(false);
+		InTime.setBackground(Color.LIGHT_GRAY);
+		InTime.setColumns(10);
+		InTime.setBounds(219, 163, 157, 28);
+		panel.add(InTime);
+		InTime.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		OutTime = new JTextField();
+		OutTime.setEditable(false);
+		OutTime.setBackground(Color.LIGHT_GRAY);
+		OutTime.setColumns(10);
+		OutTime.setBounds(219, 204, 157, 28);
+		panel.add(OutTime);
+		OutTime.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		noOfDays = new JTextField();
+		noOfDays.setEditable(false);
+		noOfDays.setBackground(Color.LIGHT_GRAY);
+		noOfDays.setColumns(10);
+		noOfDays.setBounds(219, 249, 157, 28);
+		panel.add(noOfDays);
+		noOfDays.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		rate = new JTextField();
+		rate.setEditable(false);
+		rate.setBackground(Color.LIGHT_GRAY);
+		rate.setColumns(10);
+		rate.setBounds(219, 288, 157, 28);
+		panel.add(rate);
+		rate.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		amount = new JTextField();
+		amount.setEditable(false);
+		amount.setBackground(Color.LIGHT_GRAY);
+		amount.setColumns(10);
+		amount.setBounds(248, 330, 128, 28);
+		panel.add(amount);
+		amount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(289, 61, 312, 199);
+		panel_1.setBounds(448, 33, 312, 199);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -146,7 +228,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 			}
 		});
 		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		btnNewButton_1.setBounds(265, 303, 148, 62);
+		btnNewButton_1.setBounds(345, 384, 148, 62);
 		panel.add(btnNewButton_1);
 	}
 
