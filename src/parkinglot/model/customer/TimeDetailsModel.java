@@ -16,7 +16,7 @@ public class TimeDetailsModel {
 	private Timestamp In_Time;
 	private Timestamp Out_Time;
 	private int noOfDays;
-	
+
 	Connection conn;
 
 	public TimeDetailsModel() {
@@ -38,8 +38,6 @@ public class TimeDetailsModel {
 	public void setVehicle_ID(String vehicle_ID) {
 		this.vehicle_ID = vehicle_ID;
 	}
-	
-	
 
 	public Timestamp getIn_Time() {
 		return In_Time;
@@ -70,35 +68,40 @@ public class TimeDetailsModel {
 			System.out.println("In TimeDetails Model:");
 			conn = DatabaseConnection.getConnection();
 			PreparedStatement ps;
-			
-			String sql = "INSERT INTO time_details( vehicle_ID, slot_level_id) VALUES (?,?)";
+
+			ps = conn.prepareStatement("select rate from parking_rates where is_active = 1");
+			ResultSet rs = ps.executeQuery();
+
+			String sql = "INSERT INTO time_details( vehicle_ID, slot_level_id,check_in_rate) VALUES (?,?,?)";
 			System.out.println(sql);
 
-				ps = conn.prepareStatement(sql);
-				
-				ps.setInt(1, vehicleID);
-				ps.setInt(2, slotLevelID);
-				
-				if (ps.executeUpdate() > 0) {
-					JOptionPane.showMessageDialog(null, "Time Details added!");
-				}
-				
+			ps = conn.prepareStatement(sql);
+
+			ps.setInt(1, vehicleID);
+			ps.setInt(2, slotLevelID);
+			if (rs.next()) {
+				ps.setFloat(3, rs.getFloat("rate"));
+			}
+
+			if (ps.executeUpdate() > 0) {
+				JOptionPane.showMessageDialog(null, "Time Details added!");
+			}
+
 			sql = "UPDATE parking_levels_slots set is_ocupied = 1 where id = ?";
 			System.out.println(sql);
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setInt(1, slotLevelID);
-			
+
 			if (ps.executeUpdate() > 0) {
 				JOptionPane.showMessageDialog(null, "Slot Level ID updated as Occupied");
 			}
 
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void retrieveTimeDetails(int id) {
@@ -112,16 +115,15 @@ public class TimeDetailsModel {
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next())
-			{
-				Timestamp  inTime = rs.getTimestamp(1);
+			while (rs.next()) {
+				Timestamp inTime = rs.getTimestamp(1);
 				Timestamp outTime = rs.getTimestamp(2);
 				int noOfDays = rs.getInt(3);
-				
+
 				this.In_Time = inTime;
 				this.Out_Time = outTime;
 				this.noOfDays = noOfDays;
-	
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -141,10 +143,9 @@ public class TimeDetailsModel {
 			ps.setInt(1, id);
 			ps.executeUpdate();
 			System.out.println("Out Time Updated!");
-			}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	public void updateNoOfDays(int id) {
@@ -161,29 +162,22 @@ public class TimeDetailsModel {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				int noOfDays = rs.getInt(1);
-				if(noOfDays == 0)
-				{
+				if (noOfDays == 0) {
 					return;
-				}
-				else
-				{
-					 sql = "update time_details set noOfDays = ? where vehicle_ID = ?";
-					 System.out.println(sql);
-						ps = conn.prepareStatement(sql);
-						ps.setInt(1, noOfDays);
-						ps.setInt(2, id);
-						ps.executeQuery();
-						System.out.println("No. of days updated!");
-					 
+				} else {
+					sql = "update time_details set noOfDays = ? where vehicle_ID = ?";
+					System.out.println(sql);
+					ps = conn.prepareStatement(sql);
+					ps.setInt(1, noOfDays);
+					ps.setInt(2, id);
+					ps.executeQuery();
+					System.out.println("No. of days updated!");
+
 				}
 			}
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}	
-		
+		}
+
 	}
-	}
-
-
-
+}
