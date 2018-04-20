@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 public class CustomerCheckInEnterDetails extends JFrame {
 	/**
@@ -26,7 +27,6 @@ public class CustomerCheckInEnterDetails extends JFrame {
 	private JTextField cvv;
 	private JTextField nameOnCard;
 	private JTextField vehicleNumber;
-	private JTextField vehicleType;
 	
 
 	/**
@@ -126,21 +126,23 @@ public class CustomerCheckInEnterDetails extends JFrame {
 		lblVehicleType.setForeground(Color.WHITE);
 		lblVehicleType.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 
-		vehicleType = new JTextField();
-		vehicleType.setBounds(357, 197, 259, 28);
-		panel.add(vehicleType);
-		vehicleType.setColumns(10);
-
 		JButton chooseSlot = new JButton("Choose a Slot");
 		chooseSlot.setBounds(213, 246, 183, 37);
 		panel.add(chooseSlot);
 		chooseSlot.setForeground(Color.BLACK);
 		chooseSlot.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+		
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(357, 197, 259, 34);
+		comboBox.addItem("Car");
+		comboBox.addItem("Bus");
+		panel.add(comboBox);
 		chooseSlot.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println(comboBox.getSelectedItem());
 				controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
-						vehicleNumber.getText(), vehicleType.getText());
+						vehicleNumber.getText(), String.valueOf(comboBox.getSelectedItem()));
 			}
 		});
 	}
