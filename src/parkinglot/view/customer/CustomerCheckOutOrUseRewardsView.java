@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import parkinglot.controller.customer.CustomerCheckOutOrUseRewardsController;
+import parkinglot.model.admin.FrequentParkingUsersModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import java.awt.event.ActionListener;
@@ -31,7 +33,11 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	public JTextField noOfDays;
 	public JTextField rate;
 	public JTextField amount;
+	public JPanel panel_1;
+	public JPanel panel;
+	private JTextField phoneNo;
 
+	private boolean if_customer = false;
 	/**
 	 * Launch the application.
 	 */
@@ -72,7 +78,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		cards.add(centerHome);
 		centerHome.setLayout(null);
 
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setBounds(160, 49, 785, 496);
 		cards.add(panel);
@@ -114,7 +120,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		lblParkingRateday.setBounds(34, 284, 148, 31);
 		panel.add(lblParkingRateday);
 		
-		JLabel lblTotalAmountTo = new JLabel("Total Amount to be paid");
+		JLabel lblTotalAmountTo = new JLabel("Amount to be paid");
 		lblTotalAmountTo.setForeground(Color.WHITE);
 		lblTotalAmountTo.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblTotalAmountTo.setBounds(34, 326, 229, 31);
@@ -181,36 +187,73 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		amount.setBounds(248, 330, 128, 28);
 		panel.add(amount);
 		amount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+	
 		
-
-		JPanel panel_1 = new JPanel();
+		JButton btnNewButton_1 = new JButton("Check Out");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		btnNewButton_1.setBounds(347, 421, 148, 62);
+		panel.add(btnNewButton_1);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBackground(Color.WHITE);
+		panel_2.setBounds(388, 33, 385, 165);
+		panel.add(panel_2);
+		
+		phoneNo = new JTextField();
+		phoneNo.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
+		phoneNo.setColumns(10);
+		phoneNo.setBounds(135, 77, 167, 32);
+		panel_2.add(phoneNo);
+		
+		JLabel lblPhoneNo = new JLabel("Phone No.");
+		lblPhoneNo.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblPhoneNo.setBounds(22, 78, 89, 28);
+		panel_2.add(lblPhoneNo);
+		
+		CustomerCheckOutOrUseRewardsController controller = new CustomerCheckOutOrUseRewardsController(this);
+		
+		
+		JButton btnEnter = new JButton("Enter");
+		btnEnter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controller.checkIfFrequentParkerBasedOnPhoneNumber(phoneNo.getText());
+			}
+		});
+		
+		panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(448, 33, 312, 199);
-		panel.add(panel_1);
+		panel_1.setBounds(388, 211, 385, 159);
 		panel_1.setLayout(null);
+		System.out.println();
+//		panel.add(panel_1);
 
 		JLabel displayRewardsLabel = new JLabel("Use Frequent Parker Rewards");
 		displayRewardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		displayRewardsLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		displayRewardsLabel.setBounds(10, 11, 292, 32);
+		displayRewardsLabel.setBounds(0, 11, 385, 32);
 		panel_1.add(displayRewardsLabel);
 
 		JLabel availableRewardsLabel = new JLabel("$ rewards");
 		availableRewardsLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		availableRewardsLabel.setForeground(new Color(50, 205, 50));
 		availableRewardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		availableRewardsLabel.setBounds(50, 38, 211, 24);
+		availableRewardsLabel.setBounds(96, 38, 211, 24);
 		panel_1.add(availableRewardsLabel);
 
 		enterRewardsToBeUsed = new JTextField();
 		enterRewardsToBeUsed.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
-		enterRewardsToBeUsed.setBounds(31, 90, 271, 32);
+		enterRewardsToBeUsed.setBounds(86, 75, 271, 32);
 		panel_1.add(enterRewardsToBeUsed);
 		enterRewardsToBeUsed.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("$");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		lblNewLabel.setBounds(10, 90, 11, 28);
+		lblNewLabel.setBounds(59, 77, 11, 28);
 		panel_1.add(lblNewLabel);
 
 		JButton btnNewButton = new JButton("Apply");
@@ -219,18 +262,36 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 			}
 		});
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
-		btnNewButton.setBounds(213, 143, 89, 32);
+		btnNewButton.setBounds(120, 120, 89, 32);
 		panel_1.add(btnNewButton);
 
-		JButton btnNewButton_1 = new JButton("Check Out");
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		btnNewButton_1.setBounds(345, 384, 148, 62);
-		panel.add(btnNewButton_1);
+
+
+		btnEnter.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		btnEnter.setBounds(134, 130, 89, 32);
+		panel_2.add(btnEnter);
+		
+		
+			//panel_1.setVisible(true);
+			//cards.add(panel_1);
+		
+	
+		
+		
+		JLabel lblToUseRewards = new JLabel("To use Rewards, \r\nenter your registered Phone No.");
+		lblToUseRewards.setHorizontalAlignment(SwingConstants.CENTER);
+		lblToUseRewards.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
+		lblToUseRewards.setBounds(0, 13, 395, 64);
+		panel_2.add(lblToUseRewards);
+
 	}
+
+
+	
+	
+
+	
+
 
 	/**
 	 * Initialize the contents of the frame.
@@ -239,5 +300,4 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		setBounds(500, 500, 1100, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
 }
