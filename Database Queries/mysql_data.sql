@@ -100,7 +100,7 @@ CREATE TABLE `frequent_parking_users`(
     `first_name` VARCHAR(64) NOT NULL,
     `email` VARCHAR(64) NOT NULL,
     `address` VARCHAR(100) NOT NULL,
-    `phone` INT(10) UNIQUE NOT NULL,
+    `phone` VARCHAR(10) UNIQUE NOT NULL,
     `license_id` VARCHAR(10) NOT NULL,
     `rewards` FLOAT(10) DEFAULT 2,
     PRIMARY KEY(`id`)

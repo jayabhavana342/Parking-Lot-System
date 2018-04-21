@@ -229,7 +229,31 @@ public class FrequentParkingUsersModel {
 
 	}
 
-	public void checkIfFrequentParkerBasedOnPhoneNumber(String phoneNumber) {
+	public boolean checkIfFrequentParkerBasedOnPhoneNumber(String phoneNumber) {
+		ResultSet rs;
+		boolean checkFrequentParker = false;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement(
+					"SELECT IF(COUNT(*) > 0, 'true','false') AS checkFrequentParker FROM frequent_parking_users WHERE phone =?");
+
+			select.setString(1, phoneNumber);
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+				
+				if (rs.getString("checkFrequentParker").equals("true"))
+					checkFrequentParker = true;
+				else
+					checkFrequentParker = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return checkFrequentParker;
+		
 		
 	}
 
