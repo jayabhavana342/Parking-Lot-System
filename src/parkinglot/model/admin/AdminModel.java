@@ -100,7 +100,7 @@ public class AdminModel {
             }
             else{
                 password = "";
-                JOptionPane.showMessageDialog(null, "UnSuccessful Login");
+                JOptionPane.showMessageDialog(null, "Invalid username and password");
             }
         } catch (SQLException e) {
             e.printStackTrace();
