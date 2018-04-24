@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import parkinglot.controller.customer.CustomerCheckInEnterDetailsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
+import slots.parking.txstate.edu.Slots;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -143,6 +145,11 @@ public class CustomerCheckInEnterDetails extends JFrame {
 				System.out.println(comboBox.getSelectedItem());
 				controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
 						vehicleNumber.getText(), String.valueOf(comboBox.getSelectedItem()));
+				
+				
+				//calling slots, 
+				//Vehicle type: CAR,MOTORCYCLE,BUS
+				Slots.selectSlot("CAR", vehicleNumber.getText());
 			}
 		});
 	}
