@@ -249,4 +249,83 @@ SELECT
 FROM
     parking_levels_slots
 WHERE
-    (is_ocupied = 0) AND (slot_type = 'CAR')
+    (is_ocupied = 0) AND (slot_type = 'CAR');
+    
+    
+INSERT INTO parking_levels_slots(id,slot_type) values(121,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(122,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(123,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(124,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(125,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(126,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(127,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(128,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(129,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1210,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1211,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1212,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1213,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1214,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1215,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1216,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1217,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1218,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1219,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1220,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1221,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1222,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1223,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1224,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1225,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1226,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1227,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1228,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1229,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1230,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1231,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1232,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1233,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1234,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1235,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1236,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1237,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1238,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1239,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1240,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1241,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1242,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1243,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1244,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1245,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1246,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1247,'CAR');
+INSERT INTO parking_levels_slots(id,slot_type) values(1248,'CAR');
+    
+    
+INSERT INTO parking_levels_slots(id,slot_type) values(111,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(112,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(113,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(114,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(115,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(116,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(117,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(118,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(119,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1110,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1111,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1112,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1113,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1114,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1115,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1116,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1117,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1118,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1119,'MOTORCYCLE');
+INSERT INTO parking_levels_slots(id,slot_type) values(1120,'MOTORCYCLE');
+
+INSERT INTO parking_levels_slots(id,slot_type) values(131,'BUS');
+INSERT INTO parking_levels_slots(id,slot_type) values(132,'BUS');
+INSERT INTO parking_levels_slots(id,slot_type) values(133,'BUS');
+INSERT INTO parking_levels_slots(id,slot_type) values(134,'BUS');
+INSERT INTO parking_levels_slots(id,slot_type) values(135,'BUS');
+INSERT INTO parking_levels_slots(id,slot_type) values(136,'BUS');
