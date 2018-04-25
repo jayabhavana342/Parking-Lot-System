@@ -93,17 +93,17 @@ public class CustomerCheckInHomePage extends JFrame {
 			btnCheckIn.setBounds(214, 35, 216, 108);
 			panel.add(btnCheckIn);
 
-			JLabel carLotsAvailable = new JLabel("Available Car Slots: " + String.valueOf(model.carLotsAvailable()));
-			carLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-			carLotsAvailable.setForeground(Color.WHITE);
-			carLotsAvailable.setBounds(68, 177, 216, 47);
-			panel.add(carLotsAvailable);
+//			JLabel carLotsAvailable = new JLabel("Available Car Slots: " + String.valueOf(model.carLotsAvailable()));
+//			carLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+//			carLotsAvailable.setForeground(Color.WHITE);
+//			carLotsAvailable.setBounds(68, 177, 216, 47);
+//			panel.add(carLotsAvailable);
 
-			JLabel busLotsAvailable = new JLabel("Available Bus Slots: " + String.valueOf(model.busLotsAvailable()));
-			busLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-			busLotsAvailable.setForeground(Color.WHITE);
-			busLotsAvailable.setBounds(379, 177, 216, 47);
-			panel.add(busLotsAvailable);
+//			JLabel busLotsAvailable = new JLabel("Available Bus Slots: " + String.valueOf(model.busLotsAvailable()));
+//			busLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+//			busLotsAvailable.setForeground(Color.WHITE);
+//			busLotsAvailable.setBounds(379, 177, 216, 47);
+//			panel.add(busLotsAvailable);
 		} else {
 			JLabel lblNoSlotsAvailable = new JLabel("NO SLOTS AVAILABLE");
 			lblNoSlotsAvailable.setForeground(Color.RED);

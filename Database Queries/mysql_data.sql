@@ -1,4 +1,3 @@
-
 CREATE DATABASE IF NOT EXISTS parkinglot;
 USE
     parkinglot;
@@ -22,40 +21,15 @@ DROP TABLE IF EXISTS
     parking_slots;
 DROP TABLE IF EXISTS
     parking_levels_slots;
-    
-CREATE TABLE parking_levels(
-	level_id INT(11) PRIMARY KEY auto_increment,
-	level_name varchar(50) NOT NULL
-)
-auto_increment = 1;
-
-INSERT INTO parking_levels(level_name) values ('L1');
-INSERT INTO parking_levels(level_name) values ('L2');
-
-CREATE TABLE parking_slots(
-	slot_id INT(11) PRIMARY KEY auto_increment,
-	slot_name VARCHAR(11) NOT NULL,
-	slot_type ENUM('Car','Bus')
-)
-auto_increment = 1;
-
-INSERT INTO parking_slots(slot_name, slot_type) values('S1', 'Car');
-INSERT INTO parking_slots(slot_name, slot_type) values('S2', 'Bus');
-
 CREATE TABLE parking_levels_slots(
-	id INT(11) PRIMARY KEY auto_increment,
-	slot_id INT(11) NOT NULL,
-	level_id INT(11) NOT NULL,
-	is_ocupied BOOLEAN DEFAULT 0 
-)
-auto_increment = 1;
-
-
-insert into parking_levels_slots(level_id,slot_id)
-select a.level_id, b.slot_id 
-from parking_levels a cross join parking_slots b;
-    
-    
+    id INT(11) PRIMARY KEY,
+    slot_type ENUM('CAR', 'BUS', 'MOTORCYCLE'),
+    is_ocupied BOOLEAN DEFAULT 0
+);
+INSERT
+INTO
+    parking_levels_slots(id, slot_type)
+VALUES(121, 'CAR');
 CREATE TABLE `admin_users`(
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `last_name` VARCHAR(64) DEFAULT NULL,
@@ -206,65 +180,64 @@ VALUES(
     'A333A33'
 );
 CREATE TABLE vehicle_details(
-    id INT(11) auto_increment,
+    id INT(11) AUTO_INCREMENT,
     vehicle_No VARCHAR(10) UNIQUE,
-    vehicle_Type ENUM('Car','Bus'),
+    vehicle_Type ENUM('Car', 'Bus'),
     PRIMARY KEY(id)
 ) AUTO_INCREMENT = 1;
-
 CREATE TABLE card_details(
-	id INT(11) PRIMARY KEY auto_increment,
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
     vehicle_ID INT(11),
     card_No VARCHAR(10) NOT NULL,
     cvv INT(3) NOT NULL,
     name_on_card VARCHAR(50) NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id)
 ) AUTO_INCREMENT = 1;
-
-
 CREATE TABLE time_details(
-	id INT(11) PRIMARY KEY auto_increment,
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
     vehicle_ID INT(11),
     In_Time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Out_Time TIMESTAMP,
     noOfDays INT(5) DEFAULT 1,
     slot_level_id INT(11),
-    check_in_rate float NOT NULL,
+    check_in_rate FLOAT NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(slot_level_id) REFERENCES parking_levels_slots(id)
 ) AUTO_INCREMENT = 1;
-
-
-create table parking_vehicle_amount(
-	id INT(11) PRIMARY KEY auto_increment,
-	vehicle_ID INT(11) NOT NULL,
+CREATE TABLE parking_vehicle_amount(
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    vehicle_ID INT(11) NOT NULL,
     frequent_parker_id INT(11),
-    bill_amount float NOT NULL,
-    FOREIGN KEY (vehicle_ID) REFERENCES vehicle_details(id),
+    bill_amount FLOAT NOT NULL,
+    FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(frequent_parker_id) REFERENCES frequent_parking_users(id)
-)
-auto_increment = 1;
-
-
-
--- CHECK IN To fetch Current Parking rate
-SELECT * FROM `parking_rates` WHERE is_active = 1;
-
--- INSERT 
-INSERT INTO `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
+) AUTO_INCREMENT = 1; -- CHECK IN To fetch Current Parking rate
+SELECT
+    *
+FROM
+    `parking_rates`
+WHERE
+    is_active = 1; -- INSERT 
+INSERT
+INTO
+    `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
 VALUES('12345', 'CAR');
-
-INSERT INTO card_details ( vehicle_ID, card_No,cvv,name_on_card ) 
-VALUES(LAST_INSERT_ID(), '12','12','abc');
-
-
-INSERT INTO time_details( vehicle_ID, slot_level_id) VALUES (2,2);
-
-UPDATE parking_levels_slots set is_ocupied = 1 where id = 1;
-
-
-
--- CheckOut Queries:
--- select vehicle_id from card_details where card_No = '12' and cvv = 12 and name_on_card = 'abc';
-
-
+INSERT
+INTO
+    card_details(
+        vehicle_ID,
+        card_No,
+        cvv,
+        name_on_card
+    )
+VALUES(LAST_INSERT_ID(), '12', '12', 'abc');
+INSERT
+INTO
+    time_details(vehicle_ID, slot_level_id)
+VALUES(2, 2);
+UPDATE
+    parking_levels_slots
+SET
+    is_ocupied = 1
+WHERE
+    id = 1; -- CheckOut Queries: -- select vehicle_id from card_details where card_No = '12' and cvv = 12 and name_on_card = 'abc';

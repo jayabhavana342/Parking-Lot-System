@@ -87,15 +87,29 @@ public class TimeDetailsModel {
 				JOptionPane.showMessageDialog(null, "Time Details added!");
 			}
 
-			sql = "UPDATE parking_levels_slots set is_ocupied = 1 where id = ?";
+			sql = "SELECT is_ocupied FROM parking_levels_slots where id = ?";
 			System.out.println(sql);
 
 			ps = conn.prepareStatement(sql);
 
 			ps.setInt(1, slotLevelID);
 
-			if (ps.executeUpdate() > 0) {
-				JOptionPane.showMessageDialog(null, "Slot Level ID updated as Occupied");
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				if (!rs.getBoolean("is_ocupied")) {
+					sql = "UPDATE parking_levels_slots set is_ocupied = 1 where id = ?";
+					System.out.println(sql);
+
+					ps = conn.prepareStatement(sql);
+
+					ps.setInt(1, slotLevelID);
+
+					if (ps.executeUpdate() > 0) {
+						JOptionPane.showMessageDialog(null, "Slot Level ID updated as Occupied");
+					}
+				}
+
 			}
 
 		} catch (SQLException e) {

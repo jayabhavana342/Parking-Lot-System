@@ -1,12 +1,6 @@
 package parkinglot.controller.customer;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
-import javax.swing.JOptionPane;
-
-import parkinglot.model.DatabaseConnection;
 import parkinglot.model.customer.CardDetailsModel;
 import parkinglot.model.customer.TimeDetailsModel;
 import parkinglot.model.customer.VehicleDetailsModel;
@@ -35,9 +29,6 @@ public class CustomerChooseSlotsController {
 		int id = vehicleDetailsModel.insertVehicleDetailsIntoDB(vehicleNo,vehicleType);
 		System.out.println("Vehicle ID: " +id);
 		cardDetailsModel.insertCardDetailsIntoDB(id, cardNo, cvv, nameOnCard);
-//		timeDetailsModel.insertTimeDetailsIntoDB(id,slotLevelID);
-		
-		
-		
+		timeDetailsModel.insertTimeDetailsIntoDB(id,slotLevelID);
 	}
 }

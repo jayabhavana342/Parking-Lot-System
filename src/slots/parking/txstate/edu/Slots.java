@@ -57,13 +57,13 @@ public class Slots {
 	private static Map<String, Button> buttonMap = new HashMap<String, Button>();
 
 	private static void destroy() {
-		
+
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
 		display.dispose();
-		
+
 	}
 
 	/**
@@ -186,39 +186,36 @@ public class Slots {
 		});
 
 		CustomerChooseSlotsController controller = new CustomerChooseSlotsController();
-		
+
 		okButton = new Button(shell, SWT.None);
 		okButton.setBounds(1250, 250, 100, 25);
 		okButton.setText("ok");
-		
+
 		okButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				super.widgetSelected(e);
-				
+
 				System.out.println(vtype);
-				
+
 				switch (vtype) {
-				
 
 				case MOTORCYCLE:
-					controller.enterDetailsIntoDB(cardNumber, cvv,
-							nameOnCard, vnumber, "MOTORCYCLE", Integer.valueOf(slotNo));
+					controller.enterDetailsIntoDB(cardNumber, cvv, nameOnCard, vnumber, "MOTORCYCLE",
+							Integer.valueOf(slotNo));
 					break;
 
 				case CAR:
-					controller.enterDetailsIntoDB(cardNumber, cvv,
-							nameOnCard, vnumber, "CAR", Integer.valueOf(slotNo));
+					controller.enterDetailsIntoDB(cardNumber, cvv, nameOnCard, vnumber, "CAR", Integer.valueOf(slotNo));
 					break;
 
 				case BUS:
-					controller.enterDetailsIntoDB(cardNumber, cvv,
-							nameOnCard, vnumber, "BUS", Integer.valueOf(slotNo));
+					controller.enterDetailsIntoDB(cardNumber, cvv, nameOnCard, vnumber, "BUS", Integer.valueOf(slotNo));
 
 					break;
 
 				}
-				
+
 				display.dispose();
 			}
 		});
@@ -241,7 +238,7 @@ public class Slots {
 					gc.drawLine(v.getX(), v.getY(), path.get(i).getX(), path.get(i).getY());
 					v = path.get(i);
 				}
-				
+
 				okButton.setEnabled(true);
 			}
 		});
@@ -292,9 +289,9 @@ public class Slots {
 		cardNumber = cardNo;
 		cvv = cv;
 		nameOnCard = name;
-		
+
 		System.out.println(name);
-		
+
 		init();
 
 		switch (vt) {
@@ -315,7 +312,7 @@ public class Slots {
 		}
 
 		destroy();
-		
+
 		CustomerCheckInHomePage view = new CustomerCheckInHomePage();
 		view.setVisible(true);
 		view.setLocationRelativeTo(null);
@@ -332,6 +329,7 @@ public class Slots {
 				gc.drawImage(bus, 18 + i * 140, 600);
 			}
 
+			System.out.println("Bus:"+key);
 		}
 	}
 
@@ -345,6 +343,8 @@ public class Slots {
 			} else {
 				gc.drawImage(bike_booked, 242, 18 * i + 134);
 			}
+			
+			System.out.println("Bike:" + key);
 		}
 
 		for (int i = 1; i < 21; i++) {
@@ -354,6 +354,7 @@ public class Slots {
 			} else {
 				gc.drawImage(bike_booked, 395, 18 * i + 134);
 			}
+//			System.out.println("Bike:" + key);
 		}
 	}
 
@@ -391,6 +392,8 @@ public class Slots {
 				button.setBounds(87 + 20 * i, 30, 15, 48);
 				button.setToolTipText("Slot: " + key + "\nCar No.: " + bookingMap.get(key));
 			}
+			
+			System.out.println("Car:" + key);
 
 		}
 
@@ -568,8 +571,8 @@ public class Slots {
 		if (string.equalsIgnoreCase("CAR"))
 			selectSlot(VehicleType.CAR, text, cardNo, cvv, nameOnCard);
 		else if (string.equalsIgnoreCase("MOTORCYCLE"))
-			selectSlot(VehicleType.MOTORCYCLE, text,  cardNo, cvv, nameOnCard);
+			selectSlot(VehicleType.MOTORCYCLE, text, cardNo, cvv, nameOnCard);
 		else if (string.equalsIgnoreCase("BUS"))
-			selectSlot(VehicleType.BUS, text,  cardNo, cvv, nameOnCard);
+			selectSlot(VehicleType.BUS, text, cardNo, cvv, nameOnCard);
 	}
 }
