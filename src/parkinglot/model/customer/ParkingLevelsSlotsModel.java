@@ -157,4 +157,52 @@ public class ParkingLevelsSlotsModel {
 		return busSlotsAvailable;
 	}
 
+	public int vehiclesParked() {
+		// TODO Auto-generated method stub
+		ResultSet rs;
+
+		int vehiclesParked = 0;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement("SELECT\n" + "    COUNT(*) AS vehiclesParked\n" + "FROM\n"
+					+ "    `parking_levels_slots`\n" + "WHERE\n" + "    (is_ocupied = 1)");
+
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+				vehiclesParked = rs.getInt("vehiclesParked");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println(vehiclesParked);
+		return vehiclesParked;
+	}
+
+	public int emptySlots() {
+		// TODO Auto-generated method stub
+		ResultSet rs;
+
+		int emptySlots = 0;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement("	SELECT\n" + "    COUNT(*) AS emptySlots\n" + "FROM\n"
+					+ "    `parking_levels_slots`\n" + "WHERE\n" + "    is_ocupied = 0");
+
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+				emptySlots = rs.getInt("emptySlots");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		System.out.println(emptySlots);
+		return emptySlots;
+	}
+
 }

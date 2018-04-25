@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 import parkinglot.model.DatabaseConnection;
-import parkinglot.model.admin.ParkingRatesModel;
 
 public class TimeDetailsModel {
 	private int id;
@@ -111,10 +110,6 @@ public class TimeDetailsModel {
 					}
 				}
 			}
-			
-			ParkingRatesModel parkingRatesModel = new ParkingRatesModel();
-			
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

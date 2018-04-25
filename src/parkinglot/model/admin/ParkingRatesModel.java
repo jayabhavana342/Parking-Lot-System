@@ -116,10 +116,11 @@ public class ParkingRatesModel {
 
 		try {
 			conn = DatabaseConnection.getConnection();
-			PreparedStatement select = conn.prepareStatement("SELECT rate FROM parking_rates WHERE is_active=1");
+			PreparedStatement select = conn.prepareStatement("SELECT rate,is_active FROM parking_rates WHERE is_active=1");
 			ResultSet rs = select.executeQuery();
 			if (rs.next()) {
-				rate = rs.getInt("rate");
+				rate = rs.getFloat("rate");
+				is_active = rs.getBoolean("is_active");
 				System.out.println(rate);
 			} else {
 				rate = 0;

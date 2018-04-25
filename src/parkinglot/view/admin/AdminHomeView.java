@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.admin.AdminHomeView;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
@@ -66,7 +67,7 @@ public class AdminHomeView extends JFrame {
 
 		System.out.println(todaysRateLabel);
 
-		JLabel carsParkedLabel = new JLabel("Cars Parked");
+		JLabel carsParkedLabel = new JLabel("Total Vehicles Parked");
 		carsParkedLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		carsParkedLabel.setForeground(Color.WHITE);
 		carsParkedLabel.setBounds(182, 195, 226, 40);
@@ -96,13 +97,15 @@ public class AdminHomeView extends JFrame {
 		todaysRate.setBounds(451, 148, 226, 40);
 		cards.add(todaysRate);
 
-		carsParked = new JLabel();
+		ParkingLevelsSlotsModel parkingLevelsModel = new ParkingLevelsSlotsModel();
+
+		carsParked = new JLabel(String.valueOf(parkingLevelsModel.vehiclesParked()));
 		carsParked.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		carsParked.setForeground(Color.WHITE);
 		carsParked.setBounds(451, 195, 226, 40);
 		cards.add(carsParked);
 
-		emptySlots = new JLabel();
+		emptySlots = new JLabel(String.valueOf(parkingLevelsModel.emptySlots()));
 		emptySlots.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		emptySlots.setForeground(Color.WHITE);
 		emptySlots.setBounds(451, 246, 226, 40);
