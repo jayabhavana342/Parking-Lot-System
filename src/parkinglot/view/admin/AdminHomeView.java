@@ -159,9 +159,9 @@ public class AdminHomeView extends JFrame {
 			}
 		});
 
-		JButton btnViewReports = new JButton("View Reports");
-		btnViewReports.setBounds(617, 26, 216, 26);
-		cards.add(btnViewReports);
+//		JButton btnViewReports = new JButton("View Reports");
+//		btnViewReports.setBounds(617, 26, 216, 26);
+//		cards.add(btnViewReports);
 
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(833, 26, 226, 26);
