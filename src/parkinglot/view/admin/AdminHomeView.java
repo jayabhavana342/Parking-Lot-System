@@ -72,6 +72,7 @@ public class AdminHomeView extends JFrame {
 		carsParkedLabel.setForeground(Color.WHITE);
 		carsParkedLabel.setBounds(182, 195, 226, 40);
 		cards.add(carsParkedLabel);
+		
 
 		JLabel emptySlotsLabel = new JLabel("Empty Slots");
 		emptySlotsLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
