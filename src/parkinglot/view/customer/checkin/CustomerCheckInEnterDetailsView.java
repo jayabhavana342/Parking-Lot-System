@@ -1,20 +1,23 @@
-package parkinglot.view.customer;
+package parkinglot.view.customer.checkin;
 
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
 
-import parkinglot.controller.customer.CustomerCheckOutEnterDetailsController;
+import parkinglot.controller.customer.checkin.CustomerCheckInEnterDetailsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 
-public class CustomerCheckOutEnterDetails extends JFrame {
-
+public class CustomerCheckInEnterDetailsView extends JFrame {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField cardNumber;
 	private JTextField cvv;
 	private JTextField nameOnCard;
+	private JTextField vehicleNumber;
 
 	/**
 	 * Launch the application.
@@ -23,7 +26,7 @@ public class CustomerCheckOutEnterDetails extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerCheckOutEnterDetails window = new CustomerCheckOutEnterDetails();
+					CustomerCheckInEnterDetailsView window = new CustomerCheckInEnterDetailsView();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +38,7 @@ public class CustomerCheckOutEnterDetails extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public CustomerCheckOutEnterDetails() {
+	public CustomerCheckInEnterDetailsView() {
 		initialize();
 
 		getContentPane().setBackground(Color.lightGray);
@@ -55,7 +58,7 @@ public class CustomerCheckOutEnterDetails extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
-		CustomerCheckOutEnterDetailsController controller = new CustomerCheckOutEnterDetailsController(this);
+		CustomerCheckInEnterDetailsController controller = new CustomerCheckInEnterDetailsController(this);
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
@@ -96,18 +99,42 @@ public class CustomerCheckOutEnterDetails extends JFrame {
 		panel.add(nameOnCard);
 		nameOnCard.setColumns(10);
 
-		JButton btnCheckOut = new JButton("Check Out");
-		btnCheckOut.setBounds(213, 246, 183, 37);
-		panel.add(btnCheckOut);
-		btnCheckOut.setForeground(Color.BLACK);
-		btnCheckOut.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		btnCheckOut.addActionListener(new ActionListener() {
+		JLabel lblVehicleNumber = new JLabel("Vehicle Number");
+		lblVehicleNumber.setBounds(38, 158, 148, 31);
+		panel.add(lblVehicleNumber);
+		lblVehicleNumber.setForeground(Color.WHITE);
+		lblVehicleNumber.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+
+		vehicleNumber = new JTextField();
+		vehicleNumber.setBounds(357, 158, 259, 28);
+		panel.add(vehicleNumber);
+		vehicleNumber.setColumns(10);
+
+		JLabel lblVehicleType = new JLabel("Vehicle Type");
+		lblVehicleType.setBounds(38, 200, 148, 31);
+		panel.add(lblVehicleType);
+		lblVehicleType.setForeground(Color.WHITE);
+		lblVehicleType.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+
+		JButton chooseSlot = new JButton("Choose a Slot");
+		chooseSlot.setBounds(213, 246, 183, 37);
+		panel.add(chooseSlot);
+		chooseSlot.setForeground(Color.BLACK);
+		chooseSlot.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
+
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setBounds(357, 197, 259, 34);
+		comboBox.addItem("Car");
+		comboBox.addItem("Bus");
+		comboBox.addItem("MOTORCYCLE");
+		panel.add(comboBox);
+		chooseSlot.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(cardNumber.getText());
-				System.out.println(cvv.getText());
-				System.out.println(nameOnCard.getText());
-				controller.retrieveCardDetails(cardNumber.getText(), new Integer(cvv.getText()), nameOnCard.getText());
+				System.out.println(comboBox.getSelectedItem());
+				controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
+						vehicleNumber.getText(), String.valueOf(comboBox.getSelectedItem()));
+
 			}
 		});
 	}

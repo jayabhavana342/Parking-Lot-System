@@ -1,4 +1,4 @@
-package parkinglot.view.customer;
+package parkinglot.view.customer.checkout;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import parkinglot.controller.customer.CustomerCheckOutOrUseRewardsController;
+import parkinglot.controller.customer.checkout.CustomerCheckOutOrUseRewardsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 

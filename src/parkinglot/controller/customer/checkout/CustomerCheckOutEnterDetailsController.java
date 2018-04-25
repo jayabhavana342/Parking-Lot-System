@@ -1,4 +1,4 @@
-package parkinglot.controller.customer;
+package parkinglot.controller.customer.checkout;
 
 import java.sql.Connection;
 import java.sql.Timestamp;
@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 import parkinglot.model.customer.CardDetailsModel;
 import parkinglot.model.customer.TimeDetailsModel;
 import parkinglot.model.customer.VehicleDetailsModel;
-import parkinglot.view.customer.CustomerCheckOutOrUseRewardsView;
-import parkinglot.view.customer.CustomerCheckOutEnterDetails;
+import parkinglot.view.customer.checkout.CustomerCheckOutEnterDetailsView;
+import parkinglot.view.customer.checkout.CustomerCheckOutOrUseRewardsView;
 
 public class CustomerCheckOutEnterDetailsController {
-	private CustomerCheckOutEnterDetails view;
+	private CustomerCheckOutEnterDetailsView view;
 	private CardDetailsModel cardDetailsModel;
 	private VehicleDetailsModel vehicleDetailsModel;
 	private TimeDetailsModel timeDetailsModel;
@@ -25,7 +25,7 @@ public class CustomerCheckOutEnterDetailsController {
 		// TODO Auto-generated constructor stub
 	}
 
-	public CustomerCheckOutEnterDetailsController(CustomerCheckOutEnterDetails view) {
+	public CustomerCheckOutEnterDetailsController(CustomerCheckOutEnterDetailsView view) {
 
 		// TODO Auto-generated constructor stub
 		this.view = view;

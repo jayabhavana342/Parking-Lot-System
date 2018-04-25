@@ -1,4 +1,4 @@
-package parkinglot.controller.customer;
+package parkinglot.controller.customer.checkin;
 
 import java.sql.Connection;
 import parkinglot.model.customer.CardDetailsModel;

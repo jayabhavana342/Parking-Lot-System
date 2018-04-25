@@ -25,8 +25,8 @@ import org.eclipse.swt.widgets.Shell;
 
 import maps.parking.txstate.edu.MapsUtil;
 import maps.parking.txstate.edu.MapsUtil.Vertex;
-import parkinglot.controller.customer.CustomerChooseSlotsController;
-import parkinglot.view.customer.CustomerCheckInHomePage;
+import parkinglot.controller.customer.checkin.CustomerChooseSlotsController;
+import parkinglot.view.customer.checkin.CustomerCheckInHomePageView;
 
 /**
  * 
@@ -313,7 +313,7 @@ public class Slots {
 
 		destroy();
 
-		CustomerCheckInHomePage view = new CustomerCheckInHomePage();
+		CustomerCheckInHomePageView view = new CustomerCheckInHomePageView();
 		view.setVisible(true);
 		view.setLocationRelativeTo(null);
 	}

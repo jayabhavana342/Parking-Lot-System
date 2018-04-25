@@ -1,4 +1,4 @@
-package parkinglot.view.customer;
+package parkinglot.view.customer.checkout;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import javax.swing.*;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 
-public class CustomerCheckOutHomePage extends JFrame {
+public class CustomerCheckOutHomePageView extends JFrame {
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class CustomerCheckOutHomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerCheckOutHomePage window = new CustomerCheckOutHomePage();
+					CustomerCheckOutHomePageView window = new CustomerCheckOutHomePageView();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +35,7 @@ public class CustomerCheckOutHomePage extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public CustomerCheckOutHomePage() {
+	public CustomerCheckOutHomePageView() {
 		initialize();
 
 		getContentPane().setBackground(Color.lightGray);
@@ -65,7 +65,7 @@ public class CustomerCheckOutHomePage extends JFrame {
 		JButton btnCheckOut = new JButton("Check Out");
 		btnCheckOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerCheckOutEnterDetails customerCheckOutEnterDetails = new CustomerCheckOutEnterDetails();
+				CustomerCheckOutEnterDetailsView customerCheckOutEnterDetails = new CustomerCheckOutEnterDetailsView();
 				customerCheckOutEnterDetails.setVisible(true);
 				customerCheckOutEnterDetails.setLocationRelativeTo(null);
 				dispose();

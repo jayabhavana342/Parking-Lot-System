@@ -1,7 +1,7 @@
-package parkinglot.controller.customer;
+package parkinglot.controller.customer.checkout;
 
 import parkinglot.model.admin.FrequentParkingUsersModel;
-import parkinglot.view.customer.CustomerCheckOutOrUseRewardsView;
+import parkinglot.view.customer.checkout.CustomerCheckOutOrUseRewardsView;
 
 public class CustomerCheckOutOrUseRewardsController {
 	private CustomerCheckOutOrUseRewardsView view;

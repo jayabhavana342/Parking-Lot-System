@@ -1,4 +1,4 @@
-package parkinglot.view.customer;
+package parkinglot.view.customer.checkout;
 
 import java.awt.*;
 import javax.swing.*;

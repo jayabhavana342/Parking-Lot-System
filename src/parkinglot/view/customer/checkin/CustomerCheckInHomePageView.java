@@ -1,4 +1,4 @@
-package parkinglot.view.customer;
+package parkinglot.view.customer.checkin;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -9,7 +9,7 @@ import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 
-public class CustomerCheckInHomePage extends JFrame {
+public class CustomerCheckInHomePageView extends JFrame {
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class CustomerCheckInHomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerCheckInHomePage window = new CustomerCheckInHomePage();
+					CustomerCheckInHomePageView window = new CustomerCheckInHomePageView();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class CustomerCheckInHomePage extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public CustomerCheckInHomePage() {
+	public CustomerCheckInHomePageView() {
 		initialize();
 
 		getContentPane().setBackground(Color.lightGray);
@@ -74,7 +74,7 @@ public class CustomerCheckInHomePage extends JFrame {
 			JButton btnCheckIn = new JButton("Check In");
 			btnCheckIn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					CustomerCheckInEnterDetails customerCheckInEnterDetails = new CustomerCheckInEnterDetails();
+					CustomerCheckInEnterDetailsView customerCheckInEnterDetails = new CustomerCheckInEnterDetailsView();
 					customerCheckInEnterDetails.setVisible(true);
 					customerCheckInEnterDetails.setLocationRelativeTo(null);
 					dispose();
