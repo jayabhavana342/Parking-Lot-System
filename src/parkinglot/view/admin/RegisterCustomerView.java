@@ -229,6 +229,6 @@ public class RegisterCustomerView extends JFrame {
 	 */
 	private void initialize() {
 		setBounds(500, 500, 1100, 800);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 	}
 }
