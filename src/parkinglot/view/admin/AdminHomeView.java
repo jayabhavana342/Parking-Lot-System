@@ -12,7 +12,7 @@ import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.admin.AdminHomeView;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -43,9 +43,6 @@ public class AdminHomeView extends JFrame {
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
-		MenuBar menuBar = new MenuBar();
-		menuBar.setBounds(0, 0, 1084, 26);
-		cards.add(menuBar);
 
 		JPanel centerHome = new JPanel();
 		centerHome.setBounds(0, 26, 1, 591);
@@ -130,7 +127,7 @@ public class AdminHomeView extends JFrame {
 		cards.add(totalAmountEarned);
 
 		JButton btnRegistercustomer = new JButton("RegisterCustomer");
-		btnRegistercustomer.setBounds(77, 26, 165, 26);
+		btnRegistercustomer.setBounds(138, 26, 243, 26);
 		cards.add(btnRegistercustomer);
 		btnRegistercustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,11 +145,11 @@ public class AdminHomeView extends JFrame {
 				adminHomeView.setLocationRelativeTo(null);
 			}
 		});
-		btnHome.setBounds(0, 26, 82, 26);
+		btnHome.setBounds(0, 26, 179, 26);
 		cards.add(btnHome);
 
 		JButton btnUpdateRates = new JButton("Update Rates");
-		btnUpdateRates.setBounds(226, 26, 150, 26);
+		btnUpdateRates.setBounds(373, 26, 251, 26);
 		cards.add(btnUpdateRates);
 		btnUpdateRates.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -163,11 +160,11 @@ public class AdminHomeView extends JFrame {
 		});
 
 		JButton btnViewReports = new JButton("View Reports");
-		btnViewReports.setBounds(356, 26, 142, 26);
+		btnViewReports.setBounds(617, 26, 216, 26);
 		cards.add(btnViewReports);
 
 		JButton btnLogout = new JButton("Logout");
-		btnLogout.setBounds(496, 26, 97, 26);
+		btnLogout.setBounds(833, 26, 226, 26);
 		cards.add(btnLogout);
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

@@ -10,8 +10,6 @@ import parkinglot.controller.admin.RegisterCustomerController;
 import parkinglot.model.admin.FrequentParkingUsersModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
-
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
@@ -81,9 +79,7 @@ public class RegisterCustomerView extends JFrame {
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
-		MenuBar menuBar = new MenuBar();
-		menuBar.setBounds(0, 0, 1084, 26);
-		cards.add(menuBar);
+		
 
 		JPanel registerPanel = new JPanel();
 		registerPanel.setForeground(Color.BLACK);

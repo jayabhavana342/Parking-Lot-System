@@ -10,7 +10,7 @@ import javax.swing.*;
 import parkinglot.controller.admin.UpdateRateController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
+
 
 /**
  * @author AishwaryaRana
@@ -76,9 +76,7 @@ public class UpdateRatesView extends JFrame {
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
-		MenuBar menuBar = new MenuBar();
-		menuBar.setBounds(0, 0, 1084, 26);
-		cards.add(menuBar);
+		
 
 		JPanel centerHome = new JPanel();
 		centerHome.setBounds(0, 26, 1, 591);
@@ -89,12 +87,11 @@ public class UpdateRatesView extends JFrame {
 		JLabel lblCurrentRate = new JLabel("Current Rate");
 		lblCurrentRate.setBounds(274, 151, 81, 26);
 		cards.add(lblCurrentRate);
-
 		currentRate = new JTextField();
-
 		currentRate.setBounds(393, 153, 116, 22);
 		cards.add(currentRate);
 		currentRate.setColumns(10);
+		JTextField textField = controller.getActiveRate(); 
 		JLabel lblNewRate = new JLabel("New Rate");
 		lblNewRate.setBounds(287, 211, 56, 16);
 		cards.add(lblNewRate);

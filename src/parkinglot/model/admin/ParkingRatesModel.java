@@ -48,7 +48,7 @@ public class ParkingRatesModel {
 	 * @param rate
 	 * @param is_active
 	 */
-	public ParkingRatesModel(int id, Date date, int rate, boolean is_active) {
+	public ParkingRatesModel(int id, Date date, float rate, boolean is_active) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -87,14 +87,14 @@ public class ParkingRatesModel {
 			PreparedStatement ps;
 			ps = conn.prepareStatement("UPDATE parking_rates SET is_active=0 ORDER BY id DESC LIMIT 1;");
 			ps.executeUpdate();
-			System.out.println("Update successful!");
+			JOptionPane.showMessageDialog(null, "Update Successful");
 
-			if (is_active == False) {
 				ps = conn.prepareStatement("INSERT INTO parking_rates(rate, is_active ) VALUES (?, 1)");
 				ps.setFloat(1, rate);
 				ps.execute();
-			}
+		
 			JOptionPane.showMessageDialog(null, "New rate is updated");
+			
 		}
 
 		catch (SQLException e) {
@@ -116,7 +116,7 @@ public class ParkingRatesModel {
 
 		try {
 			conn = DatabaseConnection.getConnection();
-			PreparedStatement select = conn.prepareStatement("SELECT rate,is_active FROM parking_rates WHERE is_active=1");
+			PreparedStatement select = conn.prepareStatement("SELECT rate, is_active FROM parking_rates WHERE is_active= 1");
 			ResultSet rs = select.executeQuery();
 			if (rs.next()) {
 				rate = rs.getFloat("rate");
