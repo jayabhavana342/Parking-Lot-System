@@ -23,10 +23,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import javax.swing.ScrollPaneConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class RegisterCustomerView extends JFrame {
 	/**
@@ -43,6 +48,8 @@ public class RegisterCustomerView extends JFrame {
 	private JTable table;
 	private JScrollPane scrollPane;
 	FrequentParkingUsersModel frequentParkingUser = new FrequentParkingUsersModel();
+	private JTextField id;
+	private JTextField Rewards;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -90,18 +97,6 @@ public class RegisterCustomerView extends JFrame {
 		lblNewCustomerRegistration.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewCustomerRegistration.setBounds(0, 27, 394, 25);
 		registerPanel.add(lblNewCustomerRegistration);
-
-		JLabel lblFirstName = new JLabel("First Name:");
-		lblFirstName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFirstName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblFirstName.setBounds(12, 98, 114, 25);
-		registerPanel.add(lblFirstName);
-
-		JLabel lblLastName = new JLabel("Last Name:");
-		lblLastName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLastName.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblLastName.setBounds(12, 142, 114, 25);
-		registerPanel.add(lblLastName);
 
 		JLabel lblEmail = new JLabel("Email:");
 		lblEmail.setHorizontalAlignment(SwingConstants.CENTER);
@@ -174,16 +169,74 @@ public class RegisterCustomerView extends JFrame {
 		registerPanel.add(Address);
 
 		RegisterCustomerController controller = new RegisterCustomerController(this);
-		JButton btnSubmit = new JButton("Submit");
+		JButton btnSubmit = new JButton("Add");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.insert(LastName.getText(), FirstName.getText(), Email.getText(), Address.getText(),
 						new Integer(Phone.getText()), LicenseNumber.getText());
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				showUsersTable(model);
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnSubmit.setBounds(107, 505, 136, 37);
+		btnSubmit.setBounds(10, 513, 91, 37);
 		registerPanel.add(btnSubmit);
+
+		id = new JTextField();
+		id.setBounds(138, 63, 86, 20);
+		registerPanel.add(id);
+		id.setColumns(10);
+		id.setVisible(false);
+
+		Rewards = new JTextField();
+		Rewards.setBounds(138, 474, 86, 20);
+		registerPanel.add(Rewards);
+		Rewards.setColumns(10);
+
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controller.update(id.getText(), LastName.getText(), FirstName.getText(), Email.getText(),
+						Address.getText(), new Integer(Phone.getText()), LicenseNumber.getText(), Rewards.getText());
+
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				showUsersTable(model);
+
+			}
+		});
+		btnUpdate.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnUpdate.setBounds(148, 513, 91, 37);
+		registerPanel.add(btnUpdate);
+
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.delete(id.getText(), LastName.getText(), FirstName.getText(), Email.getText(),
+						Address.getText(), new Integer(Phone.getText()), LicenseNumber.getText(), Rewards.getText());
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				showUsersTable(model);
+			}
+
+		});
+		btnDelete.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnDelete.setBounds(293, 513, 91, 37);
+		registerPanel.add(btnDelete);
+
+		JLabel label_1 = new JLabel("Last Name:");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_1.setBounds(12, 104, 114, 25);
+		registerPanel.add(label_1);
+
+		JLabel label = new JLabel("First Name:");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label.setBounds(12, 148, 114, 25);
+		registerPanel.add(label);
+		Rewards.setVisible(false);
 
 		JPanel SearchPanel = new JPanel();
 		SearchPanel.setBackground(Color.LIGHT_GRAY);
@@ -199,7 +252,7 @@ public class RegisterCustomerView extends JFrame {
 		JButton btnSearchByName = new JButton("Search by Name");
 		btnSearchByName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				controller.fillParkingUsersTable(table.getModel(), SearchBy.getText());
+				// controller.fillParkingUsersTable(table.getModel(), SearchBy.getText());
 			}
 		});
 		btnSearchByName.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -212,16 +265,54 @@ public class RegisterCustomerView extends JFrame {
 		cards.add(panel);
 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int i = table.getSelectedRow();
+				TableModel model = table.getModel();
+				id.setText(model.getValueAt(i, 0).toString());
+				FirstName.setText(model.getValueAt(i, 1).toString());
+				LastName.setText(model.getValueAt(i, 2).toString());
+				Email.setText(model.getValueAt(i, 3).toString());
+				Address.setText(model.getValueAt(i, 4).toString());
+				Phone.setText(model.getValueAt(i, 5).toString());
+				LicenseNumber.setText(model.getValueAt(i, 6).toString());
+				Rewards.setText(model.getValueAt(i, 7).toString());
+
+			}
+		});
 		table.setBounds(397, 145, 687, 472);
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "id", "Last Name", "First Name", "Email",
 				"Address", "Phone", "License ID", "Rewards" }));
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		showUsersTable(model);
+
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(397, 145, 687, 472);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setViewportView(table);
 		panel.add(scrollPane);
 
+	}
+
+	private void showUsersTable(DefaultTableModel model) {
+		ArrayList<FrequentParkingUsersModel> frequentParkerModel = frequentParkingUser.parkingUsersList();
+		Object[] row = new Object[8];
+
+		for (int i = 0; i < frequentParkerModel.size(); i++) {
+			row[0] = frequentParkerModel.get(i).getId();
+			row[1] = frequentParkerModel.get(i).getLast_name();
+			row[2] = frequentParkerModel.get(i).getFirst_name();
+			row[3] = frequentParkerModel.get(i).getEmail();
+			row[4] = frequentParkerModel.get(i).getAddress();
+			row[5] = frequentParkerModel.get(i).getPhone();
+			row[6] = frequentParkerModel.get(i).getLicense_id();
+			row[7] = frequentParkerModel.get(i).getRewards();
+
+			model.addRow(row);
+		}
 	}
 
 	/**

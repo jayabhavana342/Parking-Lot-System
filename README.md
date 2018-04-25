@@ -4,13 +4,10 @@ admin
 =====
 1. SEARCH AND UPDATE PARKER (*)
 2. MENU (making buttons - home, registercustomer , updaterates, logout) (a)
-3. POPULATE HOMEPAGE DATA (b)
 
 customer check-in
 =================
-1. Available Bike Slots (b)
 3. Database slots population (s) - update after mehak finishes all slots for all levels
-4. while time details is updated fetch is_active rate and add it to check_in_rate field in timedetails.(b)
 
 customer check-out
 ==================

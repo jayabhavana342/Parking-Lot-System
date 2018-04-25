@@ -4,10 +4,9 @@
 package parkinglot.model.admin;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-import javax.swing.table.TableModel;
-
 import parkinglot.model.DatabaseConnection;
 
 /**
@@ -21,7 +20,7 @@ public class FrequentParkingUsersModel {
 	private String first_name;
 	private String email;
 	private String address;
-	private int phone;
+	private String phone;
 	private String license_id;
 	private float rewards;
 	private int totalFrequentParkers;
@@ -73,11 +72,11 @@ public class FrequentParkingUsersModel {
 		this.address = address;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
@@ -116,7 +115,7 @@ public class FrequentParkingUsersModel {
 	 * @param f
 	 */
 	public FrequentParkingUsersModel(int id, String last_name, String first_name, String email, String address,
-			int phone, String license_id, float f) {
+			String phone, String license_id, float f) {
 		super();
 		this.id = id;
 		this.last_name = last_name;
@@ -128,8 +127,51 @@ public class FrequentParkingUsersModel {
 		this.rewards = f;
 	}
 
-	public void insertUpdateDeleteFrequentParker(char operation, String last_name, String first_name, String email,
-			String address, int phone, String license_id) {
+	public ArrayList<FrequentParkingUsersModel> parkingUsersList() {
+		ArrayList<FrequentParkingUsersModel> parkingUsersList = new ArrayList<FrequentParkingUsersModel>();
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			ps = conn.prepareStatement("SELECT * FROM frequent_parking_users;");
+
+			ResultSet rs = ps.executeQuery();
+			FrequentParkingUsersModel frequentParker;
+			while (rs.next()) {
+				frequentParker = new FrequentParkingUsersModel(rs.getInt("id"), rs.getString("last_name"),
+						rs.getString("first_name"), rs.getString("email"), rs.getString("address"),
+						rs.getString("phone"), rs.getString("license_id"), rs.getFloat("rewards"));
+
+				parkingUsersList.add(frequentParker);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return parkingUsersList;
+	}
+
+	public void executeSQLQuery(String query, String message) {
+		conn = DatabaseConnection.getConnection();
+
+		Statement st;
+
+		try {
+			st = conn.createStatement();
+			if ((st.executeUpdate(query)) == 1) {
+				JOptionPane.showMessageDialog(null, "Data " + message + "Successfully.");
+			} else {
+				JOptionPane.showMessageDialog(null, "Data Not " + message);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void insertUpdateDeleteFrequentParker(char operation, String id, String last_name, String first_name,
+			String email, String address, int phone, String license_id, String rewards) {
 
 		try {
 			conn = DatabaseConnection.getConnection();
@@ -149,6 +191,42 @@ public class FrequentParkingUsersModel {
 
 				if (ps.executeUpdate() > 0) {
 					JOptionPane.showMessageDialog(null, "New frequent parker added");
+				}
+
+			}
+
+			if (operation == 'u') {
+
+				ps = conn.prepareStatement("UPDATE\n" + "    `frequent_parking_users`\n" + "SET\n" + "    `id` = ?,\n"
+						+ "    `last_name` = ?,\n" + "    `first_name` = ?,\n" + "    `email` = ?,\n"
+						+ "    `address` = ?,\n" + "    `phone` = ?,\n" + "    `license_id` = ?,\n"
+						+ "    `rewards` = ? \n" + "WHERE\n" + "    `id` = ?");
+				ps.setString(1, id);
+				ps.setString(2, last_name);
+				ps.setString(3, first_name);
+				ps.setString(4, email);
+				ps.setString(5, address);
+				ps.setInt(6, phone);
+				ps.setString(7, license_id);
+				ps.setString(8, rewards);
+				ps.setString(9, id);
+				System.out.println(ps);
+
+				if (ps.executeUpdate() > 0) {
+					JOptionPane.showMessageDialog(null, "frequent parker updated");
+				}
+
+			}
+
+			if (operation == 'd') {
+
+				ps = conn.prepareStatement(
+						"DELETE\n" + "FROM\n" + "    `frequent_parking_users`\n" + "WHERE\n" + "    id = ?");
+				ps.setString(1, id);
+				System.out.println(ps);
+
+				if (ps.executeUpdate() > 0) {
+					JOptionPane.showMessageDialog(null, " frequent parker deleted");
 				}
 
 			}
@@ -179,50 +257,6 @@ public class FrequentParkingUsersModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void getFrequentParkersBasedOnSearch(TableModel tableModel, String valueToSearch) {
-
-		try {
-			conn = DatabaseConnection.getConnection();
-			PreparedStatement select = conn.prepareStatement(
-					"SELECT * FROM frequent_parking_users WHERE CONCAT(first_name, last_name, email, address, phone, license_id) LIKE ?");
-			System.out.println(select);
-			System.out.println("%" + valueToSearch + "%");
-			select.setString(1, "%" + valueToSearch + "%");
-
-			ResultSet rs = select.executeQuery();
-
-			System.out.println("table model");
-
-			FrequentParkingUsersModel model;
-
-			Object[] row;
-
-			while (rs.next()) {
-				System.out.println(rs);
-				tableModel = (TableModel) new FrequentParkingUsersModel(rs.getInt("id"), rs.getString("last_name"),
-						rs.getString("first_name"), rs.getString("email"), rs.getString("address"), rs.getInt("phone"),
-						rs.getString("license_id"), rs.getFloat("rewards"));
-				// row = new Object[8];
-				// row[0] = rs.getInt(1);
-				// row[1] = rs.getString(2);
-				// row[2] = rs.getString(3);
-				// row[3] = rs.getString(4);
-				// row[4] = rs.getString(5);
-				// row[5] = rs.getString(6);
-				// row[6] = rs.getString(7);
-				// row[7] = rs.getFloat(8);
-
-				// model.addRow(row);
-
-				System.out.println("%" + valueToSearch + "%");
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public boolean checkIfFrequentParkerBasedOnPhoneNumber(String phoneNumber) {

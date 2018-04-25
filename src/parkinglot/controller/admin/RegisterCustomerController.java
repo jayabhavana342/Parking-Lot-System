@@ -27,18 +27,33 @@ public class RegisterCustomerController {
 	public void insert(String last_name, String first_name, String email, String address, int phone,
 			String license_id) {
 
-		model.insertUpdateDeleteFrequentParker('i', last_name, first_name, email, address, phone, license_id);
+		model.insertUpdateDeleteFrequentParker('i', "", last_name, first_name, email, address, phone, license_id, "");
 
-	}
-
-	public void fillParkingUsersTable(TableModel tableModel, String valueToSearch) {
-		model.getFrequentParkersBasedOnSearch(tableModel, valueToSearch);
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void update(String id, String last_name, String first_name, String email, String address, Integer phone,
+			String license_id, String rewards) {
+		// TODO Auto-generated method stub
+		model.insertUpdateDeleteFrequentParker('u', id, last_name, first_name, email, address, phone, license_id,
+				rewards);
+	}
+
+	public void delete(String id, String last_name, String first_name, String email, String address, Integer phone,
+			String license_id, String rewards) {
+		// TODO Auto-generated method stub
+		model.insertUpdateDeleteFrequentParker('d', id, last_name, first_name, email, address, phone, license_id,
+				rewards);
+	}
+
+	public void fillParkingUsersTable(TableModel model2, String text) {
 		// TODO Auto-generated method stub
 
 	}
