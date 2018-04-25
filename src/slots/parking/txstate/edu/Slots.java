@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Shell;
 import maps.parking.txstate.edu.MapsUtil;
 import maps.parking.txstate.edu.MapsUtil.Vertex;
 import parkinglot.controller.customer.CustomerChooseSlotsController;
+import parkinglot.view.customer.CustomerCheckInHomePage;
 
 /**
  * 
@@ -56,11 +57,13 @@ public class Slots {
 	private static Map<String, Button> buttonMap = new HashMap<String, Button>();
 
 	private static void destroy() {
+		
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
 		display.dispose();
+		
 	}
 
 	/**
@@ -215,6 +218,8 @@ public class Slots {
 					break;
 
 				}
+				
+				display.dispose();
 			}
 		});
 
@@ -310,6 +315,10 @@ public class Slots {
 		}
 
 		destroy();
+		
+		CustomerCheckInHomePage view = new CustomerCheckInHomePage();
+		view.setVisible(true);
+		view.setLocationRelativeTo(null);
 	}
 
 	private static void select_bus() {
