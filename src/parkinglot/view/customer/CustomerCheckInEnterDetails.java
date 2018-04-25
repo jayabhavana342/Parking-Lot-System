@@ -138,6 +138,7 @@ public class CustomerCheckInEnterDetails extends JFrame {
 		comboBox.setBounds(357, 197, 259, 34);
 		comboBox.addItem("Car");
 		comboBox.addItem("Bus");
+		comboBox.addItem("MOTORCYCLE");
 		panel.add(comboBox);
 		chooseSlot.addActionListener(new ActionListener() {
 			@Override
@@ -145,11 +146,7 @@ public class CustomerCheckInEnterDetails extends JFrame {
 				System.out.println(comboBox.getSelectedItem());
 				controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
 						vehicleNumber.getText(), String.valueOf(comboBox.getSelectedItem()));
-				
-				
-				//calling slots, 
-				//Vehicle type: CAR,MOTORCYCLE,BUS
-				Slots.selectSlot("CAR", vehicleNumber.getText());
+
 			}
 		});
 	}

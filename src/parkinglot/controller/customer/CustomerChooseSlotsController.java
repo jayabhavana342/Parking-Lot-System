@@ -22,6 +22,11 @@ public class CustomerChooseSlotsController {
 
 	public CustomerChooseSlotsController() {
 		// TODO Auto-generated constructor stub
+		
+		cardDetailsModel = new CardDetailsModel();
+		vehicleDetailsModel = new VehicleDetailsModel();
+		timeDetailsModel = new TimeDetailsModel();
+		
 	}
 
 	public CustomerChooseSlotsController(CustomerChooseSlotsView view) {

@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import maps.parking.txstate.edu.MapsUtil;
 import maps.parking.txstate.edu.MapsUtil.Vertex;
+import parkinglot.controller.customer.CustomerChooseSlotsController;
 
 /**
  * 
@@ -39,16 +40,20 @@ public class Slots {
 	private static Image layout;
 	private static GC gc;
 	private static Map<String, String> bookingMap;
-	private static int level=1;
+	private static int level = 1;
 	private static Label lbl;
 	private static Button dir;
+	private static Button okButton;
 	private static VehicleType vtype;
 	private static String vnumber;
 	private static String slotNo;
 	private static Label lbl_level;
-	private static int source =1;
-	private static boolean buttoninit= false;
-	private static Map<String,Button> buttonMap = new HashMap<String, Button>();
+	public static String cardNumber;
+	public static int cvv;
+	public static String nameOnCard;
+	private static int source = 1;
+	private static boolean buttoninit = false;
+	private static Map<String, Button> buttonMap = new HashMap<String, Button>();
 
 	private static void destroy() {
 		while (!shell.isDisposed()) {
@@ -58,9 +63,12 @@ public class Slots {
 		display.dispose();
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	private static void init() {
 		initMap();
-		
+
 		display = new Display();
 		shell = new Shell(display);
 		shell.setMaximized(true);
@@ -73,134 +81,169 @@ public class Slots {
 		Image up2 = new Image(display, "resources/images/up2.png");
 		Image down1 = new Image(display, "resources/images/down1.png");
 		Image down2 = new Image(display, "resources/images/down2.png");
-		
-		
-		
+
 		gc = new GC(shell);
 		gc.drawImage(layout, 0, 0);
 		gc.drawImage(loc, 60, 580);
 		gc.drawImage(updown, 1260, 460);
-		
+
 		final Button upb = new Button(shell, SWT.PUSH);
 		upb.setImage(up1);
 		upb.setBounds(1283, 468, 30, 70);
-		
-		
+
 		final Button downb = new Button(shell, SWT.PUSH);
 		downb.setImage(down1);
 		downb.setBounds(1283, 580, 30, 70);
-		
-		org.eclipse.swt.graphics.Font font=new Font(display,"Arial", 13, SWT.BOLD);
-		lbl_level=new org.eclipse.swt.widgets.Label(shell, SWT.None);
+
+		org.eclipse.swt.graphics.Font font = new Font(display, "Arial", 13, SWT.BOLD);
+		lbl_level = new org.eclipse.swt.widgets.Label(shell, SWT.None);
 		lbl_level.setBounds(1290, 550, 20, 20);
-		
+
 		lbl_level.setFont(font);
 		lbl_level.setForeground(new Color(display, 150, 50, 0));
-		
-		lbl_level.setText(""+level);
-		
+
+		lbl_level.setText("" + level);
+
 		dir = new Button(shell, SWT.None);
-		dir.setBounds(1250, 200,100,25);
+		dir.setBounds(1250, 200, 100, 25);
 		dir.setText("Get Directions");
-		
+
 		upb.addSelectionListener(new SelectionAdapter() {
-			
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				super.widgetSelected(e);
-				
-				if(level==4)
-					return; 
-				
+
+				if (level == 4)
+					return;
+
 				level++;
-				lbl_level.setText(""+level);
-				
-				
+				lbl_level.setText("" + level);
+
 				downb.setEnabled(true);
-				if(level==4) {
+				if (level == 4) {
 					upb.setEnabled(false);
 				}
-				
+
 				switch (vtype) {
 
 				case MOTORCYCLE:
 					select_bike();
 					break;
-					
+
 				case CAR:
-					
+
 					select_car();
 					break;
 
 				case BUS:
 					select_bus();
-					
+
 					break;
 
 				}
 			}
 		});
-		
+
 		downb.addSelectionListener(new SelectionAdapter() {
-			
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				super.widgetSelected(e);
-				if(level == 1)
+				if (level == 1)
 					return;
-				
+
 				level--;
-				lbl_level.setText(""+level);
-				
+				lbl_level.setText("" + level);
+
 				upb.setEnabled(true);
-				
-				if(level==1) {
+
+				if (level == 1) {
 					downb.setEnabled(false);
 				}
-					
-				
-					
+
 				switch (vtype) {
 
 				case MOTORCYCLE:
 					select_bike();
 					break;
-					
+
 				case CAR:
-					
+
 					select_car();
 					break;
 
 				case BUS:
 					select_bus();
-					
+
 					break;
 
 				}
 			}
 		});
+
+		CustomerChooseSlotsController controller = new CustomerChooseSlotsController();
 		
+		okButton = new Button(shell, SWT.None);
+		okButton.setBounds(1250, 250, 100, 25);
+		okButton.setText("ok");
 		
+		okButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				super.widgetSelected(e);
+				
+				System.out.println(vtype);
+				
+				switch (vtype) {
+				
+
+				case MOTORCYCLE:
+					controller.enterDetailsIntoDB(cardNumber, cvv,
+							nameOnCard, vnumber, "MOTORCYCLE", Integer.valueOf(slotNo));
+					break;
+
+				case CAR:
+					controller.enterDetailsIntoDB(cardNumber, cvv,
+							nameOnCard, vnumber, "CAR", Integer.valueOf(slotNo));
+					break;
+
+				case BUS:
+					controller.enterDetailsIntoDB(cardNumber, cvv,
+							nameOnCard, vnumber, "BUS", Integer.valueOf(slotNo));
+
+					break;
+
+				}
+			}
+		});
+
 		dir.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+
 				super.widgetSelected(e);
-				String no = (""+slotNo+"").substring(2);
-				List<MapsUtil.Vertex> path = MapsUtil.init(MapsUtil.v1,"P"+no);
-				lbl.setText(lbl.getText()+"\n\nTime(mins) : "+(path.get(path.size()-1).minDistance)/25+"\nDistance(ft) : "+path.get(path.size()-1).minDistance);
+
+				String no = ("" + slotNo + "").substring(2);
+
+				List<MapsUtil.Vertex> path = MapsUtil.init(MapsUtil.v1, "P" + no);
+				lbl.setText(lbl.getText() + "\n\nTime(mins) : " + (path.get(path.size() - 1).minDistance) / 25
+						+ "\nDistance(ft) : " + path.get(path.size() - 1).minDistance);
 				Vertex v = path.get(0);
-				for(int i =1;i<path.size();i++) {
+				for (int i = 1; i < path.size(); i++) {
 					gc.setForeground(new Color(display, 250, 33, 0));
 					gc.setLineWidth(5);
 					gc.drawLine(v.getX(), v.getY(), path.get(i).getX(), path.get(i).getY());
-					v=path.get(i);
+					v = path.get(i);
 				}
+				
+				okButton.setEnabled(true);
 			}
 		});
-		
-		lbl=new org.eclipse.swt.widgets.Label(shell, SWT.None);
+
+		lbl = new org.eclipse.swt.widgets.Label(shell, SWT.None);
 		lbl.setBounds(1210, 20, 500, 150);
-		
+
 		lbl.setFont(font);
 		lbl.setForeground(new Color(display, 150, 50, 0));
 	}
@@ -238,9 +281,15 @@ public class Slots {
 			}
 	}
 
-	public static void selectSlot(VehicleType vt, String vehicle_number) {
+	public static void selectSlot(VehicleType vt, String vehicle_number, String cardNo, int cv, String name) {
 		vtype = vt;
 		vnumber = vehicle_number;
+		cardNumber = cardNo;
+		cvv = cv;
+		nameOnCard = name;
+		
+		System.out.println(name);
+		
 		init();
 
 		switch (vt) {
@@ -267,13 +316,13 @@ public class Slots {
 		Image vac_c = new Image(display, "resources/images/vac_c.jpg");
 		Image bus = new Image(display, "resources/images/bus.jpg");
 		for (int i = 1; i < 7; i++) {
-			String key = level+"3"+i;
-			if (bookingMap.get(key)==null) {
+			String key = level + "3" + i;
+			if (bookingMap.get(key) == null) {
 				gc.drawImage(vac_c, 18 + i * 140, 600);
-			}else {
+			} else {
 				gc.drawImage(bus, 18 + i * 140, 600);
 			}
-			
+
 		}
 	}
 
@@ -281,24 +330,24 @@ public class Slots {
 		Image bike_a = new Image(display, "resources/images/bike_a.jpg");
 		Image bike_booked = new Image(display, "resources/images/bike_booked.jpg");
 		for (int i = 1; i < 21; i++) {
-			String key = level+"1"+i;
-			if (bookingMap.get(key)==null) {
+			String key = level + "1" + i;
+			if (bookingMap.get(key) == null) {
 				gc.drawImage(bike_a, 242, 18 * i + 134);
-			}else {
+			} else {
 				gc.drawImage(bike_booked, 242, 18 * i + 134);
 			}
 		}
 
 		for (int i = 1; i < 21; i++) {
-			String key =level+"1"+(i+20);
-			if(bookingMap.get(key)==null) {
+			String key = level + "1" + (i + 20);
+			if (bookingMap.get(key) == null) {
 				gc.drawImage(bike_a, 395, 18 * i + 134);
-			}else {
+			} else {
 				gc.drawImage(bike_booked, 395, 18 * i + 134);
 			}
 		}
 	}
-	
+
 	private static void select_car() {
 
 		Image vac_b = new Image(display, "resources/images/vac_b.jpg");
@@ -335,7 +384,7 @@ public class Slots {
 			}
 
 		}
-		
+
 		Image vac_a = new Image(display, "resources/images/vac_a.jpg");
 		Image car_a = new Image(display, "resources/images/car_a.jpg");
 		Image car_a_selected = new Image(display, "resources/images/car_a_selected.jpg");
@@ -343,7 +392,6 @@ public class Slots {
 		Image car_c = new Image(display, "resources/images/car_c.jpg");
 
 		for (int i = 1; i < 21; i++) {
-			
 
 			final String key = level + "2" + (50 + i);
 			final Button button = getButton("2" + (50 + i));
@@ -373,12 +421,9 @@ public class Slots {
 				button.setToolTipText("Slot: " + key + "\nCar No.: " + bookingMap.get(key));
 			}
 
-		
 		}
 
 		for (int i = 1; i < 19; i++) {
-
-			
 
 			final String key = level + "2" + (70 + i);
 			final Button button = getButton("2" + (70 + i));
@@ -408,9 +453,7 @@ public class Slots {
 				button.setToolTipText("Slot: " + key + "\nCar No.: " + bookingMap.get(key));
 			}
 
-		
-		
-			//gc.drawImage(vac_a, 180, 20 * i + 130);
+			// gc.drawImage(vac_a, 180, 20 * i + 130);
 		}
 
 		for (int i = 1; i < 19; i++) {
@@ -449,8 +492,8 @@ public class Slots {
 
 	private static Button getButton(String string) {
 		Button b = buttonMap.get(string);
-		if(b==null) {
-			b= new Button(shell, SWT.NONE);
+		if (b == null) {
+			b = new Button(shell, SWT.NONE);
 			b.setData("key", string);
 			buttonMap.put(string, b);
 		}
@@ -473,8 +516,8 @@ public class Slots {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(s != null) {
+		} finally {
+			if (s != null) {
 				try {
 					s.close();
 				} catch (IOException e) {
@@ -482,8 +525,8 @@ public class Slots {
 					e.printStackTrace();
 				}
 			}
-			
-			if(f!=null) {
+
+			if (f != null) {
 				try {
 					f.close();
 				} catch (IOException e) {
@@ -492,14 +535,14 @@ public class Slots {
 				}
 			}
 		}
-			
+
 	}
 
 	public static void checkOut(String vehicle_number) {
-		
+
 		initMap();
-		for(Map.Entry<String, String> entry: bookingMap.entrySet()) {
-			if(entry.getValue().equals(vehicle_number)) {
+		for (Map.Entry<String, String> entry : bookingMap.entrySet()) {
+			if (entry.getValue().equals(vehicle_number)) {
 				bookingMap.remove(entry.getKey());
 				break;
 			}
@@ -507,19 +550,17 @@ public class Slots {
 		persistMap();
 	}
 
-	enum VehicleType{
-		CAR,
-		MOTORCYCLE,
-		BUS
+	enum VehicleType {
+		CAR, MOTORCYCLE, BUS
 	}
 
-	public static void selectSlot(String string, String text) {
+	public static void selectSlot(String string, String text, String cardNo, int cvv, String nameOnCard) {
 		// TODO Auto-generated method stub
-		if(string.equalsIgnoreCase("CAR"))
-			selectSlot(VehicleType.CAR, text);
-		else if(string.equalsIgnoreCase("MOTORCYCLE"))
-			selectSlot(VehicleType.MOTORCYCLE, text);
-		else if(string.equalsIgnoreCase("BUS"))
-			selectSlot(VehicleType.BUS, text);
+		if (string.equalsIgnoreCase("CAR"))
+			selectSlot(VehicleType.CAR, text, cardNo, cvv, nameOnCard);
+		else if (string.equalsIgnoreCase("MOTORCYCLE"))
+			selectSlot(VehicleType.MOTORCYCLE, text,  cardNo, cvv, nameOnCard);
+		else if (string.equalsIgnoreCase("BUS"))
+			selectSlot(VehicleType.BUS, text,  cardNo, cvv, nameOnCard);
 	}
 }
