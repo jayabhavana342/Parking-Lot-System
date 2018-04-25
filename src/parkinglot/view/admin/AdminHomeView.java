@@ -13,12 +13,13 @@ import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminHomeView extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	public JLabel welcomeLabel;
@@ -66,12 +67,6 @@ public class AdminHomeView extends JFrame {
 
 		System.out.println(todaysRateLabel);
 
-		JLabel carsParkedLabel = new JLabel("Cars Parked");
-		carsParkedLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
-		carsParkedLabel.setForeground(Color.WHITE);
-		carsParkedLabel.setBounds(182, 195, 226, 40);
-		cards.add(carsParkedLabel);
-
 		JLabel emptySlotsLabel = new JLabel("Empty Slots");
 		emptySlotsLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		emptySlotsLabel.setForeground(Color.WHITE);
@@ -113,14 +108,66 @@ public class AdminHomeView extends JFrame {
 		frequentParkers.setForeground(Color.WHITE);
 		frequentParkers.setBounds(451, 297, 226, 40);
 		cards.add(frequentParkers);
+		
+				JLabel carsParkedLabel = new JLabel("Cars Parked");
+				carsParkedLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
+				carsParkedLabel.setForeground(Color.WHITE);
+				carsParkedLabel.setBounds(182, 195, 226, 40);
+				cards.add(carsParkedLabel);
 
 		totalAmountEarned = new JLabel();
 		totalAmountEarned.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
 		totalAmountEarned.setForeground(Color.WHITE);
 		totalAmountEarned.setBounds(451, 388, 226, 40);
 		cards.add(totalAmountEarned);
-
-	}
+		
+		JButton btnRegistercustomer = new JButton("RegisterCustomer");
+		btnRegistercustomer.setBounds(77, 26, 165, 26);
+		cards.add(btnRegistercustomer);
+		btnRegistercustomer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				RegisterCustomerView registerCustomerView = new RegisterCustomerView();
+				registerCustomerView.setVisible(true);
+				registerCustomerView.setLocationRelativeTo(null);
+			}
+		});
+		
+		JButton btnHome = new JButton("Home");
+		btnHome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AdminHomeView adminHomeView = new AdminHomeView();
+				adminHomeView.setVisible(true);
+				adminHomeView.setLocationRelativeTo(null);
+			}
+		});
+		btnHome.setBounds(0, 26, 82, 26);
+		cards.add(btnHome);
+		
+		JButton btnUpdateRates = new JButton("Update Rates");
+		btnUpdateRates.setBounds(226, 26, 150, 26);
+		cards.add(btnUpdateRates);
+		btnUpdateRates.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				UpdateRatesView updateRatesView = new UpdateRatesView();
+				updateRatesView.setVisible(true);
+				updateRatesView.setLocationRelativeTo(null);
+			}
+		});
+		
+		JButton btnViewReports = new JButton("View Reports");
+		btnViewReports.setBounds(356, 26, 142, 26);
+		cards.add(btnViewReports);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(496, 26, 97, 26);
+		cards.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			System.exit(0);
+		}
+		
+	});
+}
 
 	public JLabel getWelcomeLabel() {
 		return welcomeLabel;
