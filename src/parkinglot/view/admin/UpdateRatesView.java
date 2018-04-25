@@ -10,7 +10,7 @@ import javax.swing.*;
 import parkinglot.controller.admin.UpdateRateController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import parkinglot.view.includes.MenuBar;
+
 
 /**
  * @author AishwaryaRana
@@ -76,9 +76,7 @@ public class UpdateRatesView extends JFrame {
 
 		getContentPane().add(cards, BorderLayout.CENTER);
 		cards.setLayout(null);
-		MenuBar menuBar = new MenuBar();
-		menuBar.setBounds(0, 0, 1084, 26);
-		cards.add(menuBar);
+		
 
 		JPanel centerHome = new JPanel();
 		centerHome.setBounds(0, 26, 1, 591);
