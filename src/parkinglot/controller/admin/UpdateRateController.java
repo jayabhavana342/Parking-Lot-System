@@ -5,9 +5,7 @@ package parkinglot.controller.admin;
 
 import javax.swing.JTextField;
 
-import parkinglot.model.admin.FrequentParkingUsersModel;
 import parkinglot.model.admin.ParkingRatesModel;
-import parkinglot.view.admin.RegisterCustomerView;
 import parkinglot.view.admin.UpdateRatesView;
 
 /**

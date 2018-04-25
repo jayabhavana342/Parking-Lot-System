@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 import parkinglot.model.DatabaseConnection;
+import parkinglot.model.admin.ParkingRatesModel;
 
 public class TimeDetailsModel {
 	private int id;
@@ -109,8 +110,11 @@ public class TimeDetailsModel {
 						JOptionPane.showMessageDialog(null, "Slot Level ID updated as Occupied");
 					}
 				}
-
 			}
+			
+			ParkingRatesModel parkingRatesModel = new ParkingRatesModel();
+			
+			
 
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -56,11 +56,11 @@ public class CustomerCheckOutEnterDetailsController {
 			customerCheckOutDisplayDetails.InTime.setText(dateFormat.format(inTime));
 			customerCheckOutDisplayDetails.OutTime.setText(dateFormat.format(outTime));
 			customerCheckOutDisplayDetails.noOfDays.setText(String.valueOf(timeDetailsModel.getNoOfDays()));
-			//customerCheckOutDisplayDetails.OutTime.setText(timeDetailsModel.getOut_Time());
-			
-			
+			// customerCheckOutDisplayDetails.OutTime.setText(timeDetailsModel.getOut_Time());
+
 			customerCheckOutDisplayDetails.setVisible(true);
-			customerCheckOutDisplayDetails.setLocationRelativeTo(null);;
+			customerCheckOutDisplayDetails.setLocationRelativeTo(null);
+			;
 			this.view.dispose();
 		}
 

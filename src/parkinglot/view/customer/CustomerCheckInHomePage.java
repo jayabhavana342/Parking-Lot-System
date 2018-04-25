@@ -1,21 +1,13 @@
 package parkinglot.view.customer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class CustomerCheckInHomePage extends JFrame {
 
@@ -93,17 +85,23 @@ public class CustomerCheckInHomePage extends JFrame {
 			btnCheckIn.setBounds(214, 35, 216, 108);
 			panel.add(btnCheckIn);
 
-//			JLabel carLotsAvailable = new JLabel("Available Car Slots: " + String.valueOf(model.carLotsAvailable()));
-//			carLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-//			carLotsAvailable.setForeground(Color.WHITE);
-//			carLotsAvailable.setBounds(68, 177, 216, 47);
-//			panel.add(carLotsAvailable);
+			JLabel carLotsAvailable = new JLabel("Available Car Slots: " + String.valueOf(model.carLotsAvailable()));
+			carLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+			carLotsAvailable.setForeground(Color.WHITE);
+			carLotsAvailable.setBounds(68, 177, 216, 47);
+			panel.add(carLotsAvailable);
 
-//			JLabel busLotsAvailable = new JLabel("Available Bus Slots: " + String.valueOf(model.busLotsAvailable()));
-//			busLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-//			busLotsAvailable.setForeground(Color.WHITE);
-//			busLotsAvailable.setBounds(379, 177, 216, 47);
-//			panel.add(busLotsAvailable);
+			JLabel busLotsAvailable = new JLabel("Available Bus Slots: " + String.valueOf(model.busLotsAvailable()));
+			busLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+			busLotsAvailable.setForeground(Color.WHITE);
+			busLotsAvailable.setBounds(379, 177, 216, 47);
+			panel.add(busLotsAvailable);
+
+			JLabel bikeLotsAvailable = new JLabel("Available Bike Slots: " + String.valueOf(model.bikeLotsAvailable()));
+			bikeLotsAvailable.setForeground(Color.WHITE);
+			bikeLotsAvailable.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+			bikeLotsAvailable.setBounds(233, 225, 216, 47);
+			panel.add(bikeLotsAvailable);
 		} else {
 			JLabel lblNoSlotsAvailable = new JLabel("NO SLOTS AVAILABLE");
 			lblNoSlotsAvailable.setForeground(Color.RED);
@@ -123,5 +121,4 @@ public class CustomerCheckInHomePage extends JFrame {
 
 		model = new ParkingLevelsSlotsModel();
 	}
-
 }

@@ -107,7 +107,7 @@ public class VehicleDetailsModel {
 	}
 
 	public void retrieveVehicleDetails(int id) {
-		
+
 		try {
 			System.out.println("In VehicleDetailsModel:");
 			conn = DatabaseConnection.getConnection();
@@ -123,8 +123,9 @@ public class VehicleDetailsModel {
 				String vehicleType = rs.getString(2);
 				this.vehicle_No = vehicleNo;
 				this.Vehicle_Type = vehicleType;
-//				VehicleDetailsModel vehicleDetailsModel = new VehicleDetailsModel(id, vehicleNo, vehicleType);
-//return vehicleDetailsModel;
+				// VehicleDetailsModel vehicleDetailsModel = new VehicleDetailsModel(id,
+				// vehicleNo, vehicleType);
+				// return vehicleDetailsModel;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

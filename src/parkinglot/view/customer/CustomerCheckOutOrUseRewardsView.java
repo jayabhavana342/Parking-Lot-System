@@ -1,23 +1,14 @@
 package parkinglot.view.customer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 import parkinglot.controller.customer.CustomerCheckOutOrUseRewardsController;
-import parkinglot.model.admin.FrequentParkingUsersModel;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class CustomerCheckOutOrUseRewardsView extends JFrame {
 
@@ -37,7 +28,6 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	public JPanel panel;
 	private JTextField phoneNo;
 
-	private boolean if_customer = false;
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +73,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		panel.setBounds(160, 49, 785, 496);
 		cards.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblVehicleNumber = new JLabel("Vehicle Number");
 		lblVehicleNumber.setForeground(Color.WHITE);
 		lblVehicleNumber.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
@@ -95,43 +85,43 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		helloCustomer.setFont(new Font("Comic Sans MS", Font.BOLD, 16));
 		helloCustomer.setBounds(35, 11, 235, 45);
 		panel.add(helloCustomer);
-		
+
 		JLabel lblVehicleType = new JLabel("Vehicle Type");
 		lblVehicleType.setForeground(Color.WHITE);
 		lblVehicleType.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblVehicleType.setBounds(34, 122, 148, 31);
 		panel.add(lblVehicleType);
-		
+
 		JLabel lblInTime = new JLabel("In Time");
 		lblInTime.setForeground(Color.WHITE);
 		lblInTime.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblInTime.setBounds(34, 159, 148, 31);
 		panel.add(lblInTime);
-		
+
 		JLabel lblOutTime = new JLabel("Out Time\r\n");
 		lblOutTime.setForeground(Color.WHITE);
 		lblOutTime.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblOutTime.setBounds(34, 203, 148, 31);
 		panel.add(lblOutTime);
-		
+
 		JLabel lblParkingRateday = new JLabel("Parking Rate/day");
 		lblParkingRateday.setForeground(Color.WHITE);
 		lblParkingRateday.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblParkingRateday.setBounds(34, 284, 148, 31);
 		panel.add(lblParkingRateday);
-		
+
 		JLabel lblTotalAmountTo = new JLabel("Amount to be paid");
 		lblTotalAmountTo.setForeground(Color.WHITE);
 		lblTotalAmountTo.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblTotalAmountTo.setBounds(34, 326, 229, 31);
 		panel.add(lblTotalAmountTo);
-		
+
 		JLabel lblNoOfDays = new JLabel("No. of days");
 		lblNoOfDays.setForeground(Color.WHITE);
 		lblNoOfDays.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
 		lblNoOfDays.setBounds(34, 245, 148, 31);
 		panel.add(lblNoOfDays);
-		
+
 		vehicleNo = new JTextField();
 		vehicleNo.setEditable(false);
 		vehicleNo.setBackground(Color.LIGHT_GRAY);
@@ -139,7 +129,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		vehicleNo.setBounds(219, 88, 157, 28);
 		panel.add(vehicleNo);
 		vehicleNo.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+
 		vehicleType = new JTextField();
 		vehicleType.setEditable(false);
 		vehicleType.setBackground(Color.LIGHT_GRAY);
@@ -147,7 +137,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		vehicleType.setBounds(219, 126, 157, 28);
 		panel.add(vehicleType);
 		vehicleType.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+
 		InTime = new JTextField();
 		InTime.setEditable(false);
 		InTime.setBackground(Color.LIGHT_GRAY);
@@ -155,7 +145,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		InTime.setBounds(219, 163, 157, 28);
 		panel.add(InTime);
 		InTime.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+
 		OutTime = new JTextField();
 		OutTime.setEditable(false);
 		OutTime.setBackground(Color.LIGHT_GRAY);
@@ -163,7 +153,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		OutTime.setBounds(219, 204, 157, 28);
 		panel.add(OutTime);
 		OutTime.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+
 		noOfDays = new JTextField();
 		noOfDays.setEditable(false);
 		noOfDays.setBackground(Color.LIGHT_GRAY);
@@ -171,7 +161,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		noOfDays.setBounds(219, 249, 157, 28);
 		panel.add(noOfDays);
 		noOfDays.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+
 		rate = new JTextField();
 		rate.setEditable(false);
 		rate.setBackground(Color.LIGHT_GRAY);
@@ -179,7 +169,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		rate.setBounds(219, 288, 157, 28);
 		panel.add(rate);
 		rate.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		
+
 		amount = new JTextField();
 		amount.setEditable(false);
 		amount.setBackground(Color.LIGHT_GRAY);
@@ -187,8 +177,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		amount.setBounds(248, 330, 128, 28);
 		panel.add(amount);
 		amount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-	
-		
+
 		JButton btnNewButton_1 = new JButton("Check Out");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -197,40 +186,39 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
 		btnNewButton_1.setBounds(347, 421, 148, 62);
 		panel.add(btnNewButton_1);
-		
+
 		JPanel panel_2 = new JPanel();
 		panel_2.setLayout(null);
 		panel_2.setBackground(Color.WHITE);
 		panel_2.setBounds(388, 33, 385, 165);
 		panel.add(panel_2);
-		
+
 		phoneNo = new JTextField();
 		phoneNo.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		phoneNo.setColumns(10);
 		phoneNo.setBounds(135, 77, 167, 32);
 		panel_2.add(phoneNo);
-		
+
 		JLabel lblPhoneNo = new JLabel("Phone No.");
 		lblPhoneNo.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		lblPhoneNo.setBounds(22, 78, 89, 28);
 		panel_2.add(lblPhoneNo);
-		
+
 		CustomerCheckOutOrUseRewardsController controller = new CustomerCheckOutOrUseRewardsController(this);
-		
-		
+
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.checkIfFrequentParkerBasedOnPhoneNumber(phoneNo.getText());
 			}
 		});
-		
+
 		panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
 		panel_1.setBounds(388, 211, 385, 159);
 		panel_1.setLayout(null);
 		System.out.println();
-//		panel.add(panel_1);
+		// panel.add(panel_1);
 
 		JLabel displayRewardsLabel = new JLabel("Use Frequent Parker Rewards");
 		displayRewardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -265,19 +253,13 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		btnNewButton.setBounds(120, 120, 89, 32);
 		panel_1.add(btnNewButton);
 
-
-
 		btnEnter.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		btnEnter.setBounds(134, 130, 89, 32);
 		panel_2.add(btnEnter);
-		
-		
-			//panel_1.setVisible(true);
-			//cards.add(panel_1);
-		
-	
-		
-		
+
+		// panel_1.setVisible(true);
+		// cards.add(panel_1);
+
 		JLabel lblToUseRewards = new JLabel("To use Rewards, \r\nenter your registered Phone No.");
 		lblToUseRewards.setHorizontalAlignment(SwingConstants.CENTER);
 		lblToUseRewards.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
@@ -285,13 +267,6 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		panel_2.add(lblToUseRewards);
 
 	}
-
-
-	
-	
-
-	
-
 
 	/**
 	 * Initialize the contents of the frame.

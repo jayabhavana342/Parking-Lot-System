@@ -1,25 +1,16 @@
 package parkinglot.view.admin;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
 
 import parkinglot.controller.admin.UpdateRateController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
 import parkinglot.view.includes.MenuBar;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.ActionEvent;
 
 /**
  * @author AishwaryaRana
@@ -65,7 +56,7 @@ public class UpdateRatesView extends JFrame {
 	}
 
 	public void setTextField_1(JTextField textField_1) {
-		this.NewRate = NewRate;
+		this.NewRate = textField_1;
 	}
 
 	/**
@@ -94,55 +85,47 @@ public class UpdateRatesView extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
-		
+
 		JLabel lblCurrentRate = new JLabel("Current Rate");
 		lblCurrentRate.setBounds(274, 151, 81, 26);
 		cards.add(lblCurrentRate);
-		
+
 		currentRate = new JTextField();
-		
+
 		currentRate.setBounds(393, 153, 116, 22);
 		cards.add(currentRate);
 		currentRate.setColumns(10);
-		JTextField textField = controller.getActiveRate(); 
-		
 		JLabel lblNewRate = new JLabel("New Rate");
 		lblNewRate.setBounds(287, 211, 56, 16);
 		cards.add(lblNewRate);
-		
+
 		NewRate = new JTextField();
 		NewRate.setColumns(10);
 		NewRate.setBounds(393, 208, 116, 22);
 		cards.add(NewRate);
-		
-		
+
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.update(new Float(NewRate.getText()));
-				if(currentRate.getText() == NewRate.getText())
-				{
+				if (currentRate.getText() == NewRate.getText()) {
 					JOptionPane.showMessageDialog(null, "Enter a new rate!");
 				}
-				if(NewRate.getText() == " ")
-				{
+				if (NewRate.getText() == " ") {
 					JOptionPane.showMessageDialog(null, "Please enter a new rate to update");
-				}
-				else
-				{
+				} else {
 					controller.update(new Float(NewRate.getText()));
 				}
-				
+
 			}
 		});
 		btnSubmit.setBounds(341, 278, 97, 25);
 		cards.add(btnSubmit);
-		
+
 		JLabel label = new JLabel("");
 		label.setBounds(571, 156, 56, 16);
 		cards.add(label);
-		
-		
+
 	}
 
 	/**

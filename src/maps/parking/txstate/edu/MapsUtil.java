@@ -104,7 +104,6 @@ public class MapsUtil {
 		return path;
 	}
 
-
 	public static List<Vertex> init(Vertex v, String t) {
 
 		Vertex v5 = new Vertex("5", 75, 545);
@@ -268,7 +267,7 @@ public class MapsUtil {
 
 		v1.adjacencies = new Edge[] { new Edge(v5, 40) };
 		v5.adjacencies = new Edge[] { new Edge(v1, 40), new Edge(v6, 20) };
-		
+
 		v6.adjacencies = new Edge[] { new Edge(v5, 20), new Edge(v7, 40), new Edge(v219, 40) };
 		Vertex p70 = new Vertex("P70", 85, 485);
 		p70.adjacencies = EDGE;
@@ -276,92 +275,93 @@ public class MapsUtil {
 		p87.adjacencies = EDGE;
 		Vertex p88 = new Vertex("P88", 180, 500);
 		p88.adjacencies = EDGE;
-		v7.adjacencies = new Edge[] { new Edge(v6, 7.5), new Edge(v10, 7.5), new Edge(v10, 7.5) ,new Edge(p70, 1),new Edge(p87, 1),new Edge(p88, 1)};
+		v7.adjacencies = new Edge[] { new Edge(v6, 7.5), new Edge(v10, 7.5), new Edge(v10, 7.5), new Edge(p70, 1),
+				new Edge(p87, 1), new Edge(p88, 1) };
 		Vertex p69 = new Vertex("P69", 85, 465);
 		p69.adjacencies = EDGE;
 		Vertex p86 = new Vertex("P86", 180, 460);
 		p86.adjacencies = EDGE;
-		v10.adjacencies = new Edge[] { new Edge(v7, 7.5), new Edge(v13, 7.5),new Edge(p69, 1),new Edge(p86, 1)  };
+		v10.adjacencies = new Edge[] { new Edge(v7, 7.5), new Edge(v13, 7.5), new Edge(p69, 1), new Edge(p86, 1) };
 		Vertex p68 = new Vertex("P68", 85, 445);
 		p68.adjacencies = EDGE;
 		Vertex p85 = new Vertex("P85", 180, 440);
 		p85.adjacencies = EDGE;
-		v13.adjacencies = new Edge[] { new Edge(v10, 7.5), new Edge(v16, 7.5),new Edge(p68, 1),new Edge(p85, 1) };
+		v13.adjacencies = new Edge[] { new Edge(v10, 7.5), new Edge(v16, 7.5), new Edge(p68, 1), new Edge(p85, 1) };
 		Vertex p67 = new Vertex("P67", 85, 425);
 		p67.adjacencies = EDGE;
 		Vertex p84 = new Vertex("P84", 180, 420);
 		p84.adjacencies = EDGE;
-		v16.adjacencies = new Edge[] { new Edge(v13, 7.5), new Edge(v19, 7.5),new Edge(p67, 1),new Edge(p84, 1)  };
+		v16.adjacencies = new Edge[] { new Edge(v13, 7.5), new Edge(v19, 7.5), new Edge(p67, 1), new Edge(p84, 1) };
 		Vertex p66 = new Vertex("P66", 85, 405);
 		p66.adjacencies = EDGE;
 		Vertex p83 = new Vertex("P83", 180, 400);
 		p83.adjacencies = EDGE;
-		v19.adjacencies = new Edge[] { new Edge(v16, 7.5), new Edge(v22, 7.5),new Edge(p66, 1),new Edge(p83, 1)  };
+		v19.adjacencies = new Edge[] { new Edge(v16, 7.5), new Edge(v22, 7.5), new Edge(p66, 1), new Edge(p83, 1) };
 		Vertex p65 = new Vertex("P65", 85, 385);
 		p65.adjacencies = EDGE;
 		Vertex p82 = new Vertex("P82", 180, 380);
 		p82.adjacencies = EDGE;
-		v22.adjacencies = new Edge[] { new Edge(v19, 7.5), new Edge(v25, 7.5),new Edge(p65, 1),new Edge(p82, 1)  };
-		
+		v22.adjacencies = new Edge[] { new Edge(v19, 7.5), new Edge(v25, 7.5), new Edge(p65, 1), new Edge(p82, 1) };
+
 		v25.adjacencies = new Edge[] { new Edge(v22, 7.5), new Edge(v28, 7.5) };
 		Vertex p64 = new Vertex("P64", 85, 365);
 		p64.adjacencies = EDGE;
 		Vertex p81 = new Vertex("P81", 180, 360);
 		p81.adjacencies = EDGE;
-		v28.adjacencies = new Edge[] { new Edge(v25, 7.5), new Edge(v31, 7.5),new Edge(p64, 1),new Edge(p81, 1)  };
+		v28.adjacencies = new Edge[] { new Edge(v25, 7.5), new Edge(v31, 7.5), new Edge(p64, 1), new Edge(p81, 1) };
 		Vertex p63 = new Vertex("P63", 85, 345);
 		p63.adjacencies = EDGE;
 		Vertex p80 = new Vertex("P80", 180, 340);
 		p80.adjacencies = EDGE;
-		v31.adjacencies = new Edge[] { new Edge(v28, 7.5), new Edge(v34, 7.5),new Edge(p63, 1),new Edge(p80, 1)  };
+		v31.adjacencies = new Edge[] { new Edge(v28, 7.5), new Edge(v34, 7.5), new Edge(p63, 1), new Edge(p80, 1) };
 		Vertex p62 = new Vertex("P62", 85, 325);
 		p62.adjacencies = EDGE;
 		Vertex p79 = new Vertex("P79", 180, 320);
 		p79.adjacencies = EDGE;
-		v34.adjacencies = new Edge[] { new Edge(v31, 7.5), new Edge(v37, 7.5),new Edge(p62, 1),new Edge(p79, 1)  };
+		v34.adjacencies = new Edge[] { new Edge(v31, 7.5), new Edge(v37, 7.5), new Edge(p62, 1), new Edge(p79, 1) };
 		Vertex p61 = new Vertex("P61", 85, 305);
 		p61.adjacencies = EDGE;
 		Vertex p78 = new Vertex("P78", 180, 300);
 		p78.adjacencies = EDGE;
-		v37.adjacencies = new Edge[] { new Edge(v34, 7.5), new Edge(v40, 7.5),new Edge(p61, 1),new Edge(p78, 1) };
+		v37.adjacencies = new Edge[] { new Edge(v34, 7.5), new Edge(v40, 7.5), new Edge(p61, 1), new Edge(p78, 1) };
 		Vertex p60 = new Vertex("P60", 85, 285);
 		p60.adjacencies = EDGE;
 		Vertex p77 = new Vertex("P77", 180, 280);
 		p77.adjacencies = EDGE;
-		v40.adjacencies = new Edge[] { new Edge(v37, 7.5), new Edge(v43, 7.5),new Edge(p60, 1) ,new Edge(p77, 1)};
+		v40.adjacencies = new Edge[] { new Edge(v37, 7.5), new Edge(v43, 7.5), new Edge(p60, 1), new Edge(p77, 1) };
 		Vertex p59 = new Vertex("P59", 85, 265);
 		p59.adjacencies = EDGE;
 		Vertex p76 = new Vertex("P76", 180, 260);
 		p76.adjacencies = EDGE;
-		v43.adjacencies = new Edge[] { new Edge(v40, 7.5), new Edge(v46, 7.5),new Edge(p59, 1),new Edge(p76, 1) };
+		v43.adjacencies = new Edge[] { new Edge(v40, 7.5), new Edge(v46, 7.5), new Edge(p59, 1), new Edge(p76, 1) };
 		Vertex p58 = new Vertex("P58", 85, 245);
 		p58.adjacencies = EDGE;
 		Vertex p75 = new Vertex("P75", 180, 240);
 		p75.adjacencies = EDGE;
-		v46.adjacencies = new Edge[] { new Edge(v43, 7.5), new Edge(v49, 7.5),new Edge(p58, 1),new Edge(p75, 1) };
+		v46.adjacencies = new Edge[] { new Edge(v43, 7.5), new Edge(v49, 7.5), new Edge(p58, 1), new Edge(p75, 1) };
 		Vertex p57 = new Vertex("P57", 85, 225);
 		p57.adjacencies = EDGE;
 		Vertex p74 = new Vertex("P74", 180, 220);
 		p74.adjacencies = EDGE;
-		v49.adjacencies = new Edge[] { new Edge(v46, 7.5), new Edge(v52, 7.5),new Edge(p57, 1),new Edge(p74, 1) };
+		v49.adjacencies = new Edge[] { new Edge(v46, 7.5), new Edge(v52, 7.5), new Edge(p57, 1), new Edge(p74, 1) };
 		Vertex p56 = new Vertex("P56", 85, 205);
 		p56.adjacencies = EDGE;
 		Vertex p73 = new Vertex("P73", 180, 200);
 		p73.adjacencies = EDGE;
-		v52.adjacencies = new Edge[] { new Edge(v49, 7.5), new Edge(v55, 7.5),new Edge(p56, 1),new Edge(p73, 1) };
+		v52.adjacencies = new Edge[] { new Edge(v49, 7.5), new Edge(v55, 7.5), new Edge(p56, 1), new Edge(p73, 1) };
 		Vertex p55 = new Vertex("P55", 85, 185);
 		p55.adjacencies = EDGE;
 		Vertex p72 = new Vertex("P72", 180, 180);
 		p72.adjacencies = EDGE;
-		v55.adjacencies = new Edge[] { new Edge(v52, 7.5), new Edge(v58, 7.5),new Edge(p55, 1),new Edge(p72, 1) };
+		v55.adjacencies = new Edge[] { new Edge(v52, 7.5), new Edge(v58, 7.5), new Edge(p55, 1), new Edge(p72, 1) };
 		Vertex p54 = new Vertex("P54", 85, 165);
 		p54.adjacencies = EDGE;
 		Vertex p71 = new Vertex("P71", 180, 160);
 		p71.adjacencies = EDGE;
-		v58.adjacencies = new Edge[] { new Edge(v55, 7.5), new Edge(v61, 7.5),new Edge(p54, 1),new Edge(p71, 1) };
+		v58.adjacencies = new Edge[] { new Edge(v55, 7.5), new Edge(v61, 7.5), new Edge(p54, 1), new Edge(p71, 1) };
 		Vertex p53 = new Vertex("P53", 85, 145);
 		p53.adjacencies = EDGE;
-		v61.adjacencies = new Edge[] { new Edge(v58, 7.5), new Edge(v63, 7.5),new Edge(p53, 1) };
+		v61.adjacencies = new Edge[] { new Edge(v58, 7.5), new Edge(v63, 7.5), new Edge(p53, 1) };
 		Vertex p1 = new Vertex("P1", 115, 80);
 		p1.adjacencies = EDGE;
 

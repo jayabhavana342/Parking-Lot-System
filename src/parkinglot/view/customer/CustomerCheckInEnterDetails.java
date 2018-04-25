@@ -1,24 +1,13 @@
 package parkinglot.view.customer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import parkinglot.controller.customer.CustomerCheckInEnterDetailsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import slots.parking.txstate.edu.Slots;
-
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
 
 public class CustomerCheckInEnterDetails extends JFrame {
 	/**
@@ -29,12 +18,11 @@ public class CustomerCheckInEnterDetails extends JFrame {
 	private JTextField cvv;
 	private JTextField nameOnCard;
 	private JTextField vehicleNumber;
-	
 
 	/**
 	 * Launch the application.
 	 */
-	public  void main(String[] args) {
+	public void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -133,7 +121,7 @@ public class CustomerCheckInEnterDetails extends JFrame {
 		panel.add(chooseSlot);
 		chooseSlot.setForeground(Color.BLACK);
 		chooseSlot.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
-		
+
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setBounds(357, 197, 259, 34);
 		comboBox.addItem("Car");

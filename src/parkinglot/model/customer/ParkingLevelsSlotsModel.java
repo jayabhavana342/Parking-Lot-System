@@ -15,6 +15,7 @@ public class ParkingLevelsSlotsModel {
 	private boolean hasEmptySlots = false;
 	private int carSlotsAvailable = 0;
 	private int busSlotsAvailable = 0;
+	private int bikeSlotsAvailable = 0;
 
 	Connection conn;
 
@@ -98,12 +99,9 @@ public class ParkingLevelsSlotsModel {
 
 		try {
 			conn = DatabaseConnection.getConnection();
-			PreparedStatement select = conn.prepareStatement("SELECT\r\n" + "    COUNT(*) AS carSlotsAvailable\r\n"
-					+ "FROM\r\n" + "    parking_levels_slots\r\n" + "WHERE\r\n" + "    (\r\n"
-					+ "        (is_ocupied = 0) AND(\r\n" + "        SELECT\r\n"
-					+ "            IF(slot_type = 'Car', 1, 0)\r\n" + "        FROM\r\n"
-					+ "            parking_slots\r\n" + "        WHERE\r\n"
-					+ "            parking_levels_slots.slot_id = parking_slots.slot_id\r\n" + "    )\r\n" + "    )");
+			PreparedStatement select = conn.prepareStatement(
+					"SELECT\n" + "    COUNT(*) AS carSlotsAvailable\n" + "FROM\n" + "    parking_levels_slots\n"
+							+ "WHERE\n" + "    (is_ocupied = 0) AND (slot_type = 'CAR')");
 
 			rs = select.executeQuery();
 
@@ -117,17 +115,35 @@ public class ParkingLevelsSlotsModel {
 		return carSlotsAvailable;
 	}
 
+	public int bikeLotsAvailable() {
+		ResultSet rs;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement(
+					"SELECT\n" + "    COUNT(*) AS bikeSlotsAvailable\n" + "FROM\n" + "    parking_levels_slots\n"
+							+ "WHERE\n" + "    (is_ocupied = 0) AND (slot_type = 'MOTORCYCLE')");
+
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+				bikeSlotsAvailable = rs.getInt("bikeSlotsAvailable");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return bikeSlotsAvailable;
+	}
+
 	public int busLotsAvailable() {
 		ResultSet rs;
 
 		try {
 			conn = DatabaseConnection.getConnection();
-			PreparedStatement select = conn.prepareStatement("SELECT\r\n" + "    COUNT(*) AS busSlotsAvailable\r\n"
-					+ "FROM\r\n" + "    parking_levels_slots\r\n" + "WHERE\r\n" + "    (\r\n"
-					+ "        (is_ocupied = 0) AND(\r\n" + "        SELECT\r\n"
-					+ "            IF(slot_type = 'Bus', 1, 0)\r\n" + "        FROM\r\n"
-					+ "            parking_slots\r\n" + "        WHERE\r\n"
-					+ "            parking_levels_slots.slot_id = parking_slots.slot_id\r\n" + "    )\r\n" + "    )");
+			PreparedStatement select = conn.prepareStatement(
+					"SELECT\n" + "    COUNT(*) AS busSlotsAvailable\n" + "FROM\n" + "    parking_levels_slots\n"
+							+ "WHERE\n" + "    (is_ocupied = 0) AND (slot_type = 'BUS')");
 
 			rs = select.executeQuery();
 
@@ -137,14 +153,6 @@ public class ParkingLevelsSlotsModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		/*finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}*/
 
 		return busSlotsAvailable;
 	}

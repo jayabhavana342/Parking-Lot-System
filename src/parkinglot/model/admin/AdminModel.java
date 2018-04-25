@@ -3,13 +3,9 @@
  */
 package parkinglot.model.admin;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 import javax.swing.JOptionPane;
-
-import java.sql.PreparedStatement;
 
 import parkinglot.model.DatabaseConnection;
 
@@ -21,7 +17,7 @@ public class AdminModel {
 
 	private String last_name, first_name, email, password;
 	private int id;
-	
+
 	private Connection conn;
 
 	public AdminModel() {
@@ -88,24 +84,23 @@ public class AdminModel {
 
 	public void getCredentials() {
 		// TODO Auto-generated method stub
-		
+
 		try {
-            conn = DatabaseConnection.getConnection();
-            PreparedStatement select = conn.prepareStatement("SELECT * FROM admin_users WHERE email = ?");
-            select.setString(1, email);
-            ResultSet rs = select.executeQuery();
-            if(rs.next()){
-                password = rs.getString("password");
-                JOptionPane.showMessageDialog(null, "Successful Login");
-            }
-            else{
-                password = "";
-                JOptionPane.showMessageDialog(null, "Invalid username and password");
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement("SELECT * FROM admin_users WHERE email = ?");
+			select.setString(1, email);
+			ResultSet rs = select.executeQuery();
+			if (rs.next()) {
+				password = rs.getString("password");
+				JOptionPane.showMessageDialog(null, "Successful Login");
+			} else {
+				password = "";
+				JOptionPane.showMessageDialog(null, "Invalid username and password");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

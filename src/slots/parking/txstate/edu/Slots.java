@@ -329,7 +329,7 @@ public class Slots {
 				gc.drawImage(bus, 18 + i * 140, 600);
 			}
 
-			System.out.println("Bus:"+key);
+			System.out.println("Bus:" + key);
 		}
 	}
 
@@ -343,7 +343,7 @@ public class Slots {
 			} else {
 				gc.drawImage(bike_booked, 242, 18 * i + 134);
 			}
-			
+
 			System.out.println("Bike:" + key);
 		}
 
@@ -354,7 +354,7 @@ public class Slots {
 			} else {
 				gc.drawImage(bike_booked, 395, 18 * i + 134);
 			}
-//			System.out.println("Bike:" + key);
+			// System.out.println("Bike:" + key);
 		}
 	}
 
@@ -392,7 +392,7 @@ public class Slots {
 				button.setBounds(87 + 20 * i, 30, 15, 48);
 				button.setToolTipText("Slot: " + key + "\nCar No.: " + bookingMap.get(key));
 			}
-			
+
 			System.out.println("Car:" + key);
 
 		}

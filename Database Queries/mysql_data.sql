@@ -209,6 +209,7 @@ CREATE TABLE parking_vehicle_amount(
     vehicle_ID INT(11) NOT NULL,
     frequent_parker_id INT(11),
     bill_amount FLOAT NOT NULL,
+    checkout_amount FLOAT NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(frequent_parker_id) REFERENCES frequent_parking_users(id)
 ) AUTO_INCREMENT = 1; -- CHECK IN To fetch Current Parking rate
@@ -241,3 +242,11 @@ SET
     is_ocupied = 1
 WHERE
     id = 1; -- CheckOut Queries: -- select vehicle_id from card_details where card_No = '12' and cvv = 12 and name_on_card = 'abc';
+    
+-- CAR SLOTS AVAILABLE
+SELECT
+    COUNT(*) AS catSlotsAvailable
+FROM
+    parking_levels_slots
+WHERE
+    (is_ocupied = 0) AND (slot_type = 'CAR')

@@ -18,15 +18,13 @@ import parkinglot.model.DatabaseConnection;
  *
  */
 public class ParkingRatesModel {
-	
+
 	private static final boolean False = false;
 	private int id;
 	private Date date;
 	private float rate;
 	private boolean is_active;
 	Connection conn;
-	
-	
 
 	/**
 	 * 
@@ -36,19 +34,13 @@ public class ParkingRatesModel {
 		// TODO Auto-generated constructor stub
 	}
 
-
-
 	public int getId() {
 		return id;
 	}
 
-
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
-
 
 	/**
 	 * @param id
@@ -64,37 +56,25 @@ public class ParkingRatesModel {
 		this.is_active = is_active;
 	}
 
-
-
 	public Date getDate() {
 		return date;
 	}
-
-
 
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
-
-
 	public float getRate() {
 		return rate;
 	}
-
-
 
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
 
-
-
 	public boolean isIs_active() {
 		return is_active;
 	}
-
-
 
 	public void setIs_active(boolean is_active) {
 		this.is_active = is_active;
@@ -108,21 +88,20 @@ public class ParkingRatesModel {
 			ps = conn.prepareStatement("UPDATE parking_rates SET is_active=0 ORDER BY id DESC LIMIT 1;");
 			ps.executeUpdate();
 			System.out.println("Update successful!");
-		
-			if(is_active ==  False) {
+
+			if (is_active == False) {
 				ps = conn.prepareStatement("INSERT INTO parking_rates(rate, is_active ) VALUES (?, 1)");
 				ps.setFloat(1, rate);
 				ps.execute();
-				}
-					JOptionPane.showMessageDialog(null, "New rate is updated");
-				}
+			}
+			JOptionPane.showMessageDialog(null, "New rate is updated");
+		}
 
-	catch (SQLException e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
 
 	/**
 	 * @param args
@@ -134,23 +113,21 @@ public class ParkingRatesModel {
 
 	public void getActiveRate() {
 		// TODO Auto-generated method stub
-		
-		
+
 		try {
-            conn = DatabaseConnection.getConnection();
-            PreparedStatement select = conn.prepareStatement("SELECT rate FROM parking_rates WHERE is_active=1");
-            ResultSet rs = select.executeQuery();
-            if(rs.next()){
-                rate = rs.getInt("rate");
-                System.out.println(rate);
-            }
-            else{
-                rate = 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-		
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement("SELECT rate FROM parking_rates WHERE is_active=1");
+			ResultSet rs = select.executeQuery();
+			if (rs.next()) {
+				rate = rs.getInt("rate");
+				System.out.println(rate);
+			} else {
+				rate = 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

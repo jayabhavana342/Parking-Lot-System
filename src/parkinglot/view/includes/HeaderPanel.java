@@ -29,7 +29,7 @@ public class HeaderPanel extends JPanel {
 		lblNewLabel.setFont(new Font("Jokerman", Font.BOLD, 40));
 
 		JLabel picLabel = new JLabel();
-		ImageIcon imageIcon = new ImageIcon("C:\\Users\\bhava\\git\\Parking-Lot-System\\src\\images\\logo.jpg");
+		ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/images/logo.jpg"));
 		Image image = imageIcon.getImage();
 		Image newimage = image.getScaledInstance(175, 100, Image.SCALE_SMOOTH);
 		picLabel.setIcon(new ImageIcon(newimage));

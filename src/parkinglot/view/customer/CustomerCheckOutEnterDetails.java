@@ -1,19 +1,13 @@
 package parkinglot.view.customer;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+
 import parkinglot.controller.customer.CustomerCheckOutEnterDetailsController;
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class CustomerCheckOutEnterDetails extends JFrame {
 

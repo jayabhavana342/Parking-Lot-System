@@ -1,20 +1,10 @@
 package parkinglot.view.customer;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
 
 import parkinglot.view.includes.FooterPanel;
 import parkinglot.view.includes.HeaderPanel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JCheckBox;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class CustomerCheckOutSucccessfulView extends JFrame {
 
@@ -22,7 +12,6 @@ public class CustomerCheckOutSucccessfulView extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 
 	/**
 	 * Launch the application.
@@ -45,7 +34,7 @@ public class CustomerCheckOutSucccessfulView extends JFrame {
 	 */
 	public CustomerCheckOutSucccessfulView() {
 		initialize();
-		
+
 		getContentPane().setBackground(Color.lightGray);
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(new HeaderPanel(), BorderLayout.NORTH);
@@ -63,15 +52,13 @@ public class CustomerCheckOutSucccessfulView extends JFrame {
 		centerHome.setBackground(Color.LIGHT_GRAY);
 		cards.add(centerHome);
 		centerHome.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setBounds(220, 98, 651, 408);
 		cards.add(panel);
 		panel.setLayout(null);
-		
-		
-		
+
 	}
 
 	/**
