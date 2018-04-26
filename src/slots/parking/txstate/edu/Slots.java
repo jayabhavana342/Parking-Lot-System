@@ -74,7 +74,9 @@ public class Slots {
 
 		display = new Display();
 		shell = new Shell(display);
-		shell.setMaximized(true);
+		shell.setVisible(true);
+		shell.setActive();
+//		shell.setLocation(200, 0);
 		shell.open();
 
 		layout = new Image(display, "resources/images/layout.png");

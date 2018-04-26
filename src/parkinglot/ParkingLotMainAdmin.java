@@ -23,7 +23,7 @@ public class ParkingLotMainAdmin {
 			try {
 				LoginView frame = new LoginView();
 				frame.setVisible(true);
-				frame.setLocation(200, 0);
+				frame.setLocation(500, 200);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

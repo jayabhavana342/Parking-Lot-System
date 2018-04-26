@@ -19,7 +19,6 @@ import parkinglot.model.DatabaseConnection;
  */
 public class ParkingRatesModel {
 
-	private static final boolean False = false;
 	private int id;
 	private Date date;
 	private float rate;
