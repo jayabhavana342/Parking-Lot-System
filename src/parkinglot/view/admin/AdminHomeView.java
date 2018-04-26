@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import parkinglot.model.admin.ParkingRatesModel;
 import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.view.admin.AdminHomeView;
 import parkinglot.view.includes.FooterPanel;
@@ -114,13 +115,11 @@ public class AdminHomeView extends JFrame {
 		frequentParkers.setBounds(451, 297, 226, 40);
 		cards.add(frequentParkers);
 
-		JLabel carsParkedLabel = new JLabel("Cars Parked");
-		carsParkedLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
-		carsParkedLabel.setForeground(Color.WHITE);
-		carsParkedLabel.setBounds(182, 195, 226, 40);
-		cards.add(carsParkedLabel);
+		ParkingRatesModel parkingRatesModel = new ParkingRatesModel();
+		parkingRatesModel.getActiveRate();
 
-		totalAmountEarned = new JLabel();
+		totalAmountEarned = new JLabel("$"
+				+ (Integer.valueOf(parkingLevelsModel.vehiclesParked()) * Float.valueOf(parkingRatesModel.getRate())));
 		totalAmountEarned.setFont(new Font("Comic Sans MS", Font.BOLD | Font.ITALIC, 20));
 		totalAmountEarned.setForeground(Color.WHITE);
 		totalAmountEarned.setBounds(451, 388, 226, 40);
@@ -159,9 +158,9 @@ public class AdminHomeView extends JFrame {
 			}
 		});
 
-//		JButton btnViewReports = new JButton("View Reports");
-//		btnViewReports.setBounds(617, 26, 216, 26);
-//		cards.add(btnViewReports);
+		// JButton btnViewReports = new JButton("View Reports");
+		// btnViewReports.setBounds(617, 26, 216, 26);
+		// cards.add(btnViewReports);
 
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(833, 26, 226, 26);
