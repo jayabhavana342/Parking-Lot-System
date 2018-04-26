@@ -19,6 +19,7 @@ public class TimeDetailsModel {
 	private int slot_level_id;
 	private float check_in_rate;
 
+
 	Connection conn;
 	private float billed_amount;
 
@@ -154,7 +155,7 @@ public class TimeDetailsModel {
 			conn = DatabaseConnection.getConnection();
 			PreparedStatement ps;
 
-			String sql = "select In_Time,Out_Time,noOfDays,check_in_rate from time_details where vehicle_ID = ?";
+			String sql = "select In_Time,Out_Time,noOfDays,check_in_rate,slot_level_id from time_details where vehicle_ID = ?";
 			System.out.println(sql);
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -164,11 +165,13 @@ public class TimeDetailsModel {
 				Timestamp outTime = rs.getTimestamp(2);
 				int noOfDays = rs.getInt(3);
 				float check_in_rate = rs.getFloat(4);
+				int slotLevelID = rs.getInt(5);
 
 				this.In_Time = inTime;
 				this.Out_Time = outTime;
 				this.check_in_rate = check_in_rate;
 				this.noOfDays = noOfDays;
+				this.slot_level_id = slotLevelID;
 
 				this.setBilled_amount(this.noOfDays * this.check_in_rate);
 
@@ -176,6 +179,8 @@ public class TimeDetailsModel {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		
 
 	}
 
@@ -195,7 +200,7 @@ public class TimeDetailsModel {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void updateNoOfDays(int id) {
 		// TODO Auto-generated method stub
 		try {
@@ -238,4 +243,30 @@ public class TimeDetailsModel {
 	public void setBilled_amount(float billed_amount) {
 		this.billed_amount = billed_amount;
 	}
+
+	public int getSlotLevelID(int id) {
+		try {
+			System.out.println("In TimeDetailsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			String sql = "select slot_level_id from time_details where vehicle_ID = ?";
+			System.out.println(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int slotLevelID = rs.getInt(1);
+				this.slot_level_id = slotLevelID;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return this.slot_level_id;
+		
+	}
+
+
+
+	
 }

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 
 import parkinglot.model.customer.CardDetailsModel;
+import parkinglot.model.customer.ParkingLevelsSlotsModel;
 import parkinglot.model.customer.TimeDetailsModel;
 import parkinglot.model.customer.VehicleDetailsModel;
 import parkinglot.view.customer.checkout.CustomerCheckOutEnterDetailsView;
@@ -19,6 +20,7 @@ public class CustomerCheckOutEnterDetailsController {
 	private CardDetailsModel cardDetailsModel;
 	private VehicleDetailsModel vehicleDetailsModel;
 	private TimeDetailsModel timeDetailsModel;
+	private ParkingLevelsSlotsModel parkingLevelsSlotsModel;
 
 	Connection conn;
 
@@ -33,6 +35,7 @@ public class CustomerCheckOutEnterDetailsController {
 		cardDetailsModel = new CardDetailsModel();
 		vehicleDetailsModel = new VehicleDetailsModel();
 		timeDetailsModel = new TimeDetailsModel();
+		parkingLevelsSlotsModel = new ParkingLevelsSlotsModel();
 
 	}
 
@@ -56,6 +59,7 @@ public class CustomerCheckOutEnterDetailsController {
 			
 			timeDetailsModel.updateOutTime(id);
 			timeDetailsModel.updateNoOfDays(id);
+			parkingLevelsSlotsModel.updateIsOccupied(timeDetailsModel.getSlotLevelID(id));
 			timeDetailsModel.retrieveTimeDetails(id);
 			Timestamp inTime = timeDetailsModel.getIn_Time();
 			Timestamp outTime = timeDetailsModel.getOut_Time();

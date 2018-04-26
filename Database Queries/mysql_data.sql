@@ -182,7 +182,7 @@ CREATE TABLE vehicle_details(
 CREATE TABLE card_details(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     vehicle_ID INT(11),
-    card_No VARCHAR(10) NOT NULL,
+    card_No VARCHAR(16) NOT NULL,
     cvv INT(3) NOT NULL,
     name_on_card VARCHAR(50) NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id)

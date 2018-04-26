@@ -192,4 +192,23 @@ public class ParkingLevelsSlotsModel {
 		return emptySlots;
 	}
 
+	public void updateIsOccupied(int id) {
+		try {
+			System.out.println("In parkingLevelsSlotsModel:");
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			String sql = "update parking_levels_slots set is_ocupied = 0 where id = ?";
+			System.out.println(sql);
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			System.out.println("Slot Level ID Updated!");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		// TODO Auto-generated method stub
+		
+	}
+
 }

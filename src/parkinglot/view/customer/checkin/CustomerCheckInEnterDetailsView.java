@@ -74,6 +74,14 @@ public class CustomerCheckInEnterDetailsView extends JFrame {
 
 		cardNumber = new JTextField();
 		cardNumber.setBounds(357, 36, 259, 28);
+		cardNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				if (!Character.isDigit(arg0.getKeyChar())) {
+					arg0.consume();
+				}
+			}
+		});
 		panel.add(cardNumber);
 		cardNumber.setColumns(10);
 
@@ -85,6 +93,14 @@ public class CustomerCheckInEnterDetailsView extends JFrame {
 
 		cvv = new JTextField();
 		cvv.setBounds(357, 75, 259, 31);
+		cvv.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				if (!Character.isDigit(arg0.getKeyChar())) {
+					arg0.consume();
+				}
+			}
+		});
 		panel.add(cvv);
 		cvv.setColumns(10);
 
@@ -132,8 +148,16 @@ public class CustomerCheckInEnterDetailsView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println(comboBox.getSelectedItem());
-				controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
-						vehicleNumber.getText(), String.valueOf(comboBox.getSelectedItem()));
+				if(cardNumber.getText().equals("")  || cvv.getText().equals("")  || nameOnCard.getText().equals("")  || vehicleNumber.getText().equals("") || comboBox.getSelectedItem().equals(""))
+				{
+					JOptionPane.showMessageDialog(null, "Please enter all the details");
+				}
+				else
+				{
+					controller.parseDetails(cardNumber.getText(), cvv.getText(), nameOnCard.getText(),
+							vehicleNumber.getText(), String.valueOf(comboBox.getSelectedItem()));
+				}
+				
 
 			}
 		});
