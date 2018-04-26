@@ -1,4 +1,7 @@
+DROP database parkinglot;
+
 CREATE DATABASE IF NOT EXISTS parkinglot;
+
 USE
     parkinglot;
 DROP TABLE IF EXISTS
@@ -16,20 +19,14 @@ DROP TABLE IF EXISTS
 DROP TABLE IF EXISTS
     vehicle_details;
 DROP TABLE IF EXISTS
-    parking_levels;
-DROP TABLE IF EXISTS
-    parking_slots;
-DROP TABLE IF EXISTS
     parking_levels_slots;
+    
 CREATE TABLE parking_levels_slots(
-    id INT(11) PRIMARY KEY,
+    id INT PRIMARY KEY,
     slot_type ENUM('CAR', 'BUS', 'MOTORCYCLE'),
     is_ocupied BOOLEAN DEFAULT 0
 );
-INSERT
-INTO
-    parking_levels_slots(id, slot_type)
-VALUES(121, 'CAR');
+
 CREATE TABLE `admin_users`(
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `last_name` VARCHAR(64) DEFAULT NULL,
@@ -38,6 +35,7 @@ CREATE TABLE `admin_users`(
     `password` VARCHAR(256) NOT NULL,
     PRIMARY KEY(`id`)
 ) AUTO_INCREMENT = 1;
+
 INSERT
 INTO
     `admin_users`(
@@ -52,6 +50,7 @@ VALUES(
     'joe.alpha@foo.com',
     'admin'
 );
+
 CREATE TABLE `parking_rates`(
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `date` TIMESTAMP NOT NULL,
@@ -59,6 +58,7 @@ CREATE TABLE `parking_rates`(
     `is_active` BOOLEAN NOT NULL,
     PRIMARY KEY(`id`)
 ) AUTO_INCREMENT = 1;
+
 INSERT
 INTO
     `parking_rates`
@@ -68,6 +68,7 @@ VALUES(
     5.00,
     1
 );
+
 CREATE TABLE `frequent_parking_users`(
     `id` INT(11) NOT NULL AUTO_INCREMENT,
     `last_name` VARCHAR(64) NOT NULL,
@@ -79,6 +80,7 @@ CREATE TABLE `frequent_parking_users`(
     `rewards` FLOAT(10) DEFAULT 2,
     PRIMARY KEY(`id`)
 ) AUTO_INCREMENT = 1;
+
 INSERT
 INTO
     `frequent_parking_users`(
@@ -179,12 +181,14 @@ VALUES(
     '919919919',
     'A333A33'
 );
+
 CREATE TABLE vehicle_details(
     id INT(11) AUTO_INCREMENT,
     vehicle_No VARCHAR(10) UNIQUE,
-    vehicle_Type ENUM('Car', 'Bus'),
+    vehicle_Type ENUM('Car', 'Bus', 'MOTORCYCLE'),
     PRIMARY KEY(id)
 ) AUTO_INCREMENT = 1;
+
 CREATE TABLE card_details(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     vehicle_ID INT(11),
@@ -193,6 +197,7 @@ CREATE TABLE card_details(
     name_on_card VARCHAR(50) NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id)
 ) AUTO_INCREMENT = 1;
+
 CREATE TABLE time_details(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     vehicle_ID INT(11),
@@ -204,6 +209,7 @@ CREATE TABLE time_details(
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(slot_level_id) REFERENCES parking_levels_slots(id)
 ) AUTO_INCREMENT = 1;
+
 CREATE TABLE parking_vehicle_amount(
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
     vehicle_ID INT(11) NOT NULL,
@@ -212,45 +218,7 @@ CREATE TABLE parking_vehicle_amount(
     checkout_amount FLOAT NOT NULL,
     FOREIGN KEY(vehicle_ID) REFERENCES vehicle_details(id),
     FOREIGN KEY(frequent_parker_id) REFERENCES frequent_parking_users(id)
-) AUTO_INCREMENT = 1; -- CHECK IN To fetch Current Parking rate
-SELECT
-    *
-FROM
-    `parking_rates`
-WHERE
-    is_active = 1; -- INSERT 
-INSERT
-INTO
-    `vehicle_details`(`vehicle_No`, `Vehicle_Type`)
-VALUES('12345', 'CAR');
-INSERT
-INTO
-    card_details(
-        vehicle_ID,
-        card_No,
-        cvv,
-        name_on_card
-    )
-VALUES(LAST_INSERT_ID(), '12', '12', 'abc');
-INSERT
-INTO
-    time_details(vehicle_ID, slot_level_id)
-VALUES(2, 2);
-UPDATE
-    parking_levels_slots
-SET
-    is_ocupied = 1
-WHERE
-    id = 1; -- CheckOut Queries: -- select vehicle_id from card_details where card_No = '12' and cvv = 12 and name_on_card = 'abc';
-    
--- CAR SLOTS AVAILABLE
-SELECT
-    COUNT(*) AS catSlotsAvailable
-FROM
-    parking_levels_slots
-WHERE
-    (is_ocupied = 0) AND (slot_type = 'CAR');
-    
+) AUTO_INCREMENT = 1;
     
 INSERT INTO parking_levels_slots(id,slot_type) values(121,'CAR');
 INSERT INTO parking_levels_slots(id,slot_type) values(122,'CAR');
@@ -301,7 +269,6 @@ INSERT INTO parking_levels_slots(id,slot_type) values(1246,'CAR');
 INSERT INTO parking_levels_slots(id,slot_type) values(1247,'CAR');
 INSERT INTO parking_levels_slots(id,slot_type) values(1248,'CAR');
     
-    
 INSERT INTO parking_levels_slots(id,slot_type) values(111,'MOTORCYCLE');
 INSERT INTO parking_levels_slots(id,slot_type) values(112,'MOTORCYCLE');
 INSERT INTO parking_levels_slots(id,slot_type) values(113,'MOTORCYCLE');
@@ -329,3 +296,5 @@ INSERT INTO parking_levels_slots(id,slot_type) values(133,'BUS');
 INSERT INTO parking_levels_slots(id,slot_type) values(134,'BUS');
 INSERT INTO parking_levels_slots(id,slot_type) values(135,'BUS');
 INSERT INTO parking_levels_slots(id,slot_type) values(136,'BUS');
+
+SELECT * FROM parking_levels_slots;
