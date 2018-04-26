@@ -12,6 +12,7 @@ import parkinglot.model.customer.TimeDetailsModel;
 import parkinglot.model.customer.VehicleDetailsModel;
 import parkinglot.view.customer.checkout.CustomerCheckOutEnterDetailsView;
 import parkinglot.view.customer.checkout.CustomerCheckOutOrUseRewardsView;
+import slots.parking.txstate.edu.Slots;
 
 public class CustomerCheckOutEnterDetailsController {
 	private CustomerCheckOutEnterDetailsView view;
@@ -44,6 +45,10 @@ public class CustomerCheckOutEnterDetailsController {
 		} else {
 			vehicleDetailsModel.retrieveVehicleDetails(id);
 			System.out.println(vehicleDetailsModel.getVehicle_No());
+			
+			//Check-out from Slot layout
+			Slots.checkOut(vehicleDetailsModel.getVehicle_No());
+			
 			CustomerCheckOutOrUseRewardsView customerCheckOutDisplayDetails = new CustomerCheckOutOrUseRewardsView();
 			customerCheckOutDisplayDetails.vehicleNo.setText(vehicleDetailsModel.getVehicle_No());
 			customerCheckOutDisplayDetails.vehicleType.setText(vehicleDetailsModel.getVehicle_Type());
