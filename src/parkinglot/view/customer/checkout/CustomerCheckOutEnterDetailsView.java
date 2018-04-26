@@ -71,6 +71,14 @@ public class CustomerCheckOutEnterDetailsView extends JFrame {
 
 		cardNumber = new JTextField();
 		cardNumber.setBounds(357, 36, 259, 28);
+		cardNumber.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				if (!Character.isDigit(arg0.getKeyChar())) {
+					arg0.consume();
+				}
+			}
+		});
 		panel.add(cardNumber);
 		cardNumber.setColumns(10);
 
@@ -82,6 +90,14 @@ public class CustomerCheckOutEnterDetailsView extends JFrame {
 
 		cvv = new JTextField();
 		cvv.setBounds(357, 75, 259, 31);
+		cvv.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				if (!Character.isDigit(arg0.getKeyChar())) {
+					arg0.consume();
+				}
+			}
+		});
 		panel.add(cvv);
 		cvv.setColumns(10);
 
