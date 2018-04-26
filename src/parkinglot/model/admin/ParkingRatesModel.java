@@ -32,15 +32,7 @@ public class ParkingRatesModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
 	/**
 	 * @param id
 	 * @param date
@@ -53,6 +45,14 @@ public class ParkingRatesModel {
 		this.date = date;
 		this.rate = rate;
 		this.is_active = is_active;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Date getDate() {
@@ -88,12 +88,12 @@ public class ParkingRatesModel {
 			ps.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Update Successful");
 
-				ps = conn.prepareStatement("INSERT INTO parking_rates(rate, is_active ) VALUES (?, 1)");
-				ps.setFloat(1, rate);
-				ps.execute();
-		
+			ps = conn.prepareStatement("INSERT INTO parking_rates(rate, is_active ) VALUES (?, 1)");
+			ps.setFloat(1, rate);
+			ps.execute();
+
 			JOptionPane.showMessageDialog(null, "New rate is updated");
-			
+
 		}
 
 		catch (SQLException e) {
@@ -102,20 +102,13 @@ public class ParkingRatesModel {
 
 	}
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 	public void getActiveRate() {
 		// TODO Auto-generated method stub
 
 		try {
 			conn = DatabaseConnection.getConnection();
-			PreparedStatement select = conn.prepareStatement("SELECT rate, is_active FROM parking_rates WHERE is_active= 1");
+			PreparedStatement select = conn
+					.prepareStatement("SELECT rate, is_active FROM parking_rates WHERE is_active= 1");
 			ResultSet rs = select.executeQuery();
 			if (rs.next()) {
 				rate = rs.getFloat("rate");

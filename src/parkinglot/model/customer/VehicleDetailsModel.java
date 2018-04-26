@@ -13,7 +13,6 @@ public class VehicleDetailsModel {
 	private int id;
 	private String vehicle_No;
 	private String Vehicle_Type;
-	private int slot_level_id;
 
 	Connection conn;
 
@@ -50,14 +49,6 @@ public class VehicleDetailsModel {
 
 	public void setVehicle_Type(String vehicle_Type) {
 		Vehicle_Type = vehicle_Type;
-	}
-
-	public int getSlot_level_id() {
-		return slot_level_id;
-	}
-
-	public void setSlot_level_id(int slot_level_id) {
-		this.slot_level_id = slot_level_id;
 	}
 
 	public int insertVehicleDetailsIntoDB(String vehicleNo, String vehicleType) {

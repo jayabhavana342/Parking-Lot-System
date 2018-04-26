@@ -9,9 +9,9 @@ import parkinglot.model.DatabaseConnection;
 
 public class ParkingLevelsSlotsModel {
 	private int id;
-	private int slot_id;
-	private int level_id;
+	private String slot_type;;
 	private boolean is_ocupied;
+	
 	private boolean hasEmptySlots = false;
 	private int carSlotsAvailable = 0;
 	private int busSlotsAvailable = 0;
@@ -31,20 +31,13 @@ public class ParkingLevelsSlotsModel {
 		this.id = id;
 	}
 
-	public int getSlot_id() {
-		return slot_id;
+
+	public String getSlot_type() {
+		return slot_type;
 	}
 
-	public void setSlot_id(int slot_id) {
-		this.slot_id = slot_id;
-	}
-
-	public int getLevel_id() {
-		return level_id;
-	}
-
-	public void setLevel_id(int level_id) {
-		this.level_id = level_id;
+	public void setSlot_type(String slot_type) {
+		this.slot_type = slot_type;
 	}
 
 	public boolean isIs_ocupied() {
@@ -55,18 +48,12 @@ public class ParkingLevelsSlotsModel {
 		this.is_ocupied = is_ocupied;
 	}
 
-	/**
-	 * @param id
-	 * @param slot_id
-	 * @param level_id
-	 * @param is_ocupied
-	 */
-	public ParkingLevelsSlotsModel(int id, int slot_id, int level_id, boolean is_ocupied) {
+	public ParkingLevelsSlotsModel(int id, String slot_type, boolean is_ocupied, boolean hasEmptySlots) {
 		super();
 		this.id = id;
-		this.slot_id = slot_id;
-		this.level_id = level_id;
+		this.slot_type = slot_type;
 		this.is_ocupied = is_ocupied;
+		this.hasEmptySlots = hasEmptySlots;
 	}
 
 	public boolean checkSlotsAvailability() {

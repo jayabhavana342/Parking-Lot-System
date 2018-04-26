@@ -31,6 +31,33 @@ public class FrequentParkingUsersModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * @param id
+	 * @param last_name
+	 * @param first_name
+	 * @param email
+	 * @param address
+	 * @param phone
+	 * @param license_id
+	 * @param f
+	 */
+	public FrequentParkingUsersModel(int id, String last_name, String first_name, String email, String address,
+			String phone, String license_id, float f) {
+		super();
+		this.id = id;
+		this.last_name = last_name;
+		this.first_name = first_name;
+		this.email = email;
+		this.address = address;
+		this.phone = phone;
+		this.license_id = license_id;
+		this.rewards = f;
+	}
+
+	public void setRewards(float rewards) {
+		this.rewards = rewards;
+	}
 
 	public int getId() {
 		return id;
@@ -102,29 +129,6 @@ public class FrequentParkingUsersModel {
 
 	public void setFrequent_parkers_count(int frequent_parkers_count) {
 		this.totalFrequentParkers = frequent_parkers_count;
-	}
-
-	/**
-	 * @param id
-	 * @param last_name
-	 * @param first_name
-	 * @param email
-	 * @param address
-	 * @param phone
-	 * @param license_id
-	 * @param f
-	 */
-	public FrequentParkingUsersModel(int id, String last_name, String first_name, String email, String address,
-			String phone, String license_id, float f) {
-		super();
-		this.id = id;
-		this.last_name = last_name;
-		this.first_name = first_name;
-		this.email = email;
-		this.address = address;
-		this.phone = phone;
-		this.license_id = license_id;
-		this.rewards = f;
 	}
 
 	public ArrayList<FrequentParkingUsersModel> parkingUsersList() {
@@ -283,14 +287,6 @@ public class FrequentParkingUsersModel {
 		}
 
 		return checkFrequentParker;
-
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 
