@@ -23,6 +23,7 @@ public class ParkingLotMainCustomerCheckOut {
 			try {
 				CustomerCheckOutHomePageView frame = new CustomerCheckOutHomePageView();
 				frame.setVisible(true);
+				frame.setLocation(200, 0);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
