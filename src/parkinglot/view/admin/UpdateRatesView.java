@@ -91,6 +91,7 @@ public class UpdateRatesView extends JFrame {
 		currentRate.setBounds(393, 153, 116, 22);
 		cards.add(currentRate);
 		currentRate.setColumns(10);
+		JTextField textField = controller.getActiveRate(); 
 		JLabel lblNewRate = new JLabel("New Rate");
 		lblNewRate.setBounds(287, 211, 56, 16);
 		cards.add(lblNewRate);
