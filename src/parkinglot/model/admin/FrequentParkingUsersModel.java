@@ -31,7 +31,7 @@ public class FrequentParkingUsersModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @param id
 	 * @param last_name
@@ -114,11 +114,7 @@ public class FrequentParkingUsersModel {
 	public void setLicense_id(String license_id) {
 		this.license_id = license_id;
 	}
-
-	public float getRewards() {
-		return rewards;
-	}
-
+	
 	public void setRewards(int rewards) {
 		this.rewards = rewards;
 	}
@@ -281,6 +277,7 @@ public class FrequentParkingUsersModel {
 					checkFrequentParker = true;
 				else
 					checkFrequentParker = false;
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -288,6 +285,35 @@ public class FrequentParkingUsersModel {
 
 		return checkFrequentParker;
 
+	}
+
+	public float getUserRewards(String phoneNumber) {
+		ResultSet rs;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn
+					.prepareStatement("SELECT rewards FROM frequent_parking_users WHERE phone =?");
+
+			select.setString(1, phoneNumber);
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+
+				System.out.println(rs.getFloat("rewards"));
+				return rs.getFloat("rewards");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+
+	}
+
+	public float getRewards() {
+		return rewards;
 	}
 
 }

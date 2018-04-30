@@ -24,9 +24,12 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	public JTextField noOfDays;
 	public JTextField rate;
 	public JTextField billAmount;
+	public JTextField checkOutAmount;
 	public JPanel panel_1;
 	public JPanel panel;
 	private JTextField phoneNo;
+	public JLabel lblNewLabel;
+	public JLabel availableRewardsLabel;
 
 	/**
 	 * Launch the application.
@@ -177,6 +180,15 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		billAmount.setBounds(248, 330, 128, 28);
 		panel.add(billAmount);
 		billAmount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		
+		checkOutAmount = new JTextField();
+		checkOutAmount.setEditable(false);
+		checkOutAmount.setBackground(Color.LIGHT_GRAY);
+		checkOutAmount.setColumns(10);
+		checkOutAmount.setBounds(248, 330, 128, 28);
+		panel.add(checkOutAmount);
+		checkOutAmount.setVisible(false);
+		checkOutAmount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
 		JButton btnNewButton_1 = new JButton("Check Out");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -218,7 +230,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		panel_1.setBounds(388, 211, 385, 159);
 		panel_1.setLayout(null);
 		System.out.println();
-		// panel.add(panel_1);
+//		 panel.add(panel_1);
 
 		JLabel displayRewardsLabel = new JLabel("Use Frequent Parker Rewards");
 		displayRewardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -226,7 +238,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		displayRewardsLabel.setBounds(0, 11, 385, 32);
 		panel_1.add(displayRewardsLabel);
 
-		JLabel availableRewardsLabel = new JLabel("$ rewards");
+		availableRewardsLabel = new JLabel();
 		availableRewardsLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		availableRewardsLabel.setForeground(new Color(50, 205, 50));
 		availableRewardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -239,7 +251,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		panel_1.add(enterRewardsToBeUsed);
 		enterRewardsToBeUsed.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("$");
+		lblNewLabel = new JLabel("$");
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		lblNewLabel.setBounds(59, 77, 11, 28);
 		panel_1.add(lblNewLabel);
@@ -247,6 +259,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		JButton btnNewButton = new JButton("Apply");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				controller.applyRewads(enterRewardsToBeUsed.getText(), billAmount.getText(), phoneNo.getText());
 			}
 		});
 		btnNewButton.setFont(new Font("Comic Sans MS", Font.BOLD, 15));

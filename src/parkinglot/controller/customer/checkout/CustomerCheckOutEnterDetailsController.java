@@ -66,7 +66,7 @@ public class CustomerCheckOutEnterDetailsController {
 
 			customerCheckOutDisplayDetails.setVisible(true);
 			customerCheckOutDisplayDetails.setLocationRelativeTo(null);
-			;
+			
 			this.view.dispose();
 		}
 
