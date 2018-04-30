@@ -20,8 +20,8 @@ public class TimeDetailsModel {
 	private float check_in_rate;
 
 	Connection conn;
+	private float billed_amount;
 
-	
 	public int getVehicle_ID() {
 		return vehicle_ID;
 	}
@@ -45,7 +45,7 @@ public class TimeDetailsModel {
 	public void setCheck_in_rate(float check_in_rate) {
 		this.check_in_rate = check_in_rate;
 	}
-	
+
 	public TimeDetailsModel() {
 		// TODO Auto-generated constructor stub
 	}
@@ -81,7 +81,6 @@ public class TimeDetailsModel {
 	public void setNoOfDays(int noOfDays) {
 		this.noOfDays = noOfDays;
 	}
-	
 
 	public TimeDetailsModel(int id, int vehicle_ID, Timestamp in_Time, Timestamp out_Time, int noOfDays,
 			int slot_level_id, float check_in_rate) {
@@ -155,7 +154,7 @@ public class TimeDetailsModel {
 			conn = DatabaseConnection.getConnection();
 			PreparedStatement ps;
 
-			String sql = "select In_Time,Out_Time,noOfDays from time_details where vehicle_ID = ?";
+			String sql = "select In_Time,Out_Time,noOfDays,check_in_rate from time_details where vehicle_ID = ?";
 			System.out.println(sql);
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -164,10 +163,14 @@ public class TimeDetailsModel {
 				Timestamp inTime = rs.getTimestamp(1);
 				Timestamp outTime = rs.getTimestamp(2);
 				int noOfDays = rs.getInt(3);
+				float check_in_rate = rs.getFloat(4);
 
 				this.In_Time = inTime;
 				this.Out_Time = outTime;
+				this.check_in_rate = check_in_rate;
 				this.noOfDays = noOfDays;
+
+				this.setBilled_amount(this.noOfDays * this.check_in_rate);
 
 			}
 		} catch (SQLException e) {
@@ -207,6 +210,7 @@ public class TimeDetailsModel {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				int noOfDays = rs.getInt(1);
+				System.out.println(noOfDays);
 				if (noOfDays == 0) {
 					return;
 				} else {
@@ -215,8 +219,9 @@ public class TimeDetailsModel {
 					ps = conn.prepareStatement(sql);
 					ps.setInt(1, noOfDays);
 					ps.setInt(2, id);
-					ps.executeQuery();
-					System.out.println("No. of days updated!");
+					ResultSet s = ps.executeQuery();
+					if(s.next())
+						System.out.println("No. of days updated!");
 
 				}
 			}
@@ -224,5 +229,13 @@ public class TimeDetailsModel {
 			e.printStackTrace();
 		}
 
+	}
+
+	public float getBilled_amount() {
+		return billed_amount;
+	}
+
+	public void setBilled_amount(float billed_amount) {
+		this.billed_amount = billed_amount;
 	}
 }

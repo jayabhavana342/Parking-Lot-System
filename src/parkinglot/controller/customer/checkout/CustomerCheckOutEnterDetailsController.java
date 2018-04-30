@@ -45,10 +45,10 @@ public class CustomerCheckOutEnterDetailsController {
 		} else {
 			vehicleDetailsModel.retrieveVehicleDetails(id);
 			System.out.println(vehicleDetailsModel.getVehicle_No());
-			
-			//Check-out from Slot layout
+
+			// Check-out from Slot layout
 			Slots.checkOut(vehicleDetailsModel.getVehicle_No());
-			
+
 			CustomerCheckOutOrUseRewardsView customerCheckOutDisplayDetails = new CustomerCheckOutOrUseRewardsView();
 			customerCheckOutDisplayDetails.vehicleNo.setText(vehicleDetailsModel.getVehicle_No());
 			customerCheckOutDisplayDetails.vehicleType.setText(vehicleDetailsModel.getVehicle_Type());
@@ -61,8 +61,8 @@ public class CustomerCheckOutEnterDetailsController {
 			customerCheckOutDisplayDetails.InTime.setText(dateFormat.format(inTime));
 			customerCheckOutDisplayDetails.OutTime.setText(dateFormat.format(outTime));
 			customerCheckOutDisplayDetails.noOfDays.setText(String.valueOf(timeDetailsModel.getNoOfDays()));
-//			customerCheckOutDisplayDetails.rate.setText(String.valueOf());
-			// customerCheckOutDisplayDetails.OutTime.setText(timeDetailsModel.getOut_Time());
+			customerCheckOutDisplayDetails.rate.setText(String.valueOf(timeDetailsModel.getCheck_in_rate()));
+			customerCheckOutDisplayDetails.billAmount.setText(String.valueOf(timeDetailsModel.getBilled_amount()));
 
 			customerCheckOutDisplayDetails.setVisible(true);
 			customerCheckOutDisplayDetails.setLocationRelativeTo(null);

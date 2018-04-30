@@ -23,7 +23,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	public JTextField OutTime;
 	public JTextField noOfDays;
 	public JTextField rate;
-	public JTextField amount;
+	public JTextField billAmount;
 	public JPanel panel_1;
 	public JPanel panel;
 	private JTextField phoneNo;
@@ -170,13 +170,13 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		panel.add(rate);
 		rate.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
-		amount = new JTextField();
-		amount.setEditable(false);
-		amount.setBackground(Color.LIGHT_GRAY);
-		amount.setColumns(10);
-		amount.setBounds(248, 330, 128, 28);
-		panel.add(amount);
-		amount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+		billAmount = new JTextField();
+		billAmount.setEditable(false);
+		billAmount.setBackground(Color.LIGHT_GRAY);
+		billAmount.setColumns(10);
+		billAmount.setBounds(248, 330, 128, 28);
+		panel.add(billAmount);
+		billAmount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
 		JButton btnNewButton_1 = new JButton("Check Out");
 		btnNewButton_1.addActionListener(new ActionListener() {
