@@ -19,6 +19,7 @@ public class CustomerCheckOutOrUseRewardsController {
 	public void checkIfFrequentParkerBasedOnPhoneNumber(String text) {
 		// TODO Auto-generated method stub
 		view.availableRewardsLabel.setText(model.getUserRewards(text) + " rewards.");
+		view.fpID.setText(String.valueOf(model.getUserID(text)));
 
 		if (model.checkIfFrequentParkerBasedOnPhoneNumber(text)) {
 			view.panel.add(view.panel_1);
@@ -31,6 +32,7 @@ public class CustomerCheckOutOrUseRewardsController {
 		// TODO Auto-generated method stub
 		view.billAmount.setVisible(false);
 		view.checkOutAmount.setVisible(true);
+
 		view.availableRewardsLabel
 				.setText(String.valueOf(Float.valueOf(model.getUserRewards(text)) - Float.valueOf(useR)) + " rewards.");
 		view.checkOutAmount.setText(String.valueOf(Float.valueOf(billAmount) - Float.valueOf(useR)));
@@ -43,20 +45,25 @@ public class CustomerCheckOutOrUseRewardsController {
 		CustomerCheckOutSucccessfulView cView = new CustomerCheckOutSucccessfulView();
 
 		float epsilon = (float) 0.00000001;
-		if (Float.compare(Float.valueOf(cA), Float.valueOf(billA)) < epsilon) {
-			if (pvamodel.updateFrequentParkerCheckout(fpID, vID, billA, cA)) {
-				model.updateRewards(Float.valueOf(useR), Float.valueOf(cA), Integer.valueOf(fpID));
-				System.out.println("yes fp");
-				cView.setVisible(true);
-				cView.setLocationRelativeTo(null);
-				this.view.dispose();
-			}
-		} else {
+		if (fpID.isEmpty()) {
 			if (pvamodel.updateCheckout(vID, billA, cA)) {
 				System.out.println("no fp");
 				cView.setVisible(true);
 				cView.setLocationRelativeTo(null);
 				this.view.dispose();
+			}
+		} else {
+			if (Float.compare(Float.valueOf(cA), Float.valueOf(billA)) < epsilon) {
+				if (pvamodel.updateFrequentParkerCheckout(fpID, vID, billA, cA)) {
+					if(!useR.isEmpty())
+						model.updateRewards(Float.valueOf(useR), Float.valueOf(cA), Integer.valueOf(fpID), true);
+					else
+						model.updateRewards((float)0.0, Float.valueOf(cA), Integer.valueOf(fpID), false);
+					System.out.println("yes fp");
+					cView.setVisible(true);
+					cView.setLocationRelativeTo(null);
+					this.view.dispose();
+				}
 			}
 		}
 

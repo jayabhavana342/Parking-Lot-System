@@ -53,6 +53,7 @@ public class CustomerCheckOutEnterDetailsController {
 			customerCheckOutDisplayDetails.vehicleNo.setText(vehicleDetailsModel.getVehicle_No());
 			customerCheckOutDisplayDetails.vehicleType.setText(vehicleDetailsModel.getVehicle_Type());
 			customerCheckOutDisplayDetails.vid.setText(String.valueOf(vehicleDetailsModel.getId()));
+			
 			timeDetailsModel.updateOutTime(id);
 			timeDetailsModel.updateNoOfDays(id);
 			timeDetailsModel.retrieveTimeDetails(id);

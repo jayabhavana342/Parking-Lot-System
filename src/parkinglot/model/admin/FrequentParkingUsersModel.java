@@ -312,6 +312,30 @@ public class FrequentParkingUsersModel {
 
 	}
 
+	public int getUserID(String phoneNumber) {
+		ResultSet rs;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement("SELECT id FROM frequent_parking_users WHERE phone =?");
+
+			select.setString(1, phoneNumber);
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+
+				System.out.println(rs.getInt("id"));
+				return rs.getInt("id");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+
+	}
+
 	public float getUserRewardsBasedOnID(int id) {
 		ResultSet rs;
 
@@ -340,16 +364,22 @@ public class FrequentParkingUsersModel {
 		return rewards;
 	}
 
-	public void updateRewards(Float useR, Float cA, Integer id) {
+	public void updateRewards(float useR, float cA, int id, boolean empty) {
 		try {
 			conn = DatabaseConnection.getConnection();
 			PreparedStatement ps;
 
 			ps = conn.prepareStatement("UPDATE\n" + "	    `frequent_parking_users`\n" + "	SET\n"
 					+ "	    `rewards` =?\n" + "	WHERE\n" + "	    id = ?");
+			// if (empty) {
+			// ps.setFloat(1, ((Float.valueOf(getUserRewardsBasedOnID(id))) +
+			// Float.valueOf((float) (cA * 0.10))));
+			// } else {
 			ps.setFloat(1, ((Float.valueOf(getUserRewardsBasedOnID(id) - useR)) + Float.valueOf((float) (cA * 0.10))));
+			// }
+
 			ps.setInt(2, id);
-			
+
 			System.out.println(ps);
 
 			if (ps.executeUpdate() > 0) {

@@ -30,7 +30,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	private JTextField phoneNo;
 	public JLabel lblNewLabel;
 	public JLabel availableRewardsLabel;
-	private JTextField fpID;
+	public JTextField fpID;
 	public JTextField vid;
 
 	/**
@@ -210,6 +210,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("calling controller");
+				System.out.println("agter"+fpID.getText());
 				controller.checkOut(enterRewardsToBeUsed.getText(),fpID.getText(), vid.getText(), billAmount.getText(), checkOutAmount.getText());
 			}
 		});

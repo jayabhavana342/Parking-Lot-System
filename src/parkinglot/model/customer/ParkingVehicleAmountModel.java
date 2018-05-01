@@ -108,6 +108,7 @@ public class ParkingVehicleAmountModel {
 					+ "        `checkout_amount`\n" + "    )\n" + "VALUES(?,?,?,?)");
 
 			select.setInt(1, Integer.valueOf(vID));
+			System.out.println("fpid:"+fpID);
 			select.setInt(2, Integer.parseInt(fpID));
 			select.setFloat(3, Float.valueOf(billA));
 			select.setFloat(4, Float.valueOf(cA));
