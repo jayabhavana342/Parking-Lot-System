@@ -28,7 +28,5 @@ public class ParkingLotMainCustomerCheckIn {
 				e.printStackTrace();
 			}
 		});
-
 	}
-
 }

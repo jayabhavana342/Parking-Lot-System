@@ -114,7 +114,7 @@ public class FrequentParkingUsersModel {
 	public void setLicense_id(String license_id) {
 		this.license_id = license_id;
 	}
-	
+
 	public void setRewards(int rewards) {
 		this.rewards = rewards;
 	}
@@ -312,8 +312,53 @@ public class FrequentParkingUsersModel {
 
 	}
 
+	public float getUserRewardsBasedOnID(int id) {
+		ResultSet rs;
+
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement select = conn.prepareStatement("SELECT rewards FROM frequent_parking_users WHERE id =?");
+
+			select.setInt(1, id);
+			rs = select.executeQuery();
+
+			if (rs.next()) {
+
+				System.out.println(rs.getFloat("rewards"));
+				return rs.getFloat("rewards");
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+
+	}
+
 	public float getRewards() {
 		return rewards;
+	}
+
+	public void updateRewards(Float useR, Float cA, Integer id) {
+		try {
+			conn = DatabaseConnection.getConnection();
+			PreparedStatement ps;
+
+			ps = conn.prepareStatement("UPDATE\n" + "	    `frequent_parking_users`\n" + "	SET\n"
+					+ "	    `rewards` =?\n" + "	WHERE\n" + "	    id = ?");
+			ps.setFloat(1, ((Float.valueOf(getUserRewardsBasedOnID(id) - useR)) + Float.valueOf((float) (cA * 0.10))));
+			ps.setInt(2, id);
+			
+			System.out.println(ps);
+
+			if (ps.executeUpdate() > 0) {
+				JOptionPane.showMessageDialog(null, "frequent parker rewards updated");
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

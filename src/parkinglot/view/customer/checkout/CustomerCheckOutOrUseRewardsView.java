@@ -30,6 +30,8 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 	private JTextField phoneNo;
 	public JLabel lblNewLabel;
 	public JLabel availableRewardsLabel;
+	private JTextField fpID;
+	public JTextField vid;
 
 	/**
 	 * Launch the application.
@@ -190,9 +192,25 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		checkOutAmount.setVisible(false);
 		checkOutAmount.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 
+		CustomerCheckOutOrUseRewardsController controller = new CustomerCheckOutOrUseRewardsController(this);
+
+		fpID = new JTextField();
+		fpID.setBounds(112, 445, 86, 20);
+		panel.add(fpID);
+		fpID.setColumns(10);
+		fpID.setVisible(false);
+		
+		vid = new JTextField();
+		vid.setBounds(112, 414, 86, 20);
+		panel.add(vid);
+		vid.setColumns(10);
+		vid.setVisible(false);
+		
 		JButton btnNewButton_1 = new JButton("Check Out");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("calling controller");
+				controller.checkOut(enterRewardsToBeUsed.getText(),fpID.getText(), vid.getText(), billAmount.getText(), checkOutAmount.getText());
 			}
 		});
 		btnNewButton_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
@@ -216,7 +234,7 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		lblPhoneNo.setBounds(22, 78, 89, 28);
 		panel_2.add(lblPhoneNo);
 
-		CustomerCheckOutOrUseRewardsController controller = new CustomerCheckOutOrUseRewardsController(this);
+		
 
 		JButton btnEnter = new JButton("Enter");
 		btnEnter.addActionListener(new ActionListener() {
@@ -278,6 +296,9 @@ public class CustomerCheckOutOrUseRewardsView extends JFrame {
 		lblToUseRewards.setFont(new Font("Comic Sans MS", Font.BOLD, 15));
 		lblToUseRewards.setBounds(0, 13, 395, 64);
 		panel_2.add(lblToUseRewards);
+		
+
+		
 
 	}
 

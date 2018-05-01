@@ -104,7 +104,7 @@ public class VehicleDetailsModel {
 			conn = DatabaseConnection.getConnection();
 			PreparedStatement ps;
 
-			String sql = "select vehicle_No, vehicle_Type from vehicle_details where id = ?";
+			String sql = "select vehicle_No, vehicle_Type, id from vehicle_details where id = ?";
 			System.out.println(sql);
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
@@ -112,8 +112,11 @@ public class VehicleDetailsModel {
 			if (rs.next()) {
 				String vehicleNo = rs.getString(1);
 				String vehicleType = rs.getString(2);
+				int idd = rs.getInt(3);
 				this.vehicle_No = vehicleNo;
 				this.Vehicle_Type = vehicleType;
+				this.id = idd;
+				
 				// VehicleDetailsModel vehicleDetailsModel = new VehicleDetailsModel(id,
 				// vehicleNo, vehicleType);
 				// return vehicleDetailsModel;

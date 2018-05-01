@@ -52,6 +52,7 @@ public class CustomerCheckOutEnterDetailsController {
 			CustomerCheckOutOrUseRewardsView customerCheckOutDisplayDetails = new CustomerCheckOutOrUseRewardsView();
 			customerCheckOutDisplayDetails.vehicleNo.setText(vehicleDetailsModel.getVehicle_No());
 			customerCheckOutDisplayDetails.vehicleType.setText(vehicleDetailsModel.getVehicle_Type());
+			customerCheckOutDisplayDetails.vid.setText(String.valueOf(vehicleDetailsModel.getId()));
 			timeDetailsModel.updateOutTime(id);
 			timeDetailsModel.updateNoOfDays(id);
 			timeDetailsModel.retrieveTimeDetails(id);
@@ -63,6 +64,7 @@ public class CustomerCheckOutEnterDetailsController {
 			customerCheckOutDisplayDetails.noOfDays.setText(String.valueOf(timeDetailsModel.getNoOfDays()));
 			customerCheckOutDisplayDetails.rate.setText(String.valueOf(timeDetailsModel.getCheck_in_rate()));
 			customerCheckOutDisplayDetails.billAmount.setText(String.valueOf(timeDetailsModel.getBilled_amount()));
+			customerCheckOutDisplayDetails.checkOutAmount.setText(String.valueOf(timeDetailsModel.getBilled_amount()));
 
 			customerCheckOutDisplayDetails.setVisible(true);
 			customerCheckOutDisplayDetails.setLocationRelativeTo(null);

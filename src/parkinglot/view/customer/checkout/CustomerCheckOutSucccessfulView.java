@@ -59,6 +59,13 @@ public class CustomerCheckOutSucccessfulView extends JFrame {
 		cards.add(panel);
 		panel.setLayout(null);
 
+		JLabel thankYou = new JLabel("Thank you, Visit Again!!");
+		thankYou.setForeground(Color.RED);
+		thankYou.setHorizontalAlignment(SwingConstants.CENTER);
+		thankYou.setFont(new Font("Comic Sans MS", Font.BOLD, 25));
+		thankYou.setBounds(128, 141, 388, 111);
+		panel.add(thankYou);
+
 	}
 
 	/**
